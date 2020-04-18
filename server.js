@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const Sequelize = require("sequelize");
 var db = require("./models");
-const songs = require("./routes/songs");
+const transit = require("./routes/transit");
 const passport = require("passport");
 const lyrics = require("./routes/lyrics");
 const users = require("./routes/users");
@@ -31,7 +31,7 @@ app.use(compression());
 // Add routes, both API and view
 
 // Define API routes here
-app.use(songs);
+app.use(transit);
 app.use(lyrics);
 app.use(users);
 // Send every other request to the React app

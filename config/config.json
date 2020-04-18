@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "Databasepassword",
-    "database": "karaoke_db",
+    "database": "CommunityLife_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
