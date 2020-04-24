@@ -20,6 +20,18 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         unique: true,
       },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      aptNumber: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       // The password cannot be null
       password: {
         type: DataTypes.STRING,
@@ -28,6 +40,7 @@ module.exports = function (sequelize, DataTypes) {
       // The user role cannot be null
       role: {
         type: DataTypes.STRING,
+        defaultValue: "User",
         allowNull: false,
       },
     },

@@ -7,7 +7,6 @@ import { Row, Col, Container } from "react-bootstrap";
 export default function Home() {
   return (
     <div>
-      <Header />
       <Container className="homepage--container">
         <Row>
           <Col className="homepage--col col-md-6">
