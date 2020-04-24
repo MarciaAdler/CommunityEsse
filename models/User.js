@@ -25,6 +25,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      // The user role cannot be null
+      role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {}
   );
