@@ -6,6 +6,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    read: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: 0,
+    },
   });
   Message.associate = function (models) {
     // We're saying that a Post should belong to an Author
