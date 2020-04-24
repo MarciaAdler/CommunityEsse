@@ -7,8 +7,8 @@ const Sequelize = require("sequelize");
 var db = require("./models");
 const transit = require("./routes/transit");
 const passport = require("passport");
-const lyrics = require("./routes/lyrics");
-const users = require("./routes/users");
+
+// const users = require("./routes/users");
 var session = require("express-session");
 var compression = require("compression");
 
@@ -31,9 +31,9 @@ app.use(compression());
 // Add routes, both API and view
 
 // Define API routes here
-app.use(transit);
-app.use(lyrics);
-app.use(users);
+// app.use(transit);
+
+// app.use(users);
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
