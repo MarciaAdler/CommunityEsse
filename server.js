@@ -5,10 +5,10 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const Sequelize = require("sequelize");
 var db = require("./models");
-const transit = require("./routes/transit");
+
 const passport = require("passport");
 
-// const users = require("./routes/users");
+const users = require("./routes/users");
 var session = require("express-session");
 var compression = require("compression");
 
@@ -33,7 +33,7 @@ app.use(compression());
 // Define API routes here
 // app.use(transit);
 
-// app.use(users);
+app.use(users);
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {

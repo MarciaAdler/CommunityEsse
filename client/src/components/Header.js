@@ -8,12 +8,13 @@ export default function Header() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#features">Building Home</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav.Link href="#pricing">Building Contacts</Nav.Link>
         </Nav>
         <Nav>
           <Nav.Link href="#deets">Profile</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Building Contacts
+
+          <Nav.Link eventKey={2} href="/Signin">
+            Logout
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
