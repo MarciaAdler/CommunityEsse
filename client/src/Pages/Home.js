@@ -9,10 +9,10 @@ export default function Home() {
     <div>
       <Container className="homepage--container">
         <Row>
-          <Col className="homepage--col col-md-6">
+          <Col className="homepage--col col-md-8 col-sm-6">
             <ViewAnnouncements />
           </Col>
-          <Col>
+          <Col className="col-sm-6 col-md-4">
             <SideNav />
           </Col>
         </Row>

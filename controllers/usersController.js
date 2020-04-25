@@ -23,9 +23,13 @@ module.exports = {
       where: {
         username: req.body.username,
       },
-    }).then(function (user) {
-      res.json(user);
-    });
+    })
+      .then(function (user) {
+        res.json(user);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
   },
   createAnnouncement: function (req, res) {
     db.Announcement.create({
@@ -44,6 +48,7 @@ module.exports = {
       where: {
         show: "show",
       },
+      // order: '"createdAt", DESC',
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {

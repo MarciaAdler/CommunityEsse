@@ -7,9 +7,9 @@ export default {
     return axios.post("/api/login", req);
   },
   createAnnouncement: function (req) {
-    return axios.post("api/announcement", req);
+    return axios.post("/api/announcement", req);
   },
   getAnnouncements: function () {
-    return axios.get("api/announcement");
+    return axios.get("/api/announcement");
   },
 };

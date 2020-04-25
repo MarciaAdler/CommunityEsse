@@ -22,13 +22,8 @@ export default function PostAnnouncement() {
     <div className="post-announcement--container">
       <h2>Post Annoucement Here</h2>
       <Form className="post-annoucement--form">
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Control
-            as="textarea"
-            rows="5"
-            ref={postRef}
-            id="announcement-form"
-          />
+        <Form.Group controlId="announcement-form">
+          <Form.Control as="textarea" rows="5" ref={postRef} />
         </Form.Group>
         <Button variant="primary" type="submit" onClick={createPost}>
           Submit
