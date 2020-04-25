@@ -64,9 +64,9 @@ export default function Home() {
                 : "no announcements"}
             </ListGroup>
           </Col>
-          <Col className="col-sm-6 col-md-4">
+          {/* <Col className="col-sm-6 col-md-4">
             <SideNav />
-          </Col>
+          </Col> */}
         </Row>
         <div className="homepage--bulletinboard">
           <Row>

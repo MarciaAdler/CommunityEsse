@@ -3,8 +3,10 @@ import Header from "./components/Header";
 import Home from "./Pages/Home";
 import Signin from "./Pages/Signin";
 import Signup from "./Pages/Signup";
+import SideNav from "../src/components/SideNav";
 import Announcements from "./Pages/Announcements";
 import BulletinBoard from "./Pages/BulletinBoard";
+import { Col } from "react-bootstrap";
 import { StoreProvider } from "../src/utils/GlobalState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.sass";
@@ -15,6 +17,8 @@ function App() {
       <StoreProvider>
         <Router>
           <Header />
+
+          <SideNav />
 
           <Switch>
             <Route exact path="/" component={Signin} />

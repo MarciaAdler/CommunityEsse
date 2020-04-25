@@ -1,9 +1,9 @@
 import React from "react";
-import { Nav, Container } from "react-bootstrap";
+import { Nav, Container, Col } from "react-bootstrap";
 
 export default function SideNav() {
   return (
-    <Container fluid className="side-nav--container">
+    <Container className="side-nav--container">
       <Nav
         defaultActiveKey="/home"
         className="flex-column align-items-end mr-5 mt-5 side-nav--nav"
