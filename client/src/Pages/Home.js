@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import SideNav from "../components/SideNav";
-import Announcements from "../components/Announcements";
+import ViewAnnouncements from "../components/ViewAnnouncements";
 import BulletinBoard from "../components/BulletinBoard";
 import { Row, Col, Container } from "react-bootstrap";
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       <Container className="homepage--container">
         <Row>
           <Col className="homepage--col col-md-6">
-            <Announcements />
+            <ViewAnnouncements />
           </Col>
           <Col>
             <SideNav />

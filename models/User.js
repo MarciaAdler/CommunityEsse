@@ -40,8 +40,8 @@ module.exports = function (sequelize, DataTypes) {
       // The user role cannot be null
       role: {
         type: DataTypes.STRING,
-        defaultValue: "User",
         allowNull: false,
+        defaultValue: "User",
       },
     },
     {}

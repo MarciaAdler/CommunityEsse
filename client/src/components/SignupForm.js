@@ -12,6 +12,7 @@ export default function SignupForm() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmRef = useRef();
+  const roleRef = useRef();
 
   const renderRedirect = () => {
     if (sendLogin) {
@@ -19,7 +20,7 @@ export default function SignupForm() {
     }
   };
   function signUp(event) {
-    console.log(firstRef.current.value);
+    console.log(roleRef.current.value);
     event.preventDefault();
     if (passwordRef.current.value !== confirmRef.current.value) {
       return alert("Passwords must match");
@@ -31,6 +32,7 @@ export default function SignupForm() {
         username: nameRef.current.value,
         aptNumber: aptRef.current.value,
         password: passwordRef.current.value,
+        role: roleRef.current.value,
       })
         .then((res) => {
           setSendLogin(true);
@@ -84,7 +86,22 @@ export default function SignupForm() {
           </Col>
         </Form.Row>
         <Form.Row className="justify-content-center">
-          <Col className="col-8">
+          <Col className="col-8 col-md-2">
+            <Form.Group controlId="formGroupRole">
+              <Form.Label>Role</Form.Label>
+              <Form.Control
+                as="select"
+                defaultValue="User"
+                required
+                ref={roleRef}
+              >
+                <option>User</option>
+                <option>Admin</option>
+              </Form.Control>
+            </Form.Group>
+          </Col>
+
+          <Col className="col-8 col-md-6">
             <Form.Group controlId="formGroupEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control

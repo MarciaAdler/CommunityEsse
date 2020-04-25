@@ -9,6 +9,7 @@ module.exports = {
       username: req.body.username,
       aptNumber: req.body.aptNumber,
       password: req.body.password,
+      role: req.body.role,
     })
       .then(function () {
         res.json(req.body);

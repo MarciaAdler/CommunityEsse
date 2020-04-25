@@ -1,23 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-export default function Header() {
-  return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">Community Life</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="#features">Building Home</Nav.Link>
-          <Nav.Link href="#pricing">Building Contacts</Nav.Link>
-        </Nav>
-        <Nav>
-          <Nav.Link href="#deets">Profile</Nav.Link>
+import { SET_CURRENT_USER, LOGGEDIN, CLEAR_ALL } from "../utils/actions";
+import { useStoreContext } from "../utils/GlobalState";
+import { Link, Redirect } from "react-router-dom";
 
-          <Nav.Link eventKey={2} href="/Signin">
-            Logout
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+export default function Header() {
+  const [state, dispatch] = useStoreContext();
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    if (state.currentUser.id === 0 && localStorage.getItem("currentUser")) {
+      const currentUserLs = JSON.parse(localStorage.getItem("currentUser"));
+
+      dispatch({
+        type: SET_CURRENT_USER,
+        currentUser: currentUserLs,
+      });
+
+      dispatch({
+        type: LOGGEDIN,
+      });
+      console.log(currentUserLs.id);
+    }
+  });
+
+  function logOut() {
+    dispatch({
+      type: CLEAR_ALL,
+    });
+    localStorage.clear();
+    setRedirect(true);
+    renderRedirect();
+  }
+
+  const renderRedirect = () => {
+    if (redirect === true) {
+      return <Redirect to="/" />;
+    }
+  };
+  return (
+    <div>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand href="/home">Community Life</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        {state.loggedIn ? (
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/home">Building Home</Nav.Link>
+              <Nav.Link href="/contacts">Building Contacts</Nav.Link>
+            </Nav>
+            <Nav>
+              <Nav.Link href="/profile">Profile</Nav.Link>
+
+              <Nav.Link eventKey={2} href="/" onClick={logOut}>
+                Logout
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        ) : (
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/signup">Signup</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        )}
+      </Navbar>
+      {renderRedirect()}
+    </div>
   );
 }

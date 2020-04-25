@@ -1,8 +1,51 @@
 import React, { useRef } from "react";
+import { useStoreContext } from "../utils/GlobalState";
 import { Form, Button } from "react-bootstrap";
+import API from "../utils/API";
+import { Redirect, Link } from "react-router-dom";
+import { LOGGEDIN, SET_CURRENT_USER } from "../utils/actions";
+
 export default function LoginForm() {
+  const [state, dispatch] = useStoreContext();
   const nameRef = useRef();
   const passwordRef = useRef();
+  const renderRedirect = () => {
+    if (state.loggedIn) {
+      return <Redirect to="/home" />;
+    }
+  };
+  function login(event) {
+    event.preventDefault();
+    API.getUser({
+      username: nameRef.current.value,
+      password: passwordRef.current.value,
+    })
+      .then((results) => {
+        dispatch({
+          type: SET_CURRENT_USER,
+          currentUser: {
+            id: results.data.id,
+            username: results.data.username,
+            role: results.data.role,
+          },
+        });
+
+        let localStorageUser = {
+          id: results.data.id,
+          username: results.data.username,
+          role: results.data.role,
+        };
+
+        window.localStorage.setItem(
+          "currentUser",
+          JSON.stringify(localStorageUser)
+        );
+        dispatch({
+          type: LOGGEDIN,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div className="loginform--wrapper">
       <Form className="loginform--form div-to-align">
@@ -24,10 +67,11 @@ export default function LoginForm() {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={login}>
           Submit
         </Button>
       </Form>
+      {renderRedirect()}
     </div>
   );
 }

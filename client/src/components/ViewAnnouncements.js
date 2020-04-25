@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
-import SideNav from "../components/SideNav";
-export default function Announcements() {
+import SideNav from "./SideNav";
+export default function ViewAnnouncements() {
   return (
     <div>
       <h2>Announcements</h2>
