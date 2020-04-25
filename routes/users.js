@@ -15,6 +15,10 @@ router.route("/api/announcement").post(usersController.createAnnouncement);
 
 router.route("/api/announcement").get(usersController.getAnnouncements);
 
+router
+  .route("/api/announcement/:id")
+  .delete(usersController.deleteAnnouncement);
+
 router.route("/api/bulletin").post(usersController.createBulletin);
 
 router.route("/api/bulletin").get(usersController.getBulletins);

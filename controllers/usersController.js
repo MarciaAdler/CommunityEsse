@@ -90,4 +90,15 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  deleteAnnouncement: function (req, res) {
+    db.Announcement.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

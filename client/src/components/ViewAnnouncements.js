@@ -17,7 +17,13 @@ export default function ViewAnnouncements() {
       dispatch({ type: SET_ANNOUNCEMENTS, announcements: response.data });
     });
   }
-
+  function deleteAnnouncement(announcement) {
+    API.deleteAnnouncement(announcement)
+      .then((res) => {
+        getAnnouncements(state.announcements);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div>
       <h2>Announcements</h2>
@@ -26,10 +32,17 @@ export default function ViewAnnouncements() {
         {state.announcements.length
           ? state.announcements.map((announcement, index) => {
               return (
-                <ListGroup.Item key={index}>
+                <ListGroup.Item key={announcement.id}>
                   {announcement.message}
                   {state.currentUser.role === "Admin" ? (
-                    <button className="view-bulletin--delete-btn">X</button>
+                    <button
+                      className="view-bulletin--delete-btn"
+                      onClick={() => {
+                        deleteAnnouncement(announcement.id);
+                      }}
+                    >
+                      X
+                    </button>
                   ) : (
                     ""
                   )}{" "}

@@ -21,4 +21,7 @@ export default {
   deleteBulletin: function (bulletin) {
     return axios.delete("/api/bulletin/" + bulletin);
   },
+  deleteAnnouncement: function (announcement) {
+    return axios.delete("/api/announcement/" + announcement);
+  },
 };
