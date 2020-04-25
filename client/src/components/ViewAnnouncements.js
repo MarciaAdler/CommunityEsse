@@ -11,7 +11,6 @@ export default function ViewAnnouncements() {
   }, []);
   function getAnnouncements(message) {
     API.getAnnouncements(message).then((response) => {
-      console.log(response.data);
       setAnnouncements(response.data);
     });
   }

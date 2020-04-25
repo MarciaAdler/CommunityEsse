@@ -48,7 +48,7 @@ module.exports = {
       where: {
         show: "show",
       },
-      // order: '"createdAt", DESC',
+      order: [["createdAt", "DESC"]],
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
