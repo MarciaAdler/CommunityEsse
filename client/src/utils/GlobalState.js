@@ -1,6 +1,12 @@
 import React, { createContext, useReducer, useContext } from "react";
 
-import { CLEAR_ALL, LOADING, SET_CURRENT_USER, LOGGEDIN } from "./actions";
+import {
+  CLEAR_ALL,
+  LOADING,
+  SET_CURRENT_USER,
+  LOGGEDIN,
+  SET_ANNOUNCEMENTS,
+} from "./actions";
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -21,6 +27,11 @@ const reducer = (state, action) => {
         ...state,
         loggedIn: true,
       };
+    case SET_ANNOUNCEMENTS:
+      return {
+        ...state,
+        announcements: action.announcements,
+      };
     case CLEAR_ALL:
       return {
         currentUser: {
@@ -30,6 +41,7 @@ const reducer = (state, action) => {
         },
         loggedIn: false,
         loading: false,
+        announcements: [],
       };
 
     case LOADING:
@@ -51,6 +63,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     },
     loading: false,
     loggedIn: false,
+    announcements: [],
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

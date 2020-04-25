@@ -3,15 +3,18 @@ import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import SideNav from "./SideNav";
 import API from "../utils/API";
 import dateFormat from "dateformat";
+import { SET_ANNOUNCEMENTS } from "../utils/actions";
+import { useStoreContext } from "../utils/GlobalState";
+
 export default function ViewAnnouncements() {
-  const [announcements, setAnnouncements] = useState([]);
+  const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getAnnouncements(announcements);
+    getAnnouncements(state.announcements);
   }, []);
   function getAnnouncements(message) {
     API.getAnnouncements(message).then((response) => {
-      setAnnouncements(response.data);
+      dispatch({ type: SET_ANNOUNCEMENTS, announcements: response.data });
     });
   }
 
@@ -20,8 +23,8 @@ export default function ViewAnnouncements() {
       <h2>Announcements</h2>
 
       <ListGroup>
-        {announcements.length
-          ? announcements.map((announcement, index) => {
+        {state.announcements.length
+          ? state.announcements.map((announcement, index) => {
               return (
                 <ListGroup.Item key={index}>
                   {announcement.message}
