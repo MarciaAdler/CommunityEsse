@@ -6,12 +6,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    // The category cannot be null
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   });
   Announcement.associate = function (models) {
     // We're saying that a Post should belong to an Author
