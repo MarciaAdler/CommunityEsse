@@ -20,7 +20,6 @@ export default function Header() {
       dispatch({
         type: LOGGEDIN,
       });
-      console.log(currentUserLs.id);
     }
   });
 

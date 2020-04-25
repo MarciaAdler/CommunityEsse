@@ -6,4 +6,7 @@ export default {
   getUser: function (req) {
     return axios.post("/api/login", req);
   },
+  createAnnouncement: function (req) {
+    return axios.post("api/postannouncement", req);
+  },
 };

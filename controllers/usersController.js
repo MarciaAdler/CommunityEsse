@@ -27,4 +27,16 @@ module.exports = {
       res.json(user);
     });
   },
+  createAnnouncement: function (req, res) {
+    db.Announcement.create({
+      message: req.body.message,
+      UserId: req.body.UserId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

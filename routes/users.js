@@ -10,4 +10,7 @@ router.post(
   passport.authenticate("local"),
   usersController.findOne
 );
+
+router.route("/api/postannouncement").post(usersController.createAnnouncement);
+
 module.exports = router;

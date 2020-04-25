@@ -1,16 +1,39 @@
 import React, { useRef } from "react";
 import { useStoreContext } from "../utils/GlobalState";
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
+import API from "../utils/API";
 export default function PostAnnouncement() {
   const [state, dispatch] = useStoreContext();
   const postRef = useRef();
+
+  function createPost(event) {
+    event.preventDefault();
+    API.createAnnouncement({
+      message: postRef.current.value,
+      UserId: state.currentUser.id,
+    })
+      .then((results) => {
+        console.log(results.data);
+
+        document.getElementById("announcement-form").value = "";
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div className="post-announcement--container">
       <h2>Post Annoucement Here</h2>
-      <Form>
+      <Form className="post-annoucement--form">
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Control as="textarea" rows="5" ref={postRef} />
+          <Form.Control
+            as="textarea"
+            rows="5"
+            ref={postRef}
+            id="announcement-form"
+          />
         </Form.Group>
+        <Button variant="primary" type="submit" onClick={createPost}>
+          Submit
+        </Button>
       </Form>
     </div>
   );
