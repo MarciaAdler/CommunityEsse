@@ -15,4 +15,10 @@ router.route("/api/announcement").post(usersController.createAnnouncement);
 
 router.route("/api/announcement").get(usersController.getAnnouncements);
 
+router.route("/api/bulletin").post(usersController.createBulletin);
+
+router.route("/api/bulletin").get(usersController.getBulletins);
+
+router.route("/api/bulletin/:id").delete(usersController.deleteBulletin);
+
 module.exports = router;

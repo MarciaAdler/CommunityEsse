@@ -1,36 +1,79 @@
 @import "~bootstrap/scss/bootstrap"
 
 .homepage
-    &--col
-        margin-top: 20px
-    &--bulletinboard
-        margin-top: 40px
-
+  &--col
+    margin-top: 20px
+  &--bulletinboard
+    margin-top: 40px
+  &--announcements-title
+    small
+      font-size: 14px
+      font-weight: bold
+  &--bulletin-title
+    small
+      font-size: 14px
+      font-weight: bold
 .signupform
-    &--container
-        margin-top: 50px
-        width: 80%
+  &--container
+    margin-top: 50px
+    width: 80%
     &--wrapper
-        display: flex
-        justify-content: center
+      display: flex
+      justify-content: center
 .signin
-    &--container
-        width: 60%
-        margin-top: 50px
+  &--container
+    width: 60%
+    margin-top: 50px
 .loginform
-    &--form
-        width: 60%
+  &--form
+    width: 60%
     &--wrapper
-        display: flex
-        justify-content: center
+      display: flex
+      justify-content: center
 
 .announcements
-    &--container
-        margin-top: 50px
+  &--container
+    margin-top: 50px
 
 .post-announcement
-    &--container
-        margin-top: 50px
+  &--container
+    margin-top: 50px
+
 .view-announcement
-    &--date
-        font-style: italic
+  &--date
+    font-style: italic
+  &--delete-btn
+    color: $red
+    // border: 1px solid $red;
+    border: none
+    background-color: #FFFFFF
+    font-weight: bold
+    position: absolute
+    top: 25px
+    right: 20px
+    &:hover
+      background-color: $red
+      color: $white
+.bulletin
+  &--container
+    margin-top: 50px
+
+.post-bulletin
+  &--container
+    margin-top: 50px
+
+.view-bulletin
+  &--date
+    font-style: italic
+  &--delete-btn
+    color: $red
+    // border: 1px solid $red;
+    border: none
+    background-color: #FFFFFF
+    font-weight: bold
+    position: absolute
+    top: 25px
+    right: 20px
+    &:hover
+      background-color: $red
+      color: $white

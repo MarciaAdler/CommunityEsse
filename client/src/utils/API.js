@@ -12,4 +12,13 @@ export default {
   getAnnouncements: function () {
     return axios.get("/api/announcement");
   },
+  createBulletin: function (req) {
+    return axios.post("/api/bulletin", req);
+  },
+  getBulletins: function () {
+    return axios.get("/api/bulletin");
+  },
+  deleteBulletin: function (bulletin) {
+    return axios.delete("/api/bulletin/" + bulletin);
+  },
 };

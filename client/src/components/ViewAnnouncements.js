@@ -28,6 +28,11 @@ export default function ViewAnnouncements() {
               return (
                 <ListGroup.Item key={index}>
                   {announcement.message}
+                  {state.currentUser.role === "Admin" ? (
+                    <button className="view-bulletin--delete-btn">X</button>
+                  ) : (
+                    ""
+                  )}{" "}
                   <br></br>
                   <span className="view-announcement--date">
                     <small>

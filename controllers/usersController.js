@@ -55,4 +55,39 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  createBulletin: function (req, res) {
+    db.Bulletin.create({
+      message: req.body.message,
+      UserId: req.body.UserId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getBulletins: function (req, res) {
+    db.Bulletin.findAll({
+      where: {
+        show: "show",
+      },
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  deleteBulletin: function (req, res) {
+    db.Bulletin.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };
