@@ -16,11 +16,13 @@ export default function Home() {
             <SideNav />
           </Col>
         </Row>
-        <Row>
-          <Col className="col-md-6">
-            <BulletinBoard />
-          </Col>
-        </Row>
+        <div className="homepage--bulletinboard">
+          <Row>
+            <Col className="col-md-6">
+              <BulletinBoard />
+            </Col>
+          </Row>
+        </div>
       </Container>
     </div>
   );

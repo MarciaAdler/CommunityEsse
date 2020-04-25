@@ -39,4 +39,15 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  getAnnouncements: function (req, res) {
+    db.Announcement.findAll({
+      where: {
+        show: "show",
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

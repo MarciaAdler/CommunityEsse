@@ -6,7 +6,13 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    show: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "show",
+    },
   });
+
   Announcement.associate = function (models) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint

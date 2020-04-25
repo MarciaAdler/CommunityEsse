@@ -7,7 +7,6 @@ export default function PostAnnouncement() {
   const postRef = useRef();
 
   function createPost(event) {
-    event.preventDefault();
     API.createAnnouncement({
       message: postRef.current.value,
       UserId: state.currentUser.id,

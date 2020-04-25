@@ -11,6 +11,8 @@ router.post(
   usersController.findOne
 );
 
-router.route("/api/postannouncement").post(usersController.createAnnouncement);
+router.route("/api/announcement").post(usersController.createAnnouncement);
+
+router.route("/api/announcement").get(usersController.getAnnouncements);
 
 module.exports = router;
