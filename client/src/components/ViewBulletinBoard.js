@@ -31,6 +31,13 @@ export default function ViewBulletinBoard() {
               return (
                 <ListGroup.Item key={bulletin.id}>
                   {bulletin.message}
+                  <br />
+                  <span className="view-bulletin--author-title">
+                    <small>
+                      Posted By: {bulletin.User.firstName}{" "}
+                      {bulletin.User.lastName}
+                    </small>
+                  </span>
                   {bulletin.UserId === state.currentUser.id ? (
                     <button
                       className="view-bulletin--delete-btn"

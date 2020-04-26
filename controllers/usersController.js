@@ -72,6 +72,12 @@ module.exports = {
       where: {
         show: "show",
       },
+      include: [
+        {
+          model: db.User,
+          attributes: ["id", "firstName", "lastName"],
+        },
+      ],
       order: [["createdAt", "DESC"]],
     })
       .then((dbModel) => res.json(dbModel))

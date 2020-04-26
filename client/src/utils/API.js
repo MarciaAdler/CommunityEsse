@@ -13,6 +13,7 @@ export default {
     return axios.get("/api/announcement");
   },
   createBulletin: function (req) {
+    console.log(req);
     return axios.post("/api/bulletin", req);
   },
   getBulletins: function () {
