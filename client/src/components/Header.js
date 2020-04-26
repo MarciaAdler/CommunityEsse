@@ -44,7 +44,7 @@ export default function Header() {
         expand="lg"
         bg="dark"
         variant="dark"
-        className="fixed-top"
+        className="fixed-top header--navbar"
       >
         <Navbar.Brand href="/home">Community Life</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

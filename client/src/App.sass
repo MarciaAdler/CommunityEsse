@@ -14,9 +14,14 @@ a
   color: $darkblue
   &:hover
     color: $purple
+.header
+  &--navbar
+    @include media-breakpoint-only(xs)
+      width: 100vw
 .homepage
   &--col
     margin-top: 20px
+    width: 66%
 
   &--bulletinboard
     margin-top: 40px
@@ -129,7 +134,7 @@ a
 
 .footer
   &--container
-    background-color: $jet
-    color: $white
+    background-color: #343a40
+    color: rgba(255, 255, 255, 0.5)
     position: absolute
     bottom: 0

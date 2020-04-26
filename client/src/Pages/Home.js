@@ -64,13 +64,10 @@ export default function Home() {
                 : "no announcements"}
             </ListGroup>
           </div>
-          {/* <Col className="col-sm-6 col-md-4">
-            <SideNav />
-          </Col> */}
         </div>
         <div className="homepage--bulletinboard">
           <div>
-            <div className="col-md-8 col-sm-6">
+            <div className="homepage--col">
               <h2 className="homepage--announcements-title">
                 Bulletin Board
                 <small>
