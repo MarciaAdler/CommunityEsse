@@ -13,8 +13,6 @@ export default function PostNotification() {
     getAllUsers();
   }, []);
   function createPost(event) {
-    event.preventDefault();
-
     API.createNotification({
       message: postRef.current.value,
       SenderId: state.currentUser.id,

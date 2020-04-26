@@ -4,6 +4,11 @@ import { useStoreContext } from "../utils/GlobalState";
 
 export default function SideNav() {
   const [state, dispatch] = useStoreContext();
+
+  const unread = state.notifications.filter(
+    (notification) => notification.read === false
+  ).length;
+
   return (
     <Container className="side-nav--container">
       <Nav defaultActiveKey="/home" className="align-items-start side-nav--nav">
@@ -20,12 +25,9 @@ export default function SideNav() {
           Notifications{" "}
           {state.notifications.length > 0 &&
           state.currentUser.role === "User" ? (
-            <span className="side-nav--notification-unread">
-              {" "}
-              ({state.notifications.length})
-            </span>
+            <span className="side-nav--notification-unread"> ({unread})</span>
           ) : (
-            ""
+            "0"
           )}
         </Nav.Link>
       </Nav>

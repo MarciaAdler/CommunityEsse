@@ -32,6 +32,10 @@ router.route("/api/notification").get(usersController.getNotifications);
 router
   .route("/api/notification/:userId")
   .get(usersController.getMyNotifications);
+
+router
+  .route("/api/notification/:id")
+  .put(usersController.markNotificationAsRead);
 router
   .route("/api/notification/:id")
   .delete(usersController.deleteNotification);

@@ -145,7 +145,7 @@ module.exports = {
   getMyNotifications: function (req, res) {
     db.Notification.findAll({
       where: {
-        ReceiverId: req.params.id,
+        ReceiverId: req.params.userId,
         show: "show",
       },
       include: [
@@ -182,6 +182,14 @@ module.exports = {
         role: "User",
       },
     })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  markNotificationAsRead: function (req, res) {
+    db.Notification.update({ read: true }, { where: { id: req.params.id } })
+
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
         res.status(401).json(err);

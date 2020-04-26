@@ -36,7 +36,10 @@ export default {
   getAllUsers: function () {
     return axios.get("/api/users");
   },
-  getMyNotifications: function (currentUser) {
-    return axios.get("/api/notification/" + currentUser);
+  getMyNotifications: function (req) {
+    return axios.get("/api/notification/" + req);
+  },
+  markAsRead: function (req) {
+    return axios.put("/api/notification/" + req);
   },
 };

@@ -9,6 +9,7 @@ import {
   SET_BULLETINS,
   SET_NOTIFICATIONS,
   SET_USERS,
+  SET_UNREAD,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -49,6 +50,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         users: action.users,
+      };
+    case SET_UNREAD:
+      return {
+        ...state,
+        unread: action.unread,
       };
     case CLEAR_ALL:
       return {

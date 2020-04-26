@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Row, ListGroup } from "react-bootstrap";
 import dateFormat from "dateformat";
-import { SET_NOTIFICATIONS } from "../utils/actions";
+import { SET_NOTIFICATIONS, SET_UNREAD } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 
@@ -9,20 +9,35 @@ export default function ViewNotification() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getMyNotifications(state.notifications);
+    if (state.currentUser.id !== 0) {
+      getMyNotifications(state.currentUser);
+    } else {
+      getMyNotifications(JSON.parse(localStorage.getItem("currentUser")));
+    }
   }, []);
-  function getMyNotifications(userId) {
-    API.getMyNotifications(userId).then((response) => {
-      dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
-    });
+
+  function getMyNotifications(currentUser) {
+    API.getMyNotifications(currentUser.id)
+      .then((response) => {
+        dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
+      })
+      .catch((err) => console.log(err));
   }
-  //   function deleteNotification(notification) {
-  //     API.deleteNotification(notification)
-  //       .then((res) => {
-  //         getNotifications(state.notifications);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
+
+  function markAsRead(notification) {
+    API.markAsRead(notification)
+      .then((response) => {
+        getMyNotifications(state.currentUser);
+      })
+      .catch((err) => console.log(err));
+  }
+  function deleteNotification(notification) {
+    API.deleteNotification(notification)
+      .then((res) => {
+        getMyNotifications(state.currentUser);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div>
       <h2>Notifications</h2>
@@ -33,23 +48,36 @@ export default function ViewNotification() {
               return (
                 <ListGroup.Item key={notification.id}>
                   {notification.message}
-                  <br />
-
-                  <span className="view-notification--author-title">
-                    <small>Posted By: {notification.Sender.firstName} </small>
-                  </span>
-                  {/* {state.currentUser.role === "Front Desk" ? (
+                  {state.currentUser.role === "User" &&
+                  notification.read === false ? (
                     <button
-                      className="view-notification--delete-btn"
+                      className="view-notification--read-btn"
                       onClick={() => {
-                        deleteNotification(notification.id);
+                        markAsRead(notification.id);
                       }}
                     >
-                      X
+                      read
                     </button>
                   ) : (
                     ""
-                  )}{" "} */}
+                  )}
+                  <br />
+                  <span className="view-notification--author-title">
+                    <small>
+                      Posted By: {notification.Sender.firstName}{" "}
+                      {notification.Sender.lastName}{" "}
+                    </small>
+                  </span>
+
+                  <button
+                    className="view-notification--delete-btn"
+                    onClick={() => {
+                      deleteNotification(notification.id);
+                    }}
+                  >
+                    X
+                  </button>
+
                   <br></br>
                   <span className="view-notification--date">
                     <small>
