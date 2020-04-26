@@ -97,6 +97,7 @@ export default function SignupForm() {
               >
                 <option>User</option>
                 <option>Admin</option>
+                <option>Front Desk</option>
               </Form.Control>
             </Form.Group>
           </Col>

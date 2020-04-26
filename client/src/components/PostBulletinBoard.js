@@ -11,8 +11,6 @@ export default function PostAnnouncement() {
     API.createBulletin({
       message: postRef.current.value,
       UserId: state.currentUser.id,
-      firstName: state.currentUser.firstName,
-      lastName: state.currentUser.lastName,
     })
       .then((results) => {
         console.log(results.data);

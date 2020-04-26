@@ -25,4 +25,16 @@ router.route("/api/bulletin").get(usersController.getBulletins);
 
 router.route("/api/bulletin/:id").delete(usersController.deleteBulletin);
 
+router.route("/api/notification").post(usersController.createNotification);
+
+router.route("/api/notification").get(usersController.getNotifications);
+
+router
+  .route("/api/notification/:userId")
+  .get(usersController.getMyNotifications);
+router
+  .route("/api/notification/:id")
+  .delete(usersController.deleteNotification);
+
+router.route("/api/users").get(usersController.getAllUsers);
 module.exports = router;

@@ -13,7 +13,6 @@ export default {
     return axios.get("/api/announcement");
   },
   createBulletin: function (req) {
-    console.log(req);
     return axios.post("/api/bulletin", req);
   },
   getBulletins: function () {
@@ -24,5 +23,20 @@ export default {
   },
   deleteAnnouncement: function (announcement) {
     return axios.delete("/api/announcement/" + announcement);
+  },
+  createNotification: function (req) {
+    return axios.post("/api/notification", req);
+  },
+  getNotifications: function () {
+    return axios.get("/api/notification");
+  },
+  deleteNotification: function (notification) {
+    return axios.delete("/api/notification/" + notification);
+  },
+  getAllUsers: function () {
+    return axios.get("/api/users");
+  },
+  getMyNotifications: function (currentUser) {
+    return axios.get("/api/notification/" + currentUser);
   },
 };

@@ -6,6 +6,7 @@ import Signup from "./Pages/Signup";
 import SideNav from "../src/components/SideNav";
 import Announcements from "./Pages/Announcements";
 import BulletinBoard from "./Pages/BulletinBoard";
+import Notifications from "./Pages/Notifications";
 import Footer from "../src/components/Footer";
 import { Col } from "react-bootstrap";
 import { StoreProvider } from "../src/utils/GlobalState";
@@ -27,6 +28,8 @@ function App() {
             <Route path="/home" component={Home} />
             <Route path="/announcements" component={Announcements} />
             <Route path="/bulletinboard" component={BulletinBoard} />
+            <Route path="/notifications" component={Notifications} />
+            {/* <Route path="/messages" component={Messsages} /> */}
           </Switch>
         </Router>
       </StoreProvider>

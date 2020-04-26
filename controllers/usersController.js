@@ -107,4 +107,84 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  createNotification: function (req, res) {
+    db.Notification.create({
+      message: req.body.message,
+      SenderId: req.body.SenderId,
+      ReceiverId: req.body.ReceiverId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getNotifications: function (req, res) {
+    db.Notification.findAll({
+      where: {
+        show: "show",
+      },
+      include: [
+        {
+          model: db.User,
+          as: "Sender",
+        },
+        {
+          model: db.User,
+          as: "Receiver",
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getMyNotifications: function (req, res) {
+    db.Notification.findAll({
+      where: {
+        ReceiverId: req.params.id,
+        show: "show",
+      },
+      include: [
+        {
+          model: db.User,
+          as: "Sender",
+        },
+        {
+          model: db.User,
+          as: "Receiver",
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  deleteNotification: function (req, res) {
+    db.Notification.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getAllUsers: function (req, res) {
+    db.User.findAll({
+      where: {
+        role: "User",
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

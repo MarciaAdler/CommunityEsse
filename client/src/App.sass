@@ -56,7 +56,8 @@ a
   &--link
     @include media-breakpoint-only(xs)
       display: inline-block
-
+  &--notification-unread
+    color: red
 .signupform
   &--container
     margin-top: 50px
@@ -131,7 +132,27 @@ a
     &:hover
       background-color: $red
       color: $white
-
+.notifications
+  &--container
+    margin-top: 20px
+.view-notification
+  &--date
+    font-style: italic
+  &--author-title
+    small
+      font-size: 14px
+  &--delete-btn
+    color: $red
+    // border: 1px solid $red;
+    border: none
+    background-color: #FFFFFF
+    font-weight: bold
+    position: absolute
+    top: 25px
+    right: 20px
+    &:hover
+      background-color: $red
+      color: $white
 .footer
   &--container
     background-color: #343a40

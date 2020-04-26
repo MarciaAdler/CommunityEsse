@@ -7,6 +7,8 @@ import {
   LOGGEDIN,
   SET_ANNOUNCEMENTS,
   SET_BULLETINS,
+  SET_NOTIFICATIONS,
+  SET_USERS,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -37,6 +39,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         bulletins: action.bulletins,
+      };
+    case SET_NOTIFICATIONS:
+      return {
+        ...state,
+        notifications: action.notifications,
+      };
+    case SET_USERS:
+      return {
+        ...state,
+        users: action.users,
       };
     case CLEAR_ALL:
       return {
@@ -72,6 +84,8 @@ const StoreProvider = ({ value = [], ...props }) => {
     loggedIn: false,
     announcements: [],
     bulletins: [],
+    notifications: [],
+    users: [],
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
