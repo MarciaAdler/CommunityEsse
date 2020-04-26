@@ -37,16 +37,16 @@ export default function Home() {
               Announcements
               <small>
                 &nbsp;
-                <Link push to="/announcements">
+                <Link to="/announcements">
                   View All <i className="fas fa-angle-double-right"></i>
                 </Link>
               </small>
             </h2>
             <ListGroup>
               {state.announcements.length > 0
-                ? state.announcements.slice(0, 5).map((announcement, index) => {
+                ? state.announcements.slice(0, 5).map((announcement) => {
                     return (
-                      <ListGroup.Item key={index}>
+                      <ListGroup.Item key={announcement.id}>
                         {announcement.message}
                         <br></br>
                         <span className="view-announcement--date">
@@ -72,16 +72,16 @@ export default function Home() {
                 Bulletin Board
                 <small>
                   &nbsp;
-                  <Link push to="/bulletinboard">
+                  <Link to="/bulletinboard">
                     View All <i className="fas fa-angle-double-right"></i>
                   </Link>
                 </small>
               </h2>
               <ListGroup>
                 {state.bulletins.length > 0
-                  ? state.bulletins.slice(0, 5).map((bulletin, index) => {
+                  ? state.bulletins.slice(0, 5).map((bulletin) => {
                       return (
-                        <ListGroup.Item key={index}>
+                        <ListGroup.Item key={bulletin.id}>
                           {bulletin.message}
                           <br />
                           <span className="view-bulletin--author-title">

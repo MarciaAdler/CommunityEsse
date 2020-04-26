@@ -24,9 +24,7 @@ export default {
   deleteAnnouncement: function (announcement) {
     return axios.delete("/api/announcement/" + announcement);
   },
-  createNotification: function (req) {
-    return axios.post("/api/notification", req);
-  },
+
   getNotifications: function () {
     return axios.get("/api/notification");
   },
@@ -41,5 +39,20 @@ export default {
   },
   markAsRead: function (req) {
     return axios.put("/api/notification/" + req);
+  },
+  getAll: function () {
+    return axios.get("/api/allusers");
+  },
+  findIdByApt: function (user) {
+    console.log("id", user);
+    return axios.get("/api/receiver/" + user);
+  },
+  // createNotification: function (req) {
+  //   console.log("req", req);
+  //   return axios.post("/api/notification", req);
+  // },
+  createNotification: function (req) {
+    console.log(req);
+    return axios.post("/api/notification", req);
   },
 };

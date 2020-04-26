@@ -34,11 +34,7 @@ export default function ViewNotification() {
                 <ListGroup.Item key={notification.id}>
                   {notification.message}
                   <br />
-                  {state.currentUser.role === "Front Desk" ? (
-                    <span>For: {notification.Receiver.aptNumber}</span>
-                  ) : (
-                    ""
-                  )}
+                  <span>For: {notification.Receiver.aptNumber}</span>
                   <br />
                   <span className="view-notification--author-title">
                     <small>Posted By: {notification.Sender.firstName} </small>

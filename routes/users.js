@@ -41,4 +41,7 @@ router
   .delete(usersController.deleteNotification);
 
 router.route("/api/users").get(usersController.getAllUsers);
+
+router.route("/api/allusers").get(usersController.getAll);
+router.route("/api/receiver/:aptNum").get(usersController.findIdByApt);
 module.exports = router;

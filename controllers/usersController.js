@@ -108,6 +108,7 @@ module.exports = {
       });
   },
   createNotification: function (req, res) {
+    console.log(req.body);
     db.Notification.create({
       message: req.body.message,
       SenderId: req.body.SenderId,
@@ -190,6 +191,24 @@ module.exports = {
   markNotificationAsRead: function (req, res) {
     db.Notification.update({ read: true }, { where: { id: req.params.id } })
 
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getAll: function (req, res) {
+    db.User.findAll({})
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  findIdByApt: function (req, res) {
+    db.User.findOne({
+      where: {
+        aptNumber: req.params.aptNum,
+      },
+    })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
         res.status(401).json(err);

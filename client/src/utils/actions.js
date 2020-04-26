@@ -6,4 +6,4 @@ export const SET_ANNOUNCEMENTS = "SET_ANNOUNCEMENTS";
 export const SET_BULLETINS = "SET_BULLETINS";
 export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
 export const SET_USERS = "SET_USERS";
-export const SET_UNREAD = "SET_UNREAD";
+export const SET_ALL_USERS = "SET_ALL_USERS";

@@ -9,7 +9,7 @@ import {
   SET_BULLETINS,
   SET_NOTIFICATIONS,
   SET_USERS,
-  SET_UNREAD,
+  SET_ALL_USERS,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -51,10 +51,10 @@ const reducer = (state, action) => {
         ...state,
         users: action.users,
       };
-    case SET_UNREAD:
+    case SET_ALL_USERS:
       return {
         ...state,
-        unread: action.unread,
+        allUsers: action.allUsers,
       };
     case CLEAR_ALL:
       return {
@@ -67,6 +67,8 @@ const reducer = (state, action) => {
         loading: false,
         announcements: [],
         bulletins: [],
+        users: [],
+        allUsers: [],
       };
 
     case LOADING:
@@ -92,6 +94,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     bulletins: [],
     notifications: [],
     users: [],
+    allUsers: [],
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
