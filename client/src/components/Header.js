@@ -39,7 +39,13 @@ export default function Header() {
   };
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        className="fixed-top"
+      >
         <Navbar.Brand href="/home">Community Life</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         {state.loggedIn ? (

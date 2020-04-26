@@ -31,8 +31,8 @@ export default function Home() {
   return (
     <div>
       <Container className="homepage--container">
-        <Row>
-          <Col className="homepage--col col-md-8 col-sm-6">
+        <div>
+          <div className="homepage--col">
             <h2 className="homepage--announcements-title">
               Announcements
               <small>
@@ -63,14 +63,14 @@ export default function Home() {
                   })
                 : "no announcements"}
             </ListGroup>
-          </Col>
+          </div>
           {/* <Col className="col-sm-6 col-md-4">
             <SideNav />
           </Col> */}
-        </Row>
+        </div>
         <div className="homepage--bulletinboard">
-          <Row>
-            <Col className="col-md-8 col-sm-6">
+          <div>
+            <div className="col-md-8 col-sm-6">
               <h2 className="homepage--announcements-title">
                 Bulletin Board
                 <small>
@@ -87,7 +87,13 @@ export default function Home() {
                         <ListGroup.Item key={index}>
                           {bulletin.message}
                           <br />
-
+                          <span className="view-bulletin--author-title">
+                            <small>
+                              Posted By: {bulletin.User.firstName}{" "}
+                              {bulletin.User.lastName}
+                            </small>
+                          </span>
+                          <br />
                           <span className="view-bulletin--date">
                             <small>
                               {dateFormat(
@@ -102,8 +108,8 @@ export default function Home() {
                     })
                   : "no bulletins"}
               </ListGroup>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
       </Container>
     </div>

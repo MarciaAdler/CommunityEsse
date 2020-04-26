@@ -6,6 +6,7 @@ import Signup from "./Pages/Signup";
 import SideNav from "../src/components/SideNav";
 import Announcements from "./Pages/Announcements";
 import BulletinBoard from "./Pages/BulletinBoard";
+import Footer from "../src/components/Footer";
 import { Col } from "react-bootstrap";
 import { StoreProvider } from "../src/utils/GlobalState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -29,6 +30,7 @@ function App() {
           </Switch>
         </Router>
       </StoreProvider>
+      <Footer />
     </div>
   );
 }

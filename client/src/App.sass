@@ -1,8 +1,23 @@
 @import "~bootstrap/scss/bootstrap"
 
+$darkblue: #235789
+$purple: #9BA2FF
+$jet: #30332E
+
+body
+  padding-top: 66px
+  min-height: 100vh
+  position: relative
+  padding-bottom: 110px
+
+a
+  color: $darkblue
+  &:hover
+    color: $purple
 .homepage
   &--col
     margin-top: 20px
+
   &--bulletinboard
     margin-top: 40px
   &--announcements-title
@@ -15,11 +30,28 @@
       font-weight: bold
 .side-nav
   &--container
-    margin-left: 0
-    width: 30%
+    padding-left: 100px
+    width: 36%
     margin-right: 0
-    left: 400px
+
     float: right
+    @include media-breakpoint-only(xs)
+      float: none
+      padding-left: 0
+      margin-left: 30px
+      width: 100%
+      margin-top: 0
+  &--nav
+    flex-direction: column
+    margin-top: 20px
+    @include media-breakpoint-only(xs)
+      text-align: center
+      flex-direction: row
+      margin-top: 20px
+  &--link
+    @include media-breakpoint-only(xs)
+      display: inline-block
+
 .signupform
   &--container
     margin-top: 50px
@@ -40,11 +72,15 @@
 
 .announcements
   &--container
-    margin-top: 50px
+    margin-top: 20px
 
 .post-announcement
   &--container
-    margin-top: 50px
+    margin-top: 30px
+  &--form
+    width: 66%
+    @include media-breakpoint-only(xs)
+      width: 100%
 
 .view-announcement
   &--date
@@ -63,12 +99,15 @@
       color: $white
 .bulletin
   &--container
-    margin-top: 50px
+    margin-top: 20px
 
 .post-bulletin
   &--container
-    margin-top: 50px
-
+    margin-top: 30px
+  &--form
+    width: 66%
+    @include media-breakpoint-only(xs)
+      width: 100%
 .view-bulletin
   &--date
     font-style: italic
@@ -87,3 +126,10 @@
     &:hover
       background-color: $red
       color: $white
+
+.footer
+  &--container
+    background-color: $jet
+    color: $white
+    position: absolute
+    bottom: 0

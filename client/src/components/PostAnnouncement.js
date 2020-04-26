@@ -21,7 +21,7 @@ export default function PostAnnouncement() {
   return (
     <div className="post-announcement--container">
       <h2>Post Annoucement Here</h2>
-      <Form className="post-annoucement--form">
+      <Form className="post-announcement--form">
         <Form.Group controlId="announcement-form">
           <Form.Control as="textarea" rows="5" ref={postRef} />
         </Form.Group>
