@@ -9,6 +9,7 @@ import BulletinBoard from "./Pages/BulletinBoard";
 import Notifications from "./Pages/Notifications";
 import Profile from "./Pages/Profile";
 import Messages from "./Pages/Messages";
+import Contacts from "./Pages/Contacts";
 import Footer from "../src/components/Footer";
 import { Col } from "react-bootstrap";
 import { StoreProvider } from "../src/utils/GlobalState";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/notifications" component={Notifications} />
             <Route path="/messages" component={Messages} />
             <Route path="/profile" component={Profile} />
+            <Route path="/contacts" component={Contacts} />
           </Switch>
         </Router>
       </StoreProvider>

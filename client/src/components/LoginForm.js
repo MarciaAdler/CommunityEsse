@@ -33,7 +33,6 @@ export default function LoginForm() {
             email: results.data.email,
           },
         });
-
         let localStorageUser = {
           id: results.data.id,
           username: results.data.username,

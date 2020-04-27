@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Nav, Container, Col } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
-
+import { SET_NOTIFICATIONS } from "../utils/actions";
+import API from "../utils/API";
 export default function SideNav() {
   const [state, dispatch] = useStoreContext();
+
+  useEffect(() => {
+    getMyNotifications(state.notifications);
+  }, []);
+  function getMyNotifications(notification) {
+    API.getMyNotifications(notification)
+      .then((response) => {
+        dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
+      })
+      .catch((err) => console.log(err));
+  }
 
   const unread = state.notifications.filter(
     (notification) => notification.read === false

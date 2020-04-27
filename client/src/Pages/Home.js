@@ -4,12 +4,15 @@ import SideNav from "../components/SideNav";
 import ViewAnnouncements from "../components/ViewAnnouncements";
 import ViewBulletinBoard from "../components/ViewBulletinBoard";
 import { Row, Col, Container, ListGroup } from "react-bootstrap";
-import { SET_ANNOUNCEMENTS, SET_BULLETINS } from "../utils/actions";
+import {
+  SET_ANNOUNCEMENTS,
+  SET_BULLETINS,
+  SET_NOTIFICATIONS,
+} from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import dateFormat from "dateformat";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
-import { get } from "http";
 
 export default function Home() {
   const [state, dispatch] = useStoreContext();
@@ -28,6 +31,7 @@ export default function Home() {
       dispatch({ type: SET_BULLETINS, bulletins: response.data });
     });
   }
+
   return (
     <div>
       <Container className="homepage--container">
