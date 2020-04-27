@@ -7,10 +7,15 @@ export default function SideNav() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getMyNotifications(state.notifications);
+    if (state.currentUser.id !== 0) {
+      getMyNotifications(state.currentUser);
+    } else {
+      getMyNotifications(JSON.parse(localStorage.getItem("currentUser")));
+    }
   }, []);
-  function getMyNotifications(notification) {
-    API.getMyNotifications(notification)
+
+  function getMyNotifications(currentUser) {
+    API.getMyNotifications(currentUser.id)
       .then((response) => {
         dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
       })
