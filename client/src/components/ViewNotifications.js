@@ -9,7 +9,7 @@ export default function ViewNotification() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getNotifications(state.notifications);
+    getNotifications();
   }, []);
   function getNotifications(message) {
     API.getNotifications(message).then((response) => {

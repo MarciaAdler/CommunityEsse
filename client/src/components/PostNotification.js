@@ -13,6 +13,7 @@ export default function PostNotification() {
   let receiveId = "";
   useEffect(() => {
     getAllUsers();
+    getNotifications();
   }, []);
   // function findIdbyApt(receiverRef) {
   //   API.findIdByApt(receiverRef)
@@ -22,39 +23,30 @@ export default function PostNotification() {
   //     })
   //     .catch((err) => console.log(err));
   // }
-  function createPost() {
-    API.findIdByApt(formObject.apt).then((response) => {
-      console.log(response.data.id);
-      receiveId = response.data.id;
-      console.log(response);
-      API.createNotification({
-        message: postRef.current.value,
-        SenderId: state.currentUser.id,
-        ReceiverId: receiveId,
-      })
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
+
+  function getNotifications(message) {
+    API.getNotifications(message).then((response) => {
+      dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
     });
   }
-
-  // async function createPost(event) {
-  //   const { data } = await API.findIdByApt(receiverRef.current.value);
-  // .then((response) => {
-  // console.log(data.id);
-  // receiveId = data.id;
-  // console.log(receiveId);
-  // const notification = await API.createNotification({
-  //   message: postRef.current.value,
-  //   SenderId: state.currentUser.id,
-  //   ReceiverId: receiveId,
-  // });
-  // .then((results) => {
-  // console.log(notification.data);
-  // })
-  // .catch((err) => console.log(err));
-  // })
-  // .catch((err) => console.log(err));
-  // }
+  function createPost(event) {
+    const id = receiverRef.current.value.split("id: ");
+    console.log(id[1]);
+    // API.findIdByApt(formObject.apt).then((response) => {
+    //   console.log(response.data.id);
+    //   receiveId = response.data.id;
+    //   console.log(response);
+    API.createNotification({
+      message: postRef.current.value,
+      SenderId: state.currentUser.id,
+      ReceiverId: id[1],
+    })
+      .then((res) => {
+        console.log(res.data);
+        document.getElementById("announcement-form").value = "";
+      })
+      .catch((err) => console.log(err));
+  }
 
   function getAllUsers() {
     API.getAllUsers()
@@ -76,10 +68,8 @@ export default function PostNotification() {
     setFormObject({ [name]: value });
   }
   function handleFormSubmit(event) {
-    // event.preventDefault();
     // findIdbyApt(receiverRef.current.value);
     createPost();
-    getNotifications(state.notifications);
   }
   return (
     <div className="post-bulletin--container">
@@ -87,14 +77,7 @@ export default function PostNotification() {
       <Form className="post-bulletin--form">
         <Form.Group controlId="notication-form">
           <Form.Label>To</Form.Label>
-          {/* <Form.Control
-            as="textarea"
-            name="apt"
-            rows="1"
-            required
-            ref={receiverRef}
-            onChange={handleInputChange}
-          /> */}
+
           <Form.Control
             as="select"
             defaultValue="Choose..."
@@ -106,7 +89,9 @@ export default function PostNotification() {
             <option>Choose Apt...</option>
             {state.users.length
               ? state.users.map((user) => (
-                  <option key={user.id}>{user.aptNumber}</option>
+                  <option key={user.id}>
+                    Apt: {user.aptNumber} id: {user.id}
+                  </option>
                 ))
               : ""}
           </Form.Control>
@@ -114,7 +99,7 @@ export default function PostNotification() {
         <Form.Group controlId="bulletin-form">
           <Form.Control as="textarea" rows="5" ref={postRef} />
         </Form.Group>
-        <button className="btn" onClick={handleFormSubmit}>
+        <button className="btn" type="submit" onClick={handleFormSubmit}>
           Submit
         </button>
       </Form>

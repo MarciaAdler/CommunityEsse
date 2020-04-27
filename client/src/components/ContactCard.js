@@ -43,6 +43,8 @@ export default function ContactCard() {
                           Apt: {user.aptNumber}
                         </Card.Subtitle>
                       )}
+
+                      <Card.Link href="/message">Message</Card.Link>
                     </Card.Body>
                   </Card>
                 </Col>
