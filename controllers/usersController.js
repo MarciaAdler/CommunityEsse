@@ -214,4 +214,33 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  updateProfile: function (req, res) {
+    db.User.update(
+      {
+        username: req.body.username,
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        role: req.body.role,
+      },
+      { where: { id: req.body.id } }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  refreshCurrentUser: function (req, res) {
+    console.log("test", req.params.id);
+    db.User.findOne({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

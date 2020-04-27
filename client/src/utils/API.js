@@ -55,4 +55,11 @@ export default {
     console.log(req);
     return axios.post("/api/notification", req);
   },
+  updateProfile: function (req) {
+    return axios.put("/api/profile", req);
+  },
+  refreshCurrentUser: function (req) {
+    console.log("API", req.id);
+    return axios.get("/api/user/" + req);
+  },
 };

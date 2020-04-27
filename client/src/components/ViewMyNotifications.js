@@ -25,6 +25,7 @@ export default function ViewNotification() {
   }
 
   function markAsRead(notification) {
+    console.log(notification);
     API.markAsRead(notification)
       .then((response) => {
         getMyNotifications(state.currentUser);

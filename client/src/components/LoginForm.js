@@ -27,6 +27,10 @@ export default function LoginForm() {
             id: results.data.id,
             username: results.data.username,
             role: results.data.role,
+            firstName: results.data.firstName,
+            lastName: results.data.lastName,
+            aptNumber: results.data.aptNumber,
+            email: results.data.email,
           },
         });
 
@@ -34,6 +38,10 @@ export default function LoginForm() {
           id: results.data.id,
           username: results.data.username,
           role: results.data.role,
+          firstName: results.data.firstName,
+          lastName: results.data.lastName,
+          aptNumber: results.data.aptNumber,
+          email: results.data.email,
         };
 
         window.localStorage.setItem(
