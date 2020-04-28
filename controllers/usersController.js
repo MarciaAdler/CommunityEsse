@@ -290,6 +290,7 @@ module.exports = {
     db.Message.findAll({
       where: {
         ReceiverId: req.params.id,
+        inboxShow: "show",
       },
       include: [
         {
@@ -320,6 +321,40 @@ module.exports = {
     db.Message.update(
       {
         show: "hide",
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  markMessageAsRead: function (req, res) {
+    console.log(req.params);
+    db.Message.update(
+      {
+        read: true,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  inboxHideMessage: function (req, res) {
+    console.log("inboxhide", req.params);
+    db.Message.update(
+      {
+        inboxShow: "hide",
       },
       {
         where: {

@@ -29,6 +29,22 @@ export default function Inbox() {
       .catch((err) => console.log(err));
   }
 
+  function markMessageAsRead(message) {
+    API.markMessageAsRead(message)
+      .then((res) => {
+        getReceivedMessages(state.currentUser);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function inboxHide(message) {
+    API.inboxHide(message)
+      .then((res) => {
+        getReceivedMessages(state.currentUser);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="list-group">
       <Accordion>
@@ -53,6 +69,25 @@ export default function Inbox() {
                           {"EST"}
                         </small>
                       </span>
+                      {message.read === false ? (
+                        <button
+                          className="view-notification--delete-btn"
+                          onClick={() => {
+                            markMessageAsRead(message.id);
+                          }}
+                        >
+                          Read
+                        </button>
+                      ) : (
+                        <button
+                          className="view-notification--delete-btn"
+                          onClick={() => {
+                            inboxHide(message.id);
+                          }}
+                        >
+                          Hide
+                        </button>
+                      )}
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey={message.id}>

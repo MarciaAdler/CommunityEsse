@@ -44,40 +44,40 @@ export default {
     return axios.get("/api/allusers");
   },
   findIdByApt: function (user) {
-    console.log("id", user);
     return axios.get("/api/receiver/" + user);
   },
 
   createNotification: function (req) {
-    console.log(req);
     return axios.post("/api/notification", req);
   },
   updateProfile: function (req) {
     return axios.put("/api/profile", req);
   },
   refreshCurrentUser: function (req) {
-    console.log("API", req.id);
     return axios.get("/api/user/" + req);
   },
   markAsClosed: function (req) {
     return axios.put("/api/closenotification/" + req);
   },
   createMessage: function (req) {
-    console.log(req);
     return axios.post("/api/message", req);
   },
   getSentMessages: function (req) {
     return axios.get("/api/sentmessages/" + req);
   },
   getReceivedMessages: function (req) {
-    console.log(req);
     return axios.get("/api/receivedmessages/" + req);
   },
   hideNotification: function (req) {
     return axios.put("/api/hidenotification/" + req);
   },
   hideMessage: function (message) {
-    console.log(message);
     return axios.put("/api/hidemessage/" + message);
+  },
+  markMessageAsRead: function (message) {
+    return axios.put("/api/readmessage/" + message);
+  },
+  inboxHide: function (message) {
+    return axios.put("api/inboxhidemessage/" + message);
   },
 };

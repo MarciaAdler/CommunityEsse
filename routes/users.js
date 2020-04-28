@@ -64,4 +64,8 @@ router
 router.route("/api/hidenotification/:id").put(usersController.hideNotification);
 
 router.route("/api/hidemessage/:id").put(usersController.hideMessage);
+
+router.route("/api/readmessage/:id").put(usersController.markMessageAsRead);
+
+router.route("/api/inboxhidemessage/:id").put(usersController.inboxHideMessage);
 module.exports = router;

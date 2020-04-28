@@ -14,6 +14,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       defaultValue: "show",
     },
+    inboxShow: {
+      type: DataTypes.STRING,
+      defaultValue: "show",
+    },
   });
   Message.associate = function (models) {
     // We're saying that a Post should belong to an Author
