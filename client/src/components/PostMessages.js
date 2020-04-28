@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { Form, Button } from "react-bootstrap";
 import API from "../utils/API";
-import { SET_ALL_USERS } from "../utils/actions";
+import { SET_ALL_USERS, SET_SENT_MESSAGES } from "../utils/actions";
 
 export default function PostMessages() {
   const [state, dispatch] = useStoreContext();
@@ -21,6 +21,7 @@ export default function PostMessages() {
     })
       .then((res) => {
         console.log(res.data);
+        updateSentMessages(state.currentUser);
         document.getElementById("message-form").value = "";
         document.getElementById("message-apt-input").value = "Choose Apt...";
       })
@@ -41,6 +42,14 @@ export default function PostMessages() {
         console.log(response.data.id);
       });
     }
+  }
+  function updateSentMessages(currentUser) {
+    API.getSentMessages(currentUser.id)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({ type: SET_SENT_MESSAGES, sentmessages: response.data });
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

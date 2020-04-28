@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Row, Tabs, Tab } from "react-bootstrap";
 import dateFormat from "dateformat";
-import { SET_NOTIFICATIONS } from "../utils/actions";
+import { SET_NOTIFICATIONS, SET_SENT_MESSAGES } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 import Sent from "../components/Sent";
@@ -12,9 +12,9 @@ export default function ViewNotification() {
 
   // useEffect(() => {
   //   if (state.currentUser.id !== 0) {
-  //     getMyNotifications(state.currentUser);
+  //     getSentMessages(state.currentUser);
   //   } else {
-  //     getMyNotifications(JSON.parse(localStorage.getItem("currentUser")));
+  //     getSentMessages(JSON.parse(localStorage.getItem("currentUser")));
   //   }
   // }, []);
 
@@ -40,6 +40,7 @@ export default function ViewNotification() {
   //     })
   //     .catch((err) => console.log(err));
   // }
+
   return (
     <div>
       <h2>

@@ -55,12 +55,6 @@ export default function Sent() {
                           {"EST"}
                         </small>
                       </span>
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey={message.id}>
-                    <Card.Body>
-                      {message.message}
-
                       <button
                         className="view-notification--delete-btn"
                         onClick={() => {
@@ -69,7 +63,10 @@ export default function Sent() {
                       >
                         X
                       </button>
-                    </Card.Body>
+                    </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey={message.id}>
+                    <Card.Body>{message.message}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
               );
