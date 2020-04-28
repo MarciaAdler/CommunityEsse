@@ -266,10 +266,32 @@ module.exports = {
       });
   },
   getSentMessages: function (req, res) {
-    console.log(req.params);
     db.Message.findAll({
       where: {
         SenderId: req.params.id,
+      },
+      include: [
+        {
+          model: db.User,
+          as: "Sender",
+        },
+        {
+          model: db.User,
+          as: "Receiver",
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getReceivedMessages: function (req, res) {
+    console.log(req.params);
+    db.Message.findAll({
+      where: {
+        ReceiverId: req.params.id,
       },
       include: [
         {

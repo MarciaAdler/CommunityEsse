@@ -56,4 +56,8 @@ router
 router.route("/api/message").post(usersController.createMessage);
 
 router.route("/api/sentmessages/:id").get(usersController.getSentMessages);
+
+router
+  .route("/api/receivedmessages/:id")
+  .get(usersController.getReceivedMessages);
 module.exports = router;

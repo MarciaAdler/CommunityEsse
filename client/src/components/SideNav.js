@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Nav, Container, Col } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_NOTIFICATIONS } from "../utils/actions";
+import { SET_NOTIFICATIONS, SET_RECEIVED_MESSAGES } from "../utils/actions";
 import API from "../utils/API";
 export default function SideNav() {
   const [state, dispatch] = useStoreContext();
@@ -9,8 +9,10 @@ export default function SideNav() {
   useEffect(() => {
     if (state.currentUser.id !== 0) {
       getMyNotifications(state.currentUser);
+      getReceivedMessages(state.currentUser);
     } else if (JSON.parse(localStorage.getItem("currentUser"))) {
       getMyNotifications(JSON.parse(localStorage.getItem("currentUser")));
+      getReceivedMessages(JSON.parse(localStorage.getItem("currentUser")));
     }
   }, []);
 
@@ -22,10 +24,25 @@ export default function SideNav() {
       .catch((err) => console.log(err));
   }
 
-  const unread = state.notifications.filter(
+  const unreadNotifications = state.notifications.filter(
     (notification) => notification.read === false
   ).length;
 
+  function getReceivedMessages(currentUser) {
+    console.log(currentUser);
+    API.getReceivedMessages(currentUser.id)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({
+          type: SET_RECEIVED_MESSAGES,
+          receivedmessages: response.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+  const unreadMessages = state.receivedmessages.filter(
+    (message) => message.read === false
+  ).length;
   return (
     <Container className="side-nav--container">
       {state.loggedIn ? (
@@ -40,14 +57,25 @@ export default function SideNav() {
             Bulletin Board
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/messages">
-            Messages
+            Messages{" "}
+            {state.receivedmessages.length > 0 ? (
+              <span className="side-nav--notification-unread">
+                {" "}
+                ({unreadMessages})
+              </span>
+            ) : (
+              ""
+            )}
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/notifications">
             Notifications{" "}
             {(state.notifications.length > 0 &&
               state.currentUser.role === "User") ||
             state.currentUser.role === "Admin" ? (
-              <span className="side-nav--notification-unread"> ({unread})</span>
+              <span className="side-nav--notification-unread">
+                {" "}
+                ({unreadNotifications})
+              </span>
             ) : (
               ""
             )}

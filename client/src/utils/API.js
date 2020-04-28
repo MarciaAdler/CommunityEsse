@@ -47,10 +47,7 @@ export default {
     console.log("id", user);
     return axios.get("/api/receiver/" + user);
   },
-  // createNotification: function (req) {
-  //   console.log("req", req);
-  //   return axios.post("/api/notification", req);
-  // },
+
   createNotification: function (req) {
     console.log(req);
     return axios.post("/api/notification", req);
@@ -70,7 +67,10 @@ export default {
     return axios.post("/api/message", req);
   },
   getSentMessages: function (req) {
-    console.log(req);
     return axios.get("/api/sentmessages/" + req);
+  },
+  getReceivedMessages: function (req) {
+    console.log(req);
+    return axios.get("/api/receivedmessages/" + req);
   },
 };
