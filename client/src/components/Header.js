@@ -46,7 +46,14 @@ export default function Header() {
         variant="dark"
         className="fixed-top header--navbar"
       >
-        <Navbar.Brand href="/home">Community Life</Navbar.Brand>
+        <Navbar.Brand href="/home">
+          <img
+            src={require("./images/communitylifeicon-black2.png")}
+            alt="community life"
+            className="header--icon"
+          />
+          Community Life
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         {state.loggedIn ? (
           <Navbar.Collapse id="responsive-navbar-nav">
