@@ -15,14 +15,6 @@ export default function PostNotification() {
     getAllUsers();
     getNotifications();
   }, []);
-  // function findIdbyApt(receiverRef) {
-  //   API.findIdByApt(receiverRef)
-  //     .then((response) => {
-  //       console.log(response.data.id);
-  //       receiveId = response.data.id;
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
 
   function getNotifications(message) {
     API.getNotifications(message).then((response) => {
@@ -30,20 +22,15 @@ export default function PostNotification() {
     });
   }
   function createPost(event) {
-    const id = receiverRef.current.value.split("id: ");
-    console.log(id[1]);
-    // API.findIdByApt(formObject.apt).then((response) => {
-    //   console.log(response.data.id);
-    //   receiveId = response.data.id;
-    //   console.log(response);
     API.createNotification({
       message: postRef.current.value,
       SenderId: state.currentUser.id,
-      ReceiverId: id[1],
+      ReceiverId: receiveId,
     })
       .then((res) => {
         console.log(res.data);
-        document.getElementById("announcement-form").value = "";
+        document.getElementById("notification-form").value = "";
+        document.getElementById("notification-apt-form").value = "";
       })
       .catch((err) => console.log(err));
   }
@@ -57,20 +44,21 @@ export default function PostNotification() {
       .catch((err) => console.log(err));
   }
 
+  function getId() {
+    if (receiverRef.current.value !== "Choose Apt...") {
+      API.findIdByApt(receiverRef.current.value).then((response) => {
+        console.log(response.data.id);
+        receiveId = response.data.id;
+        console.log(response.data.id);
+      });
+    }
+  }
   // function getNotifications(message) {
   //   API.getNotifications(message).then((response) => {
   //     dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
   //   });
   // }
 
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setFormObject({ [name]: value });
-  }
-  function handleFormSubmit(event) {
-    // findIdbyApt(receiverRef.current.value);
-    createPost();
-  }
   return (
     <div className="post-bulletin--container">
       <h2>Post Notification Here</h2>
@@ -81,25 +69,21 @@ export default function PostNotification() {
           <Form.Control
             as="select"
             defaultValue="Choose..."
-            required
             ref={receiverRef}
-            name="apt"
-            onChange={handleInputChange}
+            onChange={getId}
           >
             <option>Choose Apt...</option>
             {state.users.length
               ? state.users.map((user) => (
-                  <option key={user.id}>
-                    Apt: {user.aptNumber} id: {user.id}
-                  </option>
+                  <option key={user.id}>{user.aptNumber}</option>
                 ))
               : ""}
           </Form.Control>
         </Form.Group>
-        <Form.Group controlId="bulletin-form">
+        <Form.Group controlId="notification-apt-form">
           <Form.Control as="textarea" rows="5" ref={postRef} />
         </Form.Group>
-        <button className="btn" type="submit" onClick={handleFormSubmit}>
+        <button className="btn" type="submit" onClick={createPost}>
           Submit
         </button>
       </Form>
