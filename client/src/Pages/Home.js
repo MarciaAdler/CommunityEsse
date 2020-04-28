@@ -20,6 +20,13 @@ export default function Home() {
   useEffect(() => {
     getAnnouncements(state.announcements);
     getBulletins(state.bulletins);
+    if (state.currentUser.id !== 0) {
+      getMyNotifications(state.currentUser);
+    } else if (JSON.parse(localStorage.getItem("currentUser"))) {
+      getMyNotifications(JSON.parse(localStorage.getItem("currentUser")));
+    } else {
+      getNotifications(state.notifications);
+    }
   }, []);
   function getAnnouncements(message) {
     API.getAnnouncements(message).then((response) => {
@@ -31,7 +38,18 @@ export default function Home() {
       dispatch({ type: SET_BULLETINS, bulletins: response.data });
     });
   }
-
+  function getMyNotifications(currentUser) {
+    API.getMyNotifications(currentUser.id)
+      .then((response) => {
+        dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
+      })
+      .catch((err) => console.log(err));
+  }
+  function getNotifications(message) {
+    API.getNotifications(message).then((response) => {
+      dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
+    });
+  }
   return (
     <div>
       <Container className="homepage--container">

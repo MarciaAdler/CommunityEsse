@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { Row, ListGroup } from "react-bootstrap";
+import { Row, Tabs, Tab } from "react-bootstrap";
 import dateFormat from "dateformat";
 import { SET_NOTIFICATIONS } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
+import Sent from "../components/Sent";
+import Inbox from "../components/Inbox";
 
 export default function ViewNotification() {
   const [state, dispatch] = useStoreContext();
@@ -40,59 +42,15 @@ export default function ViewNotification() {
   }
   return (
     <div>
-      <h2>Notifications</h2>
-
-      <ListGroup>
-        {state.notifications.length
-          ? state.notifications.map((notification, index) => {
-              return (
-                <ListGroup.Item key={notification.id}>
-                  {notification.message}
-                  {state.currentUser.role === "User" &&
-                  notification.read === false ? (
-                    <button
-                      className="view-notification--read-btn"
-                      onClick={() => {
-                        markAsRead(notification.id);
-                      }}
-                    >
-                      read
-                    </button>
-                  ) : (
-                    ""
-                  )}
-                  <br />
-                  <span className="view-notification--author-title">
-                    <small>
-                      Posted By: {notification.Sender.firstName}{" "}
-                      {notification.Sender.lastName}{" "}
-                    </small>
-                  </span>
-
-                  <button
-                    className="view-notification--delete-btn"
-                    onClick={() => {
-                      deleteNotification(notification.id);
-                    }}
-                  >
-                    X
-                  </button>
-
-                  <br></br>
-                  <span className="view-notification--date">
-                    <small>
-                      {dateFormat(
-                        `${notification.createdAt}`,
-                        "dddd, mmmm, dS, yyyy, h:MM TT"
-                      )}{" "}
-                      {"EST"}
-                    </small>
-                  </span>
-                </ListGroup.Item>
-              );
-            })
-          : ""}
-      </ListGroup>
+      <h2>Messages</h2>
+      <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+        <Tab eventKey="Inbox" title="Inbox">
+          <Inbox />
+        </Tab>
+        <Tab eventKey="Sent" title="Sent Messages">
+          <Sent />
+        </Tab>
+      </Tabs>
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function ContactCard() {
         {state.users.length
           ? state.users.map((user) => {
               return (
-                <Col className="col-6 mb-3">
+                <Col className="col-6 mb-3" key={user.id}>
                   <Card>
                     <Card.Body>
                       <Card.Title>

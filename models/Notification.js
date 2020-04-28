@@ -15,6 +15,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    closed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   });
 
   Notification.associate = function (models) {

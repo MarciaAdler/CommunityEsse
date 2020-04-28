@@ -243,4 +243,12 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  markNotificationAsClosed: function (req, res) {
+    db.Notification.update({ closed: true }, { where: { id: req.params.id } })
+
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

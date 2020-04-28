@@ -22,6 +22,7 @@ export default function ViewBulletinBoard() {
       })
       .catch((err) => console.log(err));
   }
+
   return (
     <div>
       <h2>Bulletin Board</h2>

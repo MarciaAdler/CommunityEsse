@@ -62,4 +62,7 @@ export default {
     console.log("API", req.id);
     return axios.get("/api/user/" + req);
   },
+  markAsClosed: function (req) {
+    return axios.put("/api/closenotification/" + req);
+  },
 };

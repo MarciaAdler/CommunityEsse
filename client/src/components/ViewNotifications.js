@@ -9,12 +9,20 @@ export default function ViewNotification() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getNotifications();
+    getNotifications(state.notifications);
   }, []);
   function getNotifications(message) {
     API.getNotifications(message).then((response) => {
       dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
     });
+  }
+  function markAsClosed(notification) {
+    console.log(notification);
+    API.markAsClosed(notification)
+      .then((response) => {
+        getNotifications(state.notifications);
+      })
+      .catch((err) => console.log(err));
   }
   function deleteNotification(notification) {
     API.deleteNotification(notification)
@@ -33,6 +41,19 @@ export default function ViewNotification() {
               return (
                 <ListGroup.Item key={notification.id}>
                   {notification.message}
+                  {state.currentUser.role === "Front Desk" &&
+                  notification.closed === false ? (
+                    <button
+                      className="view-notification--read-btn"
+                      onClick={() => {
+                        markAsClosed(notification.id);
+                      }}
+                    >
+                      Close
+                    </button>
+                  ) : (
+                    ""
+                  )}
                   <br />
                   <span>For: {notification.Receiver.aptNumber}</span>
                   <br />

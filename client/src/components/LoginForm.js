@@ -53,6 +53,7 @@ export default function LoginForm() {
       })
       .catch((err) => console.log(err));
   }
+
   return (
     <div className="loginform--wrapper">
       <Form className="loginform--form div-to-align">

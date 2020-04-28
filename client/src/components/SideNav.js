@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Nav, Container, Col } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_NOTIFICATIONS } from "../utils/actions";
 import API from "../utils/API";
 export default function SideNav() {
   const [state, dispatch] = useStoreContext();
-
+  const [frontDesk, setFrontDesk] = useState([]);
   useEffect(() => {
     if (state.currentUser.id !== 0) {
       getMyNotifications(state.currentUser);
-    } else {
+    } else if (JSON.parse(localStorage.getItem("currentUser"))) {
       getMyNotifications(JSON.parse(localStorage.getItem("currentUser")));
     }
   }, []);
@@ -44,11 +44,12 @@ export default function SideNav() {
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/notifications">
             Notifications{" "}
-            {state.notifications.length > 0 &&
-            state.currentUser.role === "User" ? (
+            {(state.notifications.length > 0 &&
+              state.currentUser.role === "User") ||
+            state.currentUser.role === "Admin" ? (
               <span className="side-nav--notification-unread"> ({unread})</span>
             ) : (
-              "0"
+              ""
             )}
           </Nav.Link>
         </Nav>

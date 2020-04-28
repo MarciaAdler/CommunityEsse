@@ -48,4 +48,9 @@ router.route("/api/receiver/:aptNum").get(usersController.findIdByApt);
 router.route("/api/profile").put(usersController.updateProfile);
 
 router.route("/api/user/:id").get(usersController.refreshCurrentUser);
+
+router
+  .route("/api/closenotification/:id")
+  .put(usersController.markNotificationAsClosed);
+
 module.exports = router;

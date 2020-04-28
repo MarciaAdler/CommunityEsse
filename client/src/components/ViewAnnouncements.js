@@ -24,6 +24,7 @@ export default function ViewAnnouncements() {
       })
       .catch((err) => console.log(err));
   }
+
   return (
     <div>
       <h2>Announcements</h2>
