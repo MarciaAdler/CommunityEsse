@@ -31,9 +31,7 @@ export default function ContactCard() {
                       <Card.Title>
                         {user.firstName} {user.lastName}
                       </Card.Title>
-                      <Card.Subtitle className="mb-3 text-muted">
-                        username: {user.username}
-                      </Card.Subtitle>
+
                       {user.role === "Admin" || user.role === "Front Desk" ? (
                         <Card.Subtitle className="mb-3 text-muted">
                           Role: {user.role}
@@ -44,7 +42,7 @@ export default function ContactCard() {
                         </Card.Subtitle>
                       )}
 
-                      <Card.Link href="/message">Message</Card.Link>
+                      <Card.Link href="/message">Messages</Card.Link>
                     </Card.Body>
                   </Card>
                 </Col>

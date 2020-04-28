@@ -7,7 +7,7 @@ export default function Footer() {
       <Row>
         <Col>
           <img
-            src={require("./images/communitylifeicon-black2.png")}
+            src={require("./images/communitylifeicon-2.png")}
             alt="community life"
             className="header--icon"
           />
