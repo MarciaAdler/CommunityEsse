@@ -24,7 +24,13 @@ export default function Sent() {
       })
       .catch((err) => console.log(err));
   }
-
+  function deleteMessage(message) {
+    API.deleteMessage(message)
+      .then((res) => {
+        getSentMessages(state.currentUser);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div className="list-group">
       <Accordion>
@@ -52,7 +58,18 @@ export default function Sent() {
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey={message.id}>
-                    <Card.Body>{message.message}</Card.Body>
+                    <Card.Body>
+                      {message.message}
+
+                      <button
+                        className="view-notification--delete-btn"
+                        onClick={() => {
+                          deleteMessage(message.id);
+                        }}
+                      >
+                        X
+                      </button>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
               );

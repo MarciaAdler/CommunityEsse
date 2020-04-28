@@ -63,4 +63,5 @@ router
 
 router.route("/api/hidenotification/:id").put(usersController.hideNotification);
 
+router.route("/api/message/:id").delete(usersController.deleteMessage);
 module.exports = router;

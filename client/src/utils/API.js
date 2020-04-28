@@ -76,4 +76,8 @@ export default {
   hideNotification: function (req) {
     return axios.put("/api/hidenotification/" + req);
   },
+  deleteMessage: function (message) {
+    console.log(message);
+    return axios.delete("/api/message/" + message);
+  },
 };

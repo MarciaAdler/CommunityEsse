@@ -314,4 +314,16 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  deleteMessage: function (req, res) {
+    console.log(req.params);
+    db.Message.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };
