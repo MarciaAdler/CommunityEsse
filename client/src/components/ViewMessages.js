@@ -43,7 +43,7 @@ export default function ViewNotification() {
   return (
     <div>
       <h2>Messages</h2>
-      <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="Inbox" id="uncontrolled-tab-example">
         <Tab eventKey="Inbox" title="Inbox">
           <Inbox />
         </Tab>

@@ -53,4 +53,5 @@ router
   .route("/api/closenotification/:id")
   .put(usersController.markNotificationAsClosed);
 
+router.route("/api/message").post(usersController.createMessage);
 module.exports = router;

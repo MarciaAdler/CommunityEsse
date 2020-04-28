@@ -65,4 +65,8 @@ export default {
   markAsClosed: function (req) {
     return axios.put("/api/closenotification/" + req);
   },
+  createMessage: function (req) {
+    console.log(req);
+    return axios.post("/api/message", req);
+  },
 };

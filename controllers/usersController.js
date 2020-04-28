@@ -251,4 +251,18 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  createMessage: function (req, res) {
+    console.log(req.body);
+    db.Message.create({
+      message: req.body.message,
+      SenderId: req.body.SenderId,
+      ReceiverId: req.body.ReceiverId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

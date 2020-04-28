@@ -57,11 +57,11 @@ export default function PostNotification() {
       .catch((err) => console.log(err));
   }
 
-  function getNotifications(message) {
-    API.getNotifications(message).then((response) => {
-      dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
-    });
-  }
+  // function getNotifications(message) {
+  //   API.getNotifications(message).then((response) => {
+  //     dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
+  //   });
+  // }
 
   function handleInputChange(event) {
     const { name, value } = event.target;
