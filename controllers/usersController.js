@@ -266,6 +266,7 @@ module.exports = {
     db.Message.findAll({
       where: {
         SenderId: req.params.id,
+        show: "show",
       },
       include: [
         {
@@ -314,13 +315,18 @@ module.exports = {
         res.status(401).json(err);
       });
   },
-  deleteMessage: function (req, res) {
+  hideMessage: function (req, res) {
     console.log(req.params);
-    db.Message.destroy({
-      where: {
-        id: req.params.id,
+    db.Message.update(
+      {
+        show: "hide",
       },
-    })
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
         res.status(401).json(err);

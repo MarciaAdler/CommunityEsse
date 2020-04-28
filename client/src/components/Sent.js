@@ -24,8 +24,8 @@ export default function Sent() {
       })
       .catch((err) => console.log(err));
   }
-  function deleteMessage(message) {
-    API.deleteMessage(message)
+  function hideMessage(message) {
+    API.hideMessage(message)
       .then((res) => {
         getSentMessages(state.currentUser);
       })
@@ -64,7 +64,7 @@ export default function Sent() {
                       <button
                         className="view-notification--delete-btn"
                         onClick={() => {
-                          deleteMessage(message.id);
+                          hideMessage(message.id);
                         }}
                       >
                         X
