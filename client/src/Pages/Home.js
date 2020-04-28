@@ -56,7 +56,7 @@ export default function Home() {
         <div>
           <div className="homepage--col">
             <h2 className="homepage--announcements-title">
-              <i class="fas fa-building"></i> Building Announcements
+              <i className="fas fa-building"></i> Building Announcements
               <small>
                 &nbsp;
                 <Link to="/announcements">
@@ -91,7 +91,7 @@ export default function Home() {
           <div>
             <div className="homepage--col">
               <h2 className="homepage--announcements-title">
-                <i class="fas fa-clipboard-list"></i> Bulletin Board
+                <i className="fas fa-clipboard-list"></i> Bulletin Board
                 <small>
                   &nbsp;
                   <Link to="/bulletinboard">

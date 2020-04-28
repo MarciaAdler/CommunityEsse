@@ -28,7 +28,7 @@ export default function ViewAnnouncements() {
   return (
     <div>
       <h2>
-        <i class="fas fa-building"></i> Building Announcements
+        <i className="fas fa-building"></i> Building Announcements
       </h2>
       <ListGroup>
         {state.announcements.length

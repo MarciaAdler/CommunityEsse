@@ -26,7 +26,7 @@ export default function ViewBulletinBoard() {
   return (
     <div>
       <h2>
-        <i class="fas fa-clipboard-list"></i> Bulletin Board
+        <i className="fas fa-clipboard-list"></i> Bulletin Board
       </h2>
       <ListGroup>
         {state.bulletins.length

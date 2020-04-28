@@ -34,7 +34,7 @@ export default function ViewNotification() {
   return (
     <div>
       <h2>
-        <i class="fas fa-scroll"></i> Front Desk Notifications
+        <i className="fas fa-scroll"></i> Front Desk Notifications
       </h2>
 
       <ListGroup>

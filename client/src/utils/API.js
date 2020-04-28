@@ -73,4 +73,7 @@ export default {
     console.log(req);
     return axios.get("/api/receivedmessages/" + req);
   },
+  hideNotification: function (req) {
+    return axios.put("/api/hidenotification/" + req);
+  },
 };

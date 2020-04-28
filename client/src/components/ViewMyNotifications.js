@@ -32,8 +32,8 @@ export default function ViewNotification() {
       })
       .catch((err) => console.log(err));
   }
-  function deleteNotification(notification) {
-    API.deleteNotification(notification)
+  function hideNotification(notification) {
+    API.hideNotification(notification)
       .then((res) => {
         getMyNotifications(state.currentUser);
       })
@@ -42,7 +42,7 @@ export default function ViewNotification() {
   return (
     <div>
       <h2>
-        <i class="fas fa-scroll"></i> Front Desk Notifications
+        <i className="fas fa-scroll"></i> Front Desk Notifications
       </h2>
 
       <ListGroup>
@@ -75,7 +75,7 @@ export default function ViewNotification() {
                   <button
                     className="view-notification--delete-btn"
                     onClick={() => {
-                      deleteNotification(notification.id);
+                      hideNotification(notification.id);
                     }}
                   >
                     X

@@ -123,9 +123,6 @@ module.exports = {
   },
   getNotifications: function (req, res) {
     db.Notification.findAll({
-      where: {
-        show: "show",
-      },
       include: [
         {
           model: db.User,
@@ -305,6 +302,13 @@ module.exports = {
       ],
       order: [["createdAt", "DESC"]],
     })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  hideNotification: function (req, res) {
+    db.Notification.update({ show: "hide" }, { where: { id: req.params.id } })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
         res.status(401).json(err);

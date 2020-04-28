@@ -60,4 +60,7 @@ router.route("/api/sentmessages/:id").get(usersController.getSentMessages);
 router
   .route("/api/receivedmessages/:id")
   .get(usersController.getReceivedMessages);
+
+router.route("/api/hidenotification/:id").put(usersController.hideNotification);
+
 module.exports = router;

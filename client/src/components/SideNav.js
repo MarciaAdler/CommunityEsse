@@ -51,13 +51,13 @@ export default function SideNav() {
           className="align-items-start side-nav--nav"
         >
           <Nav.Link className="side-nav--link" href="/announcements">
-            <i class="fas fa-building"></i> Building Announcements
+            <i className="fas fa-building"></i> Building Announcements
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/bulletinboard">
-            <i class="fas fa-clipboard-list"></i> Bulletin Board
+            <i className="fas fa-clipboard-list"></i> Bulletin Board
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/messages">
-            <i class="fas fa-envelope-square"></i> Messages{" "}
+            <i className="fas fa-envelope-square"></i> Messages{" "}
             {state.receivedmessages.length > 0 ? (
               <span className="side-nav--notification-unread">
                 {" "}
@@ -68,7 +68,7 @@ export default function SideNav() {
             )}
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/notifications">
-            <i class="fas fa-scroll"></i> Front Desk Notifications{" "}
+            <i className="fas fa-scroll"></i> Front Desk Notifications{" "}
             {(state.notifications.length > 0 &&
               state.currentUser.role === "User") ||
             state.currentUser.role === "Admin" ? (

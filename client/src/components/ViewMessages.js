@@ -43,7 +43,7 @@ export default function ViewNotification() {
   return (
     <div>
       <h2>
-        <i class="fas fa-envelope-square"></i> Messages
+        <i className="fas fa-envelope-square"></i> Messages
       </h2>
       <Tabs defaultActiveKey="Inbox" id="uncontrolled-tab-example">
         <Tab eventKey="Inbox" title="Inbox">
