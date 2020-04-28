@@ -25,7 +25,9 @@ export default function ViewBulletinBoard() {
 
   return (
     <div>
-      <h2>Bulletin Board</h2>
+      <h2>
+        <i class="fas fa-clipboard-list"></i> Bulletin Board
+      </h2>
       <ListGroup>
         {state.bulletins.length
           ? state.bulletins.map((bulletin, index) => {

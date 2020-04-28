@@ -41,7 +41,9 @@ export default function ViewNotification() {
   }
   return (
     <div>
-      <h2>Notifications</h2>
+      <h2>
+        <i class="fas fa-scroll"></i> Front Desk Notifications
+      </h2>
 
       <ListGroup>
         {state.notifications.length
