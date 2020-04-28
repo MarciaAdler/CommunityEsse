@@ -54,4 +54,6 @@ router
   .put(usersController.markNotificationAsClosed);
 
 router.route("/api/message").post(usersController.createMessage);
+
+router.route("/api/sentmessages/:id").get(usersController.getSentMessages);
 module.exports = router;

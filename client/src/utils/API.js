@@ -69,4 +69,8 @@ export default {
     console.log(req);
     return axios.post("/api/message", req);
   },
+  getSentMessages: function (req) {
+    console.log(req);
+    return axios.get("/api/sentmessages/" + req);
+  },
 };

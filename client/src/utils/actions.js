@@ -7,3 +7,4 @@ export const SET_BULLETINS = "SET_BULLETINS";
 export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
 export const SET_USERS = "SET_USERS";
 export const SET_ALL_USERS = "SET_ALL_USERS";
+export const SET_SENT_MESSAGES = "SET_MESSAGES";

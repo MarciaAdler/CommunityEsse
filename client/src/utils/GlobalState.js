@@ -10,6 +10,7 @@ import {
   SET_NOTIFICATIONS,
   SET_USERS,
   SET_ALL_USERS,
+  SET_SENT_MESSAGES,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -50,6 +51,11 @@ const reducer = (state, action) => {
         ...state,
         notifications: action.notifications,
       };
+    case SET_SENT_MESSAGES:
+      return {
+        ...state,
+        sentmessages: action.sentmessages,
+      };
     case SET_USERS:
       return {
         ...state,
@@ -77,6 +83,7 @@ const reducer = (state, action) => {
         bulletins: [],
         users: [],
         allUsers: [],
+        sentmessages: [],
       };
 
     case LOADING:
@@ -107,6 +114,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     notifications: [],
     users: [],
     allUsers: [],
+    sentmessages: [],
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

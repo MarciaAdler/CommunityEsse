@@ -9,8 +9,6 @@ export default function Messages() {
   return (
     <Container className="messages--container">
       <ViewMessages />
-
-      <PostMessages />
     </Container>
   );
 }

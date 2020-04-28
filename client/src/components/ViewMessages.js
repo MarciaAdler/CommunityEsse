@@ -6,7 +6,7 @@ import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 import Sent from "../components/Sent";
 import Inbox from "../components/Inbox";
-
+import PostMessages from "../components/PostMessages";
 export default function ViewNotification() {
   const [state, dispatch] = useStoreContext();
 
@@ -49,6 +49,9 @@ export default function ViewNotification() {
         </Tab>
         <Tab eventKey="Sent" title="Sent Messages">
           <Sent />
+        </Tab>
+        <Tab eventKey="Write" title="Write Message">
+          <PostMessages />
         </Tab>
       </Tabs>
     </div>

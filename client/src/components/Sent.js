@@ -1,29 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Accordion, Button } from "react-bootstrap";
+import { useStoreContext } from "../utils/GlobalState";
+import API from "../utils/API";
+import { SET_SENT_MESSAGES } from "../utils/actions";
+import dateFormat from "dateformat";
+
 export default function Sent() {
+  const [state, dispatch] = useStoreContext();
+
+  useEffect(() => {
+    if (state.currentUser.id !== 0) {
+      getSentMessages(state.currentUser);
+    } else {
+      getSentMessages(JSON.parse(localStorage.getItem("currentUser")));
+    }
+  }, []);
+  function getSentMessages(currentUser) {
+    console.log(currentUser);
+    API.getSentMessages(currentUser.id)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({ type: SET_SENT_MESSAGES, sentmessages: response.data });
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
-    <div>
+    <div className="list-group">
       <Accordion>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              Click me!
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>Hello! I'm the body</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="1">
-              Click me!
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>Hello! I'm another body</Card.Body>
-          </Accordion.Collapse>
-        </Card>
+        {state.sentmessages.length > 0
+          ? state.sentmessages.map((message) => {
+              return (
+                <Card key={message.id}>
+                  <Card.Header>
+                    <Accordion.Toggle
+                      as={Button}
+                      variant="link"
+                      eventKey={message.id}
+                    >
+                      {message.Receiver.firstName} {message.Receiver.lastName}
+                      <br></br>
+                      <span className="view-bulletin--date">
+                        <small>
+                          {dateFormat(
+                            `${message.createdAt}`,
+                            "dddd, mmmm, dS, yyyy, h:MM TT"
+                          )}{" "}
+                          {"EST"}
+                        </small>
+                      </span>
+                    </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey={message.id}>
+                    <Card.Body>{message.message}</Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              );
+            })
+          : "no sent messages"}
       </Accordion>
     </div>
   );
