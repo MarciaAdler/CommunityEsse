@@ -9,8 +9,7 @@ export default function Notifications() {
   const [state, dispatch] = useStoreContext();
   return (
     <Container className="notifications--container">
-      {state.currentUser.role === "Front Desk" ||
-      state.currentUser.role === "Admin" ? (
+      {state.currentUser.role !== "User" ? (
         <ViewNotifications />
       ) : (
         <ViewMyNotifications />
