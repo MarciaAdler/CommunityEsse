@@ -52,7 +52,7 @@ export default function Header() {
             alt="community life"
             className="header--icon"
           />
-          Community Life
+          Community Esse
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         {state.loggedIn ? (

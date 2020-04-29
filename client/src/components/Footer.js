@@ -11,9 +11,9 @@ export default function Footer() {
             alt="community life"
             className="header--icon"
           />
-          Community Life
+          Community Esse
         </Col>
-        <Col>About</Col>
+        <Col className="footer--about">About</Col>
       </Row>
     </Container>
   );
