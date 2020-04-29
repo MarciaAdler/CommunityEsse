@@ -6,6 +6,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    subject: {
+      type: DataTypes.STRING,
+      defaultValue: "NULL",
+    },
     read: {
       type: DataTypes.BOOLEAN,
       defaultValue: 0,

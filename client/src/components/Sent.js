@@ -44,7 +44,10 @@ export default function Sent() {
                       variant="link"
                       eventKey={message.id}
                     >
-                      {message.Receiver.firstName} {message.Receiver.lastName}
+                      {message.subject}
+                      <br />
+                      To: {message.Receiver.firstName}{" "}
+                      {message.Receiver.lastName}
                       <br></br>
                       <span className="view-bulletin--date">
                         <small>

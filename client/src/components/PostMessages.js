@@ -8,6 +8,7 @@ export default function PostMessages() {
   const [state, dispatch] = useStoreContext();
   const postRef = useRef();
   const receiverRef = useRef();
+  const subjectRef = useRef();
   let receiveId = "";
   useEffect(() => {
     getAll();
@@ -16,6 +17,7 @@ export default function PostMessages() {
     event.preventDefault();
     API.createMessage({
       message: postRef.current.value,
+      subject: subjectRef.current.value,
       SenderId: state.currentUser.id,
       ReceiverId: receiveId,
     })
@@ -24,6 +26,7 @@ export default function PostMessages() {
         updateSentMessages(state.currentUser);
         document.getElementById("message-form").value = "";
         document.getElementById("message-apt-input").value = "Choose Apt...";
+        document.getElementById("message-subject").value = "";
       })
       .catch((err) => console.log(err));
   }
@@ -72,8 +75,17 @@ export default function PostMessages() {
               : ""}
           </Form.Control>
         </Form.Group>
+        <Form.Group controlId="message-subject">
+          <Form.Label>Subject:</Form.Label>
+          <Form.Control as="textarea" rows="1" ref={subjectRef} />
+        </Form.Group>
         <Form.Group controlId="message-form">
-          <Form.Control as="textarea" rows="5" ref={postRef} />
+          <Form.Control
+            as="textarea"
+            placeholder="Type message here"
+            rows="5"
+            ref={postRef}
+          />
         </Form.Group>
         <Button className="button" type="submit" onClick={createMessage}>
           Send

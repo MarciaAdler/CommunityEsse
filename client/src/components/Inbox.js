@@ -58,7 +58,9 @@ export default function Inbox() {
                       variant="link"
                       eventKey={message.id}
                     >
-                      {message.Sender.firstName} {message.Sender.lastName}
+                      {message.subject}
+                      <br />
+                      From: {message.Sender.firstName} {message.Sender.lastName}
                       <br></br>
                       <span className="view-bulletin--date">
                         <small>

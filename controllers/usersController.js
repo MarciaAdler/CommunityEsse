@@ -252,6 +252,7 @@ module.exports = {
     console.log(req.body);
     db.Message.create({
       message: req.body.message,
+      subject: req.body.subject,
       SenderId: req.body.SenderId,
       ReceiverId: req.body.ReceiverId,
     })
