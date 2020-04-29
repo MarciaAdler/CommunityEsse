@@ -20,12 +20,15 @@ export default function ContactCard() {
   }
   return (
     <div>
-      <h2>Building Contacts</h2>
+      <h2>
+        <i class="fas fa-id-card"></i> Building Contacts
+      </h2>
+
       <Row>
         {state.users.length
           ? state.users.map((user) => {
               return (
-                <Col className="col-6 mb-3" key={user.id}>
+                <Col className="col-6 mb-3 pl-0" key={user.id}>
                   <Card>
                     <Card.Body>
                       <Card.Title>
@@ -42,7 +45,7 @@ export default function ContactCard() {
                         </Card.Subtitle>
                       )}
 
-                      <Card.Link href="/message">Messages</Card.Link>
+                      <Card.Link href="/messages">Messages</Card.Link>
                     </Card.Body>
                   </Card>
                 </Col>

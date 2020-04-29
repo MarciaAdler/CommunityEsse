@@ -9,11 +9,14 @@ body
   min-height: 100vh
   position: relative
   padding-bottom: 110px
-
+  // font-family: 'Manrope', sans-serif
+  // font-family: 'Raleway', sans-serif
+  font-family: 'Baloo Tamma 2', cursive
 a
   color: $darkblue
   &:hover
     color: $purple
+
 .header
   &--navbar
     @include media-breakpoint-only(xs)
@@ -73,17 +76,21 @@ a
       justify-content: center
 .signin
   &--container
-    width: 60%
+    width: 80%
     margin-top: 50px
+  &--icon
+    float: right
+    width: 300px
+    height: auto
+    margin-top: -30px
 .loginform
   &--form
     width: 60%
+    margin-top: 60px
     @include media-breakpoint-only(xs)
       width: 80%
-    &--wrapper
-      display: flex
-      justify-content: center
-
+  &--div
+    margin-top: 20px
 .announcements
   &--container
     margin-top: 20px
