@@ -40,11 +40,12 @@ export default function Sent() {
                 <Card key={message.id}>
                   <Card.Header>
                     <Accordion.Toggle
+                      className="accordion"
                       as={Button}
                       variant="link"
                       eventKey={message.id}
                     >
-                      {message.subject}
+                      Subject: {message.subject}
                       <br />
                       To: {message.Receiver.firstName}{" "}
                       {message.Receiver.lastName}

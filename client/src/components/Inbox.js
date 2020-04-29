@@ -57,8 +57,9 @@ export default function Inbox() {
                       as={Button}
                       variant="link"
                       eventKey={message.id}
+                      className="accordion"
                     >
-                      {message.subject}
+                      Subject: {message.subject}
                       <br />
                       From: {message.Sender.firstName} {message.Sender.lastName}
                       <br></br>
