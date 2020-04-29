@@ -2,7 +2,8 @@
 
 $darkblue: #235789
 $purple: #9BA2FF
-$jet: #30332E
+$jet: #343A40
+$grey: #8FAADC
 
 body
   padding-top: 66px
@@ -15,8 +16,15 @@ body
 a
   color: $darkblue
   &:hover
-    color: $purple
-
+    color: $grey
+.button
+  background-color: $grey
+  color: $jet
+  border-color: $grey
+  &:hover
+    background-color: $jet
+    color: $grey
+    border-color: $jet
 .header
   &--navbar
     @include media-breakpoint-only(xs)
@@ -142,11 +150,11 @@ a
     background-color: #FFFFFF
     font-weight: bold
     position: absolute
-    top: 25px
+    top: 50px
     right: 20px
     &:hover
-      background-color: $red
-      color: $white
+      // background-color: $grey
+      color: darkred
 .notifications
   &--container
     margin-top: 20px
@@ -166,8 +174,8 @@ a
     top: 50px
     right: 20px
     &:hover
-      background-color: $red
-      color: $white
+      // background-color: $grey
+      color: darkred
   &--read-btn
     color: $darkblue
     // border: 1px solid $red;
@@ -176,8 +184,22 @@ a
     position: absolute
     top: 10px
     right: 20px
+    border-radius: 2em
     &:hover
-      background-color: $jet
+      background-color: $grey
+      color: $white
+  &--hide-btn
+    color: $darkblue
+    // border: 1px solid $red;
+    border: none
+    background-color: #FFFFFF
+    // font-weight: bold
+    position: absolute
+    top: 50px
+    right: 20px
+    border-radius: 2em
+    &:hover
+      background-color: $grey
       color: $white
 .post-messages
   &--container

@@ -59,7 +59,7 @@ export default function ViewNotification() {
                         markAsRead(notification.id);
                       }}
                     >
-                      read
+                      Mark as Read
                     </button>
                   ) : (
                     ""

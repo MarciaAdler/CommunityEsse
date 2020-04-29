@@ -58,7 +58,9 @@ export default function LoginForm() {
     <div className="loginform--wrapper">
       <Form className="loginform--form div-to-align">
         <Form.Group controlId="formUsername">
-          <Form.Label>Username</Form.Label>
+          <Form.Label>
+            <strong>Username</strong>
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter username"
@@ -67,7 +69,9 @@ export default function LoginForm() {
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>
+            <strong>Password</strong>
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Password"
@@ -75,8 +79,8 @@ export default function LoginForm() {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={login}>
-          Submit
+        <Button className="button" type="submit" onClick={login}>
+          Sign-in
         </Button>
       </Form>
       {renderRedirect()}

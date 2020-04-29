@@ -83,8 +83,8 @@ export default function PostNotification() {
         <Form.Group controlId="notification-apt-form">
           <Form.Control as="textarea" rows="5" ref={postRef} />
         </Form.Group>
-        <button className="btn" type="submit" onClick={createPost}>
-          Submit
+        <button className="button" type="submit" onClick={createPost}>
+          Send
         </button>
       </Form>
     </div>

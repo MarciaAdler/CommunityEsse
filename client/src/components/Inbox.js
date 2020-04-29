@@ -72,16 +72,16 @@ export default function Inbox() {
                     </Accordion.Toggle>
                     {message.read === false ? (
                       <button
-                        className="view-notification--delete-btn"
+                        className="view-notification--read-btn"
                         onClick={() => {
                           markMessageAsRead(message.id);
                         }}
                       >
-                        Read
+                        Mark as Read
                       </button>
                     ) : (
                       <button
-                        className="view-notification--delete-btn"
+                        className="view-notification--hide-btn"
                         onClick={() => {
                           inboxHide(message.id);
                         }}

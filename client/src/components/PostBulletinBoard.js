@@ -26,8 +26,8 @@ export default function PostAnnouncement() {
         <Form.Group controlId="bulletin-form">
           <Form.Control as="textarea" rows="5" ref={postRef} />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={createPost}>
-          Submit
+        <Button className="button" type="submit" onClick={createPost}>
+          Post
         </Button>
       </Form>
     </div>

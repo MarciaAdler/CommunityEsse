@@ -75,8 +75,8 @@ export default function PostMessages() {
         <Form.Group controlId="message-form">
           <Form.Control as="textarea" rows="5" ref={postRef} />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={createMessage}>
-          Submit
+        <Button className="button" type="submit" onClick={createMessage}>
+          Send
         </Button>
       </Form>
     </div>

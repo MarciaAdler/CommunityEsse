@@ -125,7 +125,7 @@ export default function ProfileForm() {
         </Form.Row>
 
         <Button
-          variant="primary"
+          className="button"
           onClick={() => {
             updateUser(state.currentUser.id);
           }}

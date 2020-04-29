@@ -142,9 +142,17 @@ export default function SignupForm() {
         </Form.Row>
         <Form.Row className="justify-content-center">
           <Col className="col-8">
-            <Button variant="primary" type="submit" onClick={signUp}>
+            <Button className="button" type="submit" onClick={signUp}>
               Submit
             </Button>
+
+            <span>
+              &nbsp; If you already have an account{" "}
+              <a href="/">
+                <strong>click here</strong>
+              </a>{" "}
+              to login
+            </span>
             {renderRedirect()}
           </Col>
         </Form.Row>
