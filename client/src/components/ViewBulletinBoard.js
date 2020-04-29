@@ -33,6 +33,8 @@ export default function ViewBulletinBoard() {
           ? state.bulletins.map((bulletin, index) => {
               return (
                 <ListGroup.Item key={bulletin.id}>
+                  <strong>Subject:</strong> {bulletin.subject}
+                  <br />
                   {bulletin.message}
                   <br />
                   <span className="view-bulletin--author-title">

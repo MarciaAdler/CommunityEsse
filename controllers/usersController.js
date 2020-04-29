@@ -58,6 +58,7 @@ module.exports = {
   createBulletin: function (req, res) {
     db.Bulletin.create({
       message: req.body.message,
+      subject: req.body.subject,
       UserId: req.body.UserId,
     })
       .then(function () {

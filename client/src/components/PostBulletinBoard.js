@@ -6,10 +6,12 @@ import API from "../utils/API";
 export default function PostAnnouncement() {
   const [state, dispatch] = useStoreContext();
   const postRef = useRef();
+  const subjectRef = useRef();
 
   function createPost(event) {
     API.createBulletin({
       message: postRef.current.value,
+      subject: subjectRef.current.value,
       UserId: state.currentUser.id,
     })
       .then((results) => {
@@ -23,8 +25,17 @@ export default function PostAnnouncement() {
     <div className="post-bulletin--container">
       <h2>Post Bulletin Here</h2>
       <Form className="post-bulletin--form">
+        <Form.Group controlId="bulletin-subject">
+          <Form.Label>Subject: </Form.Label>
+          <Form.Control as="textarea" rows="1" ref={subjectRef} />
+        </Form.Group>
         <Form.Group controlId="bulletin-form">
-          <Form.Control as="textarea" rows="5" ref={postRef} />
+          <Form.Control
+            as="textarea"
+            rows="5"
+            ref={postRef}
+            placeholder="Type post here"
+          />
         </Form.Group>
         <Button className="button" type="submit" onClick={createPost}>
           Post

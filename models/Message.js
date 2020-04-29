@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     subject: {
       type: DataTypes.STRING,
-      defaultValue: "NULL",
+      defaultValue: "Null",
     },
     read: {
       type: DataTypes.BOOLEAN,
