@@ -61,7 +61,7 @@ export default function Sent() {
                       </span>
                     </Accordion.Toggle>
                     <button
-                      className="view-notification--delete-btn"
+                      className="view-messages--delete-btn"
                       onClick={() => {
                         hideMessage(message.id);
                       }}

@@ -75,7 +75,7 @@ export default function Inbox() {
                     </Accordion.Toggle>
                     {message.read === false ? (
                       <button
-                        className="view-notification--read-btn"
+                        className="view-messages--read-btn"
                         onClick={() => {
                           markMessageAsRead(message.id);
                         }}
@@ -84,7 +84,7 @@ export default function Inbox() {
                       </button>
                     ) : (
                       <button
-                        className="view-notification--hide-btn"
+                        className="view-messages--hide-btn"
                         onClick={() => {
                           inboxHide(message.id);
                         }}

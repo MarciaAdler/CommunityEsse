@@ -69,9 +69,8 @@ export default function SideNav() {
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/notifications">
             <i className="fas fa-scroll"></i> Front Desk Notifications{" "}
-            {(state.notifications.length > 0 &&
-              state.currentUser.role === "User") ||
-            state.currentUser.role === "Admin" ? (
+            {state.notifications.length > 0 &&
+            state.currentUser.role === "User" ? (
               <span className="side-nav--notification-unread">
                 {" "}
                 ({unreadNotifications})

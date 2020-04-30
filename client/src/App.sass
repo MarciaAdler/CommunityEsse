@@ -4,7 +4,12 @@ $darkblue: #235789
 $purple: #9BA2FF
 $jet: #343A40
 $grey: #8FAADC
-
+$blue: #568EA3
+$queen: #587792
+$morning: #93A29B
+$steelblue: #BBD1EA
+$platinum: #E0E0E2
+$lightgrey: #CED3DC
 body
   padding-top: 66px
   min-height: 100vh
@@ -13,12 +18,19 @@ body
   // font-family: 'Manrope', sans-serif
   // font-family: 'Raleway', sans-serif
   font-family: 'Baloo Tamma 2', cursive
+.btn-link
+  color: $jet
+  &:hover
+    color: $darkblue
 a
   color: $darkblue
   &:hover
-    color: $grey
+    color: $purple
 .accordion
   text-align: left
+.card-header
+  background-color: $lightgrey
+  border: solid $queen .5px
 .button
   background-color: $grey
   color: $jet
@@ -68,13 +80,27 @@ a
   &--nav
     flex-direction: column
     margin-top: 20px
+
     @include media-breakpoint-only(xs)
       text-align: center
       flex-direction: row
       margin-top: 20px
   &--link
+    background-color: $steelblue
+    width: 250px
+    color: $jet
+    &:hover
+      color: $jet
+      opacity: 75%
+      // border: solid $jet .5px
+      // background-color: white
+    @include media-breakpoint-only(md)
+      width: 175px
+    @include media-breakpoint-only(sm)
+      width: 140px
     @include media-breakpoint-only(xs)
       display: inline-block
+      width: auto
   &--notification-unread
     color: red
 .signupform
@@ -93,7 +119,7 @@ a
   &--container
   &--login-form
     display: flex
-    justify-content: start
+    justify-content: flex-start
     @include media-breakpoint-only(xs)
       display: flex
       justify-content: center
@@ -179,7 +205,7 @@ a
     background-color: #FFFFFF
     font-weight: bold
     position: absolute
-    top: 50px
+    top: 25px
     right: 20px
     &:hover
       // background-color: $grey
@@ -246,6 +272,43 @@ a
   &--author-title
     small
       font-size: 14px
+  &--delete-btn
+    color: $red
+    // border: 1px solid $red;
+    border: none
+    background-color: $lightgrey
+    font-weight: bold
+    position: absolute
+    top: 50px
+    right: 20px
+    &:hover
+      // background-color: $grey
+      color: darkred
+  &--read-btn
+    color: $darkblue
+    // border: 1px solid $red;
+    border: none
+    background-color: $lightgrey
+    position: absolute
+    top: 10px
+    right: 20px
+    border-radius: 2em
+    &:hover
+      background-color: $grey
+      color: $white
+  &--hide-btn
+    color: $darkblue
+    // border: 1px solid $red;
+    border: none
+    background-color: $lightgrey
+    // font-weight: bold
+    position: absolute
+    top: 50px
+    right: 20px
+    border-radius: 2em
+    &:hover
+      background-color: $grey
+      color: $white
 .profile
   &--container
     margin-top: 20px
@@ -256,6 +319,10 @@ a
 .contacts
   &--container
     margin-top: 20px
+.contactcard
+  &--card
+    background-color: $lightgrey
+    border-radius: 1em
 .footer
   &--container
     background-color: #343a40
