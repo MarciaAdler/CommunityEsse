@@ -1,6 +1,7 @@
 import React from "react";
 import ViewBulletinBoard from "../components/ViewBulletinBoard";
 import PostBulletinBoard from "../components/PostBulletinBoard";
+import LoggedOut from "../components/LoggedOut";
 import { useStoreContext } from "../utils/GlobalState";
 import { Container } from "react-bootstrap";
 export default function BulletinBoard() {
@@ -8,8 +9,12 @@ export default function BulletinBoard() {
 
   return (
     <Container className="bulletin--container">
-      <ViewBulletinBoard />
-      {state.currentUser.role === "User" ? <PostBulletinBoard /> : ""}
+      {state.loggedIn === true ? <ViewBulletinBoard /> : <LoggedOut />}
+      {state.currentUser.role === "User" && state.loggedIn === true ? (
+        <PostBulletinBoard />
+      ) : (
+        ""
+      )}
     </Container>
   );
 }

@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import SideNav from "../components/SideNav";
 import ViewAnnouncements from "../components/ViewAnnouncements";
 import ViewBulletinBoard from "../components/ViewBulletinBoard";
+import LoggedOut from "../components/LoggedOut";
 import { Row, Col, Container, ListGroup } from "react-bootstrap";
 import {
   SET_ANNOUNCEMENTS,
@@ -52,71 +53,30 @@ export default function Home() {
   }
   return (
     <div>
-      <Container className="homepage--container">
-        <div>
-          <div className="homepage--col">
-            <h2 className="homepage--announcements-title">
-              <i className="fas fa-building"></i> Building Announcements
-              <small>
-                &nbsp;
-                <Link to="/announcements">
-                  View All <i className="fas fa-angle-double-right"></i>
-                </Link>
-              </small>
-            </h2>
-            <ListGroup>
-              {state.announcements.length > 0
-                ? state.announcements.slice(0, 5).map((announcement) => {
-                    return (
-                      <ListGroup.Item key={announcement.id}>
-                        {announcement.message}
-                        <br></br>
-                        <span className="view-announcement--date">
-                          <small>
-                            {dateFormat(
-                              `${announcement.createdAt}`,
-                              "dddd, mmmm, dS, yyyy, h:MM TT"
-                            )}{" "}
-                            {"EST"}
-                          </small>
-                        </span>
-                      </ListGroup.Item>
-                    );
-                  })
-                : "no announcements"}
-            </ListGroup>
-          </div>
-        </div>
-        <div className="homepage--bulletinboard">
+      {state.loggedIn === true ? (
+        <Container className="homepage--container">
           <div>
             <div className="homepage--col">
               <h2 className="homepage--announcements-title">
-                <i className="fas fa-clipboard-list"></i> Bulletin Board
+                <i className="fas fa-building"></i> Building Announcements
                 <small>
                   &nbsp;
-                  <Link to="/bulletinboard">
+                  <Link to="/announcements">
                     View All <i className="fas fa-angle-double-right"></i>
                   </Link>
                 </small>
               </h2>
               <ListGroup>
-                {state.bulletins.length > 0
-                  ? state.bulletins.slice(0, 5).map((bulletin) => {
+                {state.announcements.length > 0
+                  ? state.announcements.slice(0, 5).map((announcement) => {
                       return (
-                        <ListGroup.Item key={bulletin.id}>
-                          {bulletin.message}
-                          <br />
-                          <span className="view-bulletin--author-title">
-                            <small>
-                              Posted By: {bulletin.User.firstName}{" "}
-                              {bulletin.User.lastName}
-                            </small>
-                          </span>
-                          <br />
-                          <span className="view-bulletin--date">
+                        <ListGroup.Item key={announcement.id}>
+                          {announcement.message}
+                          <br></br>
+                          <span className="view-announcement--date">
                             <small>
                               {dateFormat(
-                                `${bulletin.createdAt}`,
+                                `${announcement.createdAt}`,
                                 "dddd, mmmm, dS, yyyy, h:MM TT"
                               )}{" "}
                               {"EST"}
@@ -125,12 +85,57 @@ export default function Home() {
                         </ListGroup.Item>
                       );
                     })
-                  : "no bulletins"}
+                  : "no announcements"}
               </ListGroup>
             </div>
           </div>
-        </div>
-      </Container>
+          <div className="homepage--bulletinboard">
+            <div>
+              <div className="homepage--col">
+                <h2 className="homepage--announcements-title">
+                  <i className="fas fa-clipboard-list"></i> Bulletin Board
+                  <small>
+                    &nbsp;
+                    <Link to="/bulletinboard">
+                      View All <i className="fas fa-angle-double-right"></i>
+                    </Link>
+                  </small>
+                </h2>
+                <ListGroup>
+                  {state.bulletins.length > 0
+                    ? state.bulletins.slice(0, 5).map((bulletin) => {
+                        return (
+                          <ListGroup.Item key={bulletin.id}>
+                            {bulletin.message}
+                            <br />
+                            <span className="view-bulletin--author-title">
+                              <small>
+                                Posted By: {bulletin.User.firstName}{" "}
+                                {bulletin.User.lastName}
+                              </small>
+                            </span>
+                            <br />
+                            <span className="view-bulletin--date">
+                              <small>
+                                {dateFormat(
+                                  `${bulletin.createdAt}`,
+                                  "dddd, mmmm, dS, yyyy, h:MM TT"
+                                )}{" "}
+                                {"EST"}
+                              </small>
+                            </span>
+                          </ListGroup.Item>
+                        );
+                      })
+                    : "no bulletins"}
+                </ListGroup>
+              </div>
+            </div>
+          </div>
+        </Container>
+      ) : (
+        <LoggedOut />
+      )}
     </div>
   );
 }
