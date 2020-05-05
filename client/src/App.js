@@ -11,7 +11,6 @@ import Profile from "./Pages/Profile";
 import Messages from "./Pages/Messages";
 import Contacts from "./Pages/Contacts";
 import Footer from "../src/components/Footer";
-import { Col } from "react-bootstrap";
 import { StoreProvider } from "../src/utils/GlobalState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.sass";
