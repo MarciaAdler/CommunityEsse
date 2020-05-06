@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes) {
   var Notification = sequelize.define("Notification", {
     // The message cannot be null
     message: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     show: {

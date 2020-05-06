@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes) {
   var Bulletin = sequelize.define("Bulletin", {
     // The message cannot be null
     message: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     subject: {
