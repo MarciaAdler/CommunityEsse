@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { Form, Button } from "react-bootstrap";
 import API from "../utils/API";
@@ -10,9 +10,12 @@ export default function PostMessages() {
   const receiverRef = useRef();
   const subjectRef = useRef();
   let receiveId = "";
+  const sentMessage = "Message Sent";
+  const [successMessage, setSuccessMessage] = useState("");
   useEffect(() => {
     getAll();
   }, []);
+
   function createMessage(event) {
     event.preventDefault();
     API.createMessage({
@@ -24,6 +27,7 @@ export default function PostMessages() {
       .then((res) => {
         console.log(res.data);
         updateSentMessages(state.currentUser);
+        confirmSent();
         document.getElementById("message-form").value = "";
         document.getElementById("message-apt-input").value = "Choose Apt...";
         document.getElementById("message-subject").value = "";
@@ -55,6 +59,13 @@ export default function PostMessages() {
       .catch((err) => console.log(err));
   }
 
+  // show sent message after successfully sending message
+  function confirmSent() {
+    setSuccessMessage(sentMessage);
+    setTimeout(() => {
+      document.getElementById("success-message").style.display = "none";
+    }, 1000);
+  }
   return (
     <div className="post-messages--container">
       <h2>Write Message Here</h2>
@@ -91,6 +102,7 @@ export default function PostMessages() {
           Send
         </Button>
       </Form>
+      <p id="success-message">{successMessage}</p>
     </div>
   );
 }
