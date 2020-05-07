@@ -101,8 +101,10 @@ export default function PostMessages() {
         <Button className="button" type="submit" onClick={createMessage}>
           Send
         </Button>
+        <span className="post-messages--success" id="success-message">
+          {successMessage}
+        </span>
       </Form>
-      <p id="success-message">{successMessage}</p>
     </div>
   );
 }
