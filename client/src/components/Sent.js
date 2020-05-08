@@ -16,10 +16,8 @@ export default function Sent() {
     }
   }, []);
   function getSentMessages(currentUser) {
-    console.log(currentUser);
     API.getSentMessages(currentUser.id)
       .then((response) => {
-        console.log(response.data);
         dispatch({ type: SET_SENT_MESSAGES, sentmessages: response.data });
       })
       .catch((err) => console.log(err));

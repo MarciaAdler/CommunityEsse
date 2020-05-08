@@ -29,10 +29,8 @@ export default function SideNav() {
   ).length;
 
   function getReceivedMessages(currentUser) {
-    console.log(currentUser);
     API.getReceivedMessages(currentUser.id)
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: SET_RECEIVED_MESSAGES,
           receivedmessages: response.data,

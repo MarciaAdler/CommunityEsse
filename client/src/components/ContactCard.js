@@ -29,7 +29,7 @@ export default function ContactCard() {
   return (
     <div>
       <h2>
-        <i class="fas fa-id-card"></i> Building Contacts
+        <i className="fas fa-id-card"></i> Building Contacts
       </h2>
 
       <Row>

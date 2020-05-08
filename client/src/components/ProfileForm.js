@@ -109,6 +109,7 @@ export default function ProfileForm() {
             <Form.Control
               type="text"
               name="aptNum"
+              disabled
               value={state.currentUser.aptNumber}
             />
           </Form.Group>
