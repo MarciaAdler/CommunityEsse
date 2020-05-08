@@ -54,14 +54,18 @@ export default function ContactCard() {
                       )}
 
                       <Card.Link href="/messages">Messages</Card.Link>
-                      <button
-                        className="contactcard--delete-btn"
-                        onClick={() => {
-                          inactiveUser(user.id);
-                        }}
-                      >
-                        X
-                      </button>
+                      {state.currentUser.role === "Admin" ? (
+                        <button
+                          className="contactcard--delete-btn"
+                          onClick={() => {
+                            inactiveUser(user.id);
+                          }}
+                        >
+                          X
+                        </button>
+                      ) : (
+                        ""
+                      )}
                     </Card.Body>
                   </Card>
                 </Col>
