@@ -9,6 +9,7 @@ import {
   SET_ANNOUNCEMENTS,
   SET_BULLETINS,
   SET_NOTIFICATIONS,
+  SET_RECEIVED_MESSAGES,
 } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import dateFormat from "dateformat";
@@ -23,10 +24,13 @@ export default function Home() {
     getBulletins(state.bulletins);
     if (state.currentUser.id !== 0) {
       getMyNotifications(state.currentUser);
+      getReceivedMessages(state.currentUser);
     } else if (JSON.parse(localStorage.getItem("currentUser"))) {
       getMyNotifications(JSON.parse(localStorage.getItem("currentUser")));
+      getReceivedMessages(JSON.parse(localStorage.getItem("currentUser")));
     } else {
       getNotifications(state.notifications);
+      getReceivedMessages(state.receivedmessages);
     }
   }, []);
   function getAnnouncements(message) {
@@ -50,6 +54,16 @@ export default function Home() {
     API.getNotifications(message).then((response) => {
       dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
     });
+  }
+  function getReceivedMessages(currentUser) {
+    API.getReceivedMessages(currentUser.id)
+      .then((response) => {
+        dispatch({
+          type: SET_RECEIVED_MESSAGES,
+          receivedmessages: response.data,
+        });
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <div>
