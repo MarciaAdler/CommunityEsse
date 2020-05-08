@@ -179,6 +179,7 @@ module.exports = {
     db.User.findAll({
       where: {
         role: "User",
+        active: "active",
       },
     })
       .then((dbModel) => res.json(dbModel))
@@ -195,7 +196,11 @@ module.exports = {
       });
   },
   getAll: function (req, res) {
-    db.User.findAll({})
+    db.User.findAll({
+      where: {
+        active: "active",
+      },
+    })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
         res.status(401).json(err);
@@ -205,6 +210,7 @@ module.exports = {
     db.User.findOne({
       where: {
         aptNumber: req.params.aptNum,
+        active: "active",
       },
     })
       .then((dbModel) => res.json(dbModel))
@@ -362,6 +368,21 @@ module.exports = {
         where: {
           id: req.params.id,
         },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  inactiveUser: function (req, res) {
+    console.log(req.params);
+    db.User.update(
+      {
+        active: "inactive",
+      },
+      {
+        where: { id: req.params.id },
       }
     )
       .then((dbModel) => res.json(dbModel))

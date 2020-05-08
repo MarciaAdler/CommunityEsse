@@ -78,6 +78,9 @@ export default {
     return axios.put("/api/readmessage/" + message);
   },
   inboxHide: function (message) {
-    return axios.put("api/inboxhidemessage/" + message);
+    return axios.put("/api/inboxhidemessage/" + message);
+  },
+  inactiveUser: function (user) {
+    return axios.put("/api/user/" + user);
   },
 };

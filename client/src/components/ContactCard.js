@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Card, Col, Row } from "react-bootstrap";
+import { Container, Card, Col, Row, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_NOTIFICATIONS, SET_USERS } from "../utils/actions";
 import API from "../utils/API";
@@ -15,6 +15,14 @@ export default function ContactCard() {
     API.getAll()
       .then((response) => {
         dispatch({ type: SET_USERS, users: response.data });
+      })
+      .catch((err) => console.log(err));
+  }
+  function inactiveUser(user) {
+    console.log(user);
+    API.inactiveUser(user)
+      .then((res) => {
+        getUsers(state.users);
       })
       .catch((err) => console.log(err));
   }
@@ -46,6 +54,14 @@ export default function ContactCard() {
                       )}
 
                       <Card.Link href="/messages">Messages</Card.Link>
+                      <button
+                        className="contactcard--delete-btn"
+                        onClick={() => {
+                          inactiveUser(user.id);
+                        }}
+                      >
+                        X
+                      </button>
                     </Card.Body>
                   </Card>
                 </Col>
