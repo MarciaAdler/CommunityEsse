@@ -83,4 +83,11 @@ export default {
   inactiveUser: function (user) {
     return axios.put("/api/user/" + user);
   },
+  getIdByUsername: function (user) {
+    return axios.get("/api/userbyname/" + user.username);
+  },
+  resetPassword: function (req) {
+    console.log(req);
+    return axios.put("/api/reset/", req);
+  },
 };

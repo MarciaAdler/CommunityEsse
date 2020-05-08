@@ -82,6 +82,9 @@ export default function LoginForm() {
         <Button className="button" type="submit" onClick={login}>
           Sign-in
         </Button>
+        <span className="ml-3">
+          Click <a href="/reset">here</a> to reset password
+        </span>
       </Form>
       {renderRedirect()}
     </div>

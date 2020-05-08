@@ -376,13 +376,37 @@ module.exports = {
       });
   },
   inactiveUser: function (req, res) {
-    console.log(req.params);
     db.User.update(
       {
         active: "inactive",
       },
       {
         where: { id: req.params.id },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  findIdByUsername: function (req, res) {
+    db.User.findOne({
+      where: { username: req.params.username },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  resetPassword: function (req, res) {
+    console.log(req);
+    db.User.update(
+      {
+        password: req.body.password,
+      },
+      {
+        individualHooks: true,
+        where: { id: req.body.id },
       }
     )
       .then((dbModel) => res.json(dbModel))

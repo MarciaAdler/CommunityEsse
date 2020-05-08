@@ -70,4 +70,9 @@ router.route("/api/readmessage/:id").put(usersController.markMessageAsRead);
 router.route("/api/inboxhidemessage/:id").put(usersController.inboxHideMessage);
 
 router.route("/api/user/:id").put(usersController.inactiveUser);
+
+router.route("/api/userbyname/:username").get(usersController.findIdByUsername);
+
+router.route("/api/reset").put(usersController.resetPassword);
+
 module.exports = router;
