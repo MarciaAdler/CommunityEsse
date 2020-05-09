@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { Form, Col, Button } from "react-bootstrap";
 import API from "../utils/API";
@@ -6,6 +6,9 @@ import { SET_CURRENT_USER } from "../utils/actions";
 
 export default function ProfileForm() {
   const [state, dispatch] = useStoreContext();
+  const [file, setFile] = useState("");
+  const [filename, setFileName] = useState("Choose file");
+  const [uploadedFile, setUploadedFile] = useState({});
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const usernameRef = useRef();
@@ -40,6 +43,7 @@ export default function ProfileForm() {
       email: emailRef.current.value,
       role: roleRef.current.value,
       instructions: instructionsRef.current.value,
+      file: filename,
     }).then((response) => {
       refreshUser();
       updatePassword();
@@ -59,6 +63,7 @@ export default function ProfileForm() {
             aptNumber: results.data.aptNumber,
             email: results.data.email,
             instructions: results.data.instructions,
+            file: filename,
           },
         });
         let localStorageUser = {
@@ -70,6 +75,7 @@ export default function ProfileForm() {
           aptNumber: results.data.aptNumber,
           email: results.data.email,
           instructions: results.data.instructions,
+          file: filename,
         };
         window.localStorage.setItem(
           "currentUser",
@@ -78,6 +84,22 @@ export default function ProfileForm() {
       })
       .catch((err) => console.log(err));
   }
+
+  const onChange = (e) => {
+    setFile(e.target.files[0]);
+    setFileName(e.target.files[0].name);
+  };
+  const onSubmit = () => {
+    const formData = new FormData();
+    formData.append("file", file);
+    API.uploadFile(formData, {
+      headers: {
+        "Content Type": "multipart/form-data",
+      },
+    }).then((res) => {
+      console.log(res.statusText);
+    });
+  };
 
   return (
     <div className="profileform--container">
@@ -174,6 +196,22 @@ export default function ProfileForm() {
             defaultValue={state.currentUser.instructions}
           />
         </Form.Group>
+        <Fragment>
+          <div className="custom-file mb-4">
+            <input
+              type="file"
+              onChange={onChange}
+              className="custom-file-input"
+              id="customFile"
+            />
+            <label className="custom-file-label" htmlFor="customFile">
+              {filename}
+            </label>
+            <Button className="button ml-3" onClick={onSubmit}>
+              Upload
+            </Button>
+          </div>
+        </Fragment>
         <Button
           className="button"
           onClick={() => {

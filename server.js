@@ -43,7 +43,7 @@ var storage = multer.diskStorage({
     cb(null, "client/public/uploads");
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.orginalname);
+    cb(null, "image - " + file.originalname);
   },
 });
 
@@ -61,7 +61,7 @@ app.post("/api/upload", function (req, res) {
       return res.status(500).json(err);
     }
 
-    return res.status(200).send(req.body);
+    return res.status(200).send(req.file);
   });
 });
 app.get("*", (req, res) => {
