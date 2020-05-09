@@ -11,6 +11,24 @@ export default function ProfileForm() {
   const usernameRef = useRef();
   const emailRef = useRef();
   const roleRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+
+  function updatePassword() {
+    if (passwordRef.current.value !== "") {
+      if (passwordRef.current.value === confirmPasswordRef.current.value) {
+        API.resetPassword({
+          id: state.currentUser.id,
+          password: passwordRef.current.value,
+        }).then((req) => {
+          document.getElementById("formGridPassword").value = "";
+          document.getElementById("formGridConfirmPassword").value = "";
+        });
+      } else {
+        alert("passwords do not match");
+      }
+    }
+  }
 
   function updateUser(profile) {
     API.updateProfile({
@@ -22,13 +40,12 @@ export default function ProfileForm() {
       role: roleRef.current.value,
     }).then((response) => {
       refreshUser();
+      updatePassword();
     });
   }
   function refreshUser() {
-    console.log(state.currentUser.id);
     API.refreshCurrentUser(state.currentUser.id)
       .then((results) => {
-        console.log(results.data);
         dispatch({
           type: SET_CURRENT_USER,
           currentUser: {
@@ -114,7 +131,7 @@ export default function ProfileForm() {
             />
           </Form.Group>
 
-          <Form.Group as={Col} className="col-6" controlId="formGridAptNumber">
+          <Form.Group as={Col} className="col-6" controlId="formGridRole">
             <Form.Label>Role</Form.Label>
             <Form.Control
               type="text"
@@ -124,7 +141,25 @@ export default function ProfileForm() {
             />
           </Form.Group>
         </Form.Row>
+        <Form.Row>
+          <Form.Group as={Col} className="col-6" controlId="formGridPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" name="password" ref={passwordRef} />
+          </Form.Group>
 
+          <Form.Group
+            as={Col}
+            className="col-6"
+            controlId="formGridConfirmPassword"
+          >
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="confirm password"
+              ref={confirmPasswordRef}
+            />
+          </Form.Group>
+        </Form.Row>
         <Button
           className="button"
           onClick={() => {
