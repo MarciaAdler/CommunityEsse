@@ -13,6 +13,7 @@ export default function SignupForm() {
   const passwordRef = useRef();
   const confirmRef = useRef();
   const roleRef = useRef();
+  const instructionsRef = useRef();
 
   const renderRedirect = () => {
     if (sendLogin) {
@@ -33,6 +34,7 @@ export default function SignupForm() {
         aptNumber: aptRef.current.value,
         password: passwordRef.current.value,
         role: roleRef.current.value,
+        instructions: instructionsRef.current.value,
       })
         .then((res) => {
           setSendLogin(true);
@@ -136,6 +138,19 @@ export default function SignupForm() {
                 placeholder="Retype Password"
                 required
                 ref={confirmRef}
+              />
+            </Form.Group>
+          </Col>
+        </Form.Row>
+        <Form.Row className="justify-content-center">
+          <Col className="col-8">
+            <Form.Group controlId="frontDeskInstructions">
+              <Form.Label>Front Desk Instructions</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows="3"
+                placeholder="Type any instructions for the building here"
+                ref={instructionsRef}
               />
             </Form.Group>
           </Col>

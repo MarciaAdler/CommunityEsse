@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import ProfileForm from "../components/ProfileForm";
 import LoggedOut from "../components/LoggedOut";
+
 import { useStoreContext } from "../utils/GlobalState";
 
 export default function Profile() {

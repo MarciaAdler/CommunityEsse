@@ -10,6 +10,7 @@ module.exports = {
       aptNumber: req.body.aptNumber,
       password: req.body.password,
       role: req.body.role,
+      instructions: req.body.instructions,
     })
       .then(function () {
         res.json(req.body);
@@ -225,8 +226,9 @@ module.exports = {
         email: req.body.email,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        email: req.body.email,
         role: req.body.role,
+        instructions: req.body.instructions,
+        file: req.body.file,
       },
       { where: { id: req.body.id } }
     )
@@ -399,7 +401,6 @@ module.exports = {
       });
   },
   resetPassword: function (req, res) {
-    console.log(req);
     db.User.update(
       {
         password: req.body.password,
@@ -414,4 +415,18 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  // updateInstructions: function (req, res) {
+  //   db.User.update(
+  //     {
+  //       instructions: req.body.instructions,
+  //     },
+  //     {
+  //       where: { id: req.body.id },
+  //     }
+  //   )
+  //     .then((dbModel) => res.json(dbModel))
+  //     .catch(function (err) {
+  //       res.status(401).json(err);
+  //     });
+  // },
 };

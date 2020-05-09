@@ -48,6 +48,12 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         defaultValue: "active",
       },
+      instructions: {
+        type: DataTypes.TEXT,
+      },
+      file: {
+        type: DataTypes.STRING,
+      },
     },
     {}
   );

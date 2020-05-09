@@ -31,6 +31,7 @@ export default function LoginForm() {
             lastName: results.data.lastName,
             aptNumber: results.data.aptNumber,
             email: results.data.email,
+            instructions: results.data.instructions,
           },
         });
         let localStorageUser = {
@@ -41,6 +42,7 @@ export default function LoginForm() {
           lastName: results.data.lastName,
           aptNumber: results.data.aptNumber,
           email: results.data.email,
+          instructions: results.data.instructions,
         };
 
         window.localStorage.setItem(

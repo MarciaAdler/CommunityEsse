@@ -75,4 +75,6 @@ router.route("/api/userbyname/:username").get(usersController.findIdByUsername);
 
 router.route("/api/reset").put(usersController.resetPassword);
 
+// router.route("/api/instructions").put(usersController.updateInstructions);
+
 module.exports = router;

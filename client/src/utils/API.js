@@ -87,6 +87,13 @@ export default {
     return axios.get("/api/userbyname/" + user.username);
   },
   resetPassword: function (req) {
-    return axios.put("/api/reset/", req);
+    return axios.put("/api/reset", req);
+  },
+  // updateInstructions: function (req) {
+  //   return axios.put("/api/instructions", req);
+  // },
+  uploadFile: function (data) {
+    console.log(data);
+    return axios.post("/api/upload", data);
   },
 };
