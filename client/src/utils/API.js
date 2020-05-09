@@ -87,7 +87,6 @@ export default {
     return axios.get("/api/userbyname/" + user.username);
   },
   resetPassword: function (req) {
-    console.log(req);
     return axios.put("/api/reset/", req);
   },
 };

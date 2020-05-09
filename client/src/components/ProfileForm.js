@@ -136,6 +136,7 @@ export default function ProfileForm() {
             <Form.Control
               type="text"
               name="role"
+              disabled
               ref={roleRef}
               defaultValue={state.currentUser.role}
             />
