@@ -31,6 +31,7 @@ const reducer = (state, action) => {
           aptNumber: action.currentUser.aptNumber,
           email: action.currentUser.email,
           instructions: action.currentUser.instructions,
+          file: action.currentUser.file,
         },
       };
     case LOGGEDIN:
@@ -84,6 +85,7 @@ const reducer = (state, action) => {
           aptNumber: 0,
           email: "",
           instructions: "",
+          file: "",
         },
         loggedIn: false,
         loading: false,
@@ -116,6 +118,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       aptNumber: 0,
       email: "",
       instructions: "",
+      file: "",
     },
     loading: false,
     loggedIn: false,

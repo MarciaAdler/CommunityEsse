@@ -89,7 +89,7 @@ export default function ProfileForm() {
     setFile(e.target.files[0]);
     setFileName(e.target.files[0].name);
   };
-  const onSubmit = () => {
+  const onSubmit = (event) => {
     const formData = new FormData();
     formData.append("file", file);
     API.uploadFile(formData, {
@@ -187,31 +187,49 @@ export default function ProfileForm() {
             />
           </Form.Group>
         </Form.Row>
-        <Form.Group controlId="instructionsForm">
-          <Form.Label>Front Desk Instructions</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows="3"
-            ref={instructionsRef}
-            defaultValue={state.currentUser.instructions}
-          />
-        </Form.Group>
-        <Fragment>
-          <div className="custom-file mb-4">
-            <input
-              type="file"
-              onChange={onChange}
-              className="custom-file-input"
-              id="customFile"
+        <Form.Row>
+          <Form.Group controlId="instructionsForm" className="col-7 pl-0">
+            <Form.Label>Front Desk Instructions</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="3"
+              ref={instructionsRef}
+              defaultValue={state.currentUser.instructions}
             />
-            <label className="custom-file-label" htmlFor="customFile">
-              {filename}
-            </label>
-            <Button className="button ml-3" onClick={onSubmit}>
-              Upload
-            </Button>
-          </div>
-        </Fragment>
+            <label className="mt-2">Upload Image</label>
+            <Fragment>
+              <div className="custom-file mb-4">
+                <input
+                  type="file"
+                  onChange={onChange}
+                  className="custom-file-input"
+                  id="customFile"
+                />
+
+                <label className="custom-file-label" htmlFor="customFile">
+                  {filename}
+                </label>
+                <Button
+                  type="button"
+                  className="button ml-3"
+                  onClick={onSubmit}
+                >
+                  Upload
+                </Button>
+              </div>
+            </Fragment>
+          </Form.Group>
+          {/* {state.currentUser.file !== "Choose file" ? (
+            <div as={Col} className="col-5 mt-2 ">
+              <img
+                alt="profile image"
+                src={require(`../public/uploads/${state.currentUser.file}`)}
+              />
+            </div>
+          ) : (
+            ""
+          )} */}
+        </Form.Row>
         <Button
           className="button"
           onClick={() => {
