@@ -37,18 +37,27 @@ app.use(compression());
 
 app.use(users);
 
+function getFormattedDate(event) {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1;
+  var yyyy = today.getFullYear();
+  return mm + "-" + dd + "-" + yyyy;
+}
 // multer instance
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "client/public/uploads");
   },
   filename: function (req, file, cb) {
-    cb(null, "image-" + file.originalname);
+    console.log("server", file.originalname);
+    cb(null, getFormattedDate() + "-" + file.originalname);
   },
 });
 
 // upload instance
 const upload = multer({ storage: storage }).single("file");
+
 // Send every other request to the React app
 // Define any API routes before this runs
 

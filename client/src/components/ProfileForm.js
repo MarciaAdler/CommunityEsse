@@ -17,6 +17,7 @@ export default function ProfileForm() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const instructionsRef = useRef();
+  let date = "";
 
   function updatePassword() {
     if (passwordRef.current.value !== "") {
@@ -84,21 +85,44 @@ export default function ProfileForm() {
       })
       .catch((err) => console.log(err));
   }
-
+  function getFormattedDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    date = mm + "-" + dd + "-" + yyyy;
+  }
   const onChange = (e) => {
+    getFormattedDate();
+
     setFile(e.target.files[0]);
-    setFileName(e.target.files[0].name);
+    setFileName(date + "-" + e.target.files[0].name);
   };
-  const onSubmit = (event) => {
+
+  //   function addFileName() {
+  //     API.addFileName({
+  //       id: state.currentUser.id,
+  //       file: filename,
+  //     })
+
+  //       .then((res) => {
+  //         console.log(res.statusText);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  const onSubmit = (e) => {
     const formData = new FormData();
     formData.append("file", file);
+    console.log(file);
     API.uploadFile(formData, {
       headers: {
         "Content Type": "multipart/form-data",
       },
-    }).then((res) => {
-      console.log(res.statusText);
-    });
+    })
+      .then((res) => {
+        console.log(res.statusText);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -224,8 +248,7 @@ export default function ProfileForm() {
               <img
                 alt="profile image"
                 src={
-                  process.env.PUBLIC_URL +
-                  `/uploads/image-${state.currentUser.file}`
+                  process.env.PUBLIC_URL + `/uploads/${state.currentUser.file}`
                 }
               />
             </div>

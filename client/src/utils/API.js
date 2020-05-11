@@ -93,7 +93,9 @@ export default {
   //   return axios.put("/api/instructions", req);
   // },
   uploadFile: function (data) {
-    console.log(data);
     return axios.post("/api/upload", data);
   },
+  // addFileName: function (file) {
+  //   return axios.put("/api/upload", file);
+  // },
 };

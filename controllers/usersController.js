@@ -415,13 +415,13 @@ module.exports = {
         res.status(401).json(err);
       });
   },
-  // updateInstructions: function (req, res) {
+  // addFileName: function (req, res) {
   //   db.User.update(
   //     {
-  //       instructions: req.body.instructions,
+  //       file: req.body.file,
   //     },
   //     {
-  //       where: { id: req.body.id },
+  //       where: { id: req.params.id },
   //     }
   //   )
   //     .then((dbModel) => res.json(dbModel))
