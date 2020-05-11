@@ -136,6 +136,7 @@ export default function ProfileForm() {
       },
     })
       .then((res) => {
+        console.log(file);
         console.log(res.statusText);
       })
 
