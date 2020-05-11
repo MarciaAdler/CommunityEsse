@@ -252,7 +252,7 @@ export default function ProfileForm() {
                   {filename}
                 </label>
                 <Button className="button" onClick={uploadImageFile}>
-                  Update
+                  Upload
                 </Button>
               </div>
             </Fragment>
