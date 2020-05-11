@@ -224,7 +224,7 @@ export default function ProfileForm() {
               <img
                 alt="profile image"
                 src={
-                  window.location.origin +
+                  process.env.PUBLIC_URL +
                   `/client/public/uploads/${state.currentUser.file}`
                 }
               />
