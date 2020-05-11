@@ -8,7 +8,7 @@ export default function ProfileForm() {
   const [state, dispatch] = useStoreContext();
   const [file, setFile] = useState("");
   const [filename, setFileName] = useState(state.currentUser.file);
-  const [uploadedFile, setUploadedFile] = useState({});
+
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const usernameRef = useRef();
@@ -90,7 +90,9 @@ export default function ProfileForm() {
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();
-    date = mm + "-" + dd + "-" + yyyy;
+    var hh = today.getHours();
+    var min = today.getMinutes();
+    date = mm + "-" + dd + "-" + yyyy + "-" + hh + "-" + min;
   }
   const onChange = (e) => {
     getFormattedDate();

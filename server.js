@@ -42,7 +42,9 @@ function getFormattedDate() {
   var dd = today.getDate();
   var mm = today.getMonth() + 1;
   var yyyy = today.getFullYear();
-  return mm + "-" + dd + "-" + yyyy;
+  var hh = today.getHours();
+  var min = today.getMinutes();
+  return mm + "-" + dd + "-" + yyyy + "-" + hh + "-" + min;
 }
 // multer instance
 var storage = multer.diskStorage({
