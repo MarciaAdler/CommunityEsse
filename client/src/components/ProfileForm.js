@@ -219,16 +219,19 @@ export default function ProfileForm() {
               </div>
             </Fragment>
           </Form.Group>
-          {/* {state.currentUser.file !== "Choose file" ? (
+          {state.currentUser.file !== "Choose file" ? (
             <div as={Col} className="col-5 mt-2 ">
               <img
                 alt="profile image"
-                src={require(`../public/uploads/${state.currentUser.file}`)}
+                src={
+                  window.location.origin +
+                  `/client/public/uploads/${state.currentUser.file}`
+                }
               />
             </div>
           ) : (
             ""
-          )} */}
+          )}
         </Form.Row>
         <Button
           className="button"
