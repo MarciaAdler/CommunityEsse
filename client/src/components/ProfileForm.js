@@ -7,7 +7,7 @@ import { SET_CURRENT_USER } from "../utils/actions";
 export default function ProfileForm() {
   const [state, dispatch] = useStoreContext();
   const [file, setFile] = useState("");
-  const [filename, setFileName] = useState("Choose file");
+  const [filename, setFileName] = useState(state.currentUser.file);
   const [uploadedFile, setUploadedFile] = useState({});
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -110,10 +110,24 @@ export default function ProfileForm() {
   //       })
   //       .catch((err) => console.log(err));
   //   }
-  const onSubmit = (e) => {
+  //   const uploadImage = (event) => {
+  //     event.preventDefault();
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     API.uploadFile(formData, {
+  //       headers: {
+  //         "Content Type": "multipart/form-data",
+  //       },
+  //     })
+  //       .then((res) => {
+  //         console.log(res.statusText);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   };
+  function uploadImageFile(e) {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
-    console.log(file);
     API.uploadFile(formData, {
       headers: {
         "Content Type": "multipart/form-data",
@@ -122,9 +136,11 @@ export default function ProfileForm() {
       .then((res) => {
         console.log(res.statusText);
       })
-      .catch((err) => console.log(err));
-  };
 
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <div className="profileform--container">
       <Form className="profile--form">
@@ -233,12 +249,8 @@ export default function ProfileForm() {
                 <label className="custom-file-label" htmlFor="customFile">
                   {filename}
                 </label>
-                <Button
-                  type="button"
-                  className="button ml-3"
-                  onClick={onSubmit}
-                >
-                  Upload
+                <Button className="button" onClick={uploadImageFile}>
+                  Update
                 </Button>
               </div>
             </Fragment>
@@ -246,6 +258,7 @@ export default function ProfileForm() {
           {state.currentUser.file !== "Choose file" ? (
             <div as={Col} className="col-5 mt-2 ">
               <img
+                className="profile-image"
                 alt="profile image"
                 src={
                   process.env.PUBLIC_URL + `/uploads/${state.currentUser.file}`

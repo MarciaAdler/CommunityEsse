@@ -37,7 +37,7 @@ app.use(compression());
 
 app.use(users);
 
-function getFormattedDate(event) {
+function getFormattedDate() {
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth() + 1;

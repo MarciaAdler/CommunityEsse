@@ -14,7 +14,7 @@ export default function Signin() {
             className="signin--icon"
           />
         </Col>
-        <Col className="col-12 col-sm-6" className="signin--login-form">
+        <Col className="col-12 col-sm-6 signin--login-form">
           <div className="loginform--div">
             <LoginForm />
           </div>
