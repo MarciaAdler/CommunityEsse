@@ -225,7 +225,7 @@ export default function ProfileForm() {
                 alt="profile image"
                 src={
                   process.env.PUBLIC_URL +
-                  `/client/public/uploads/${state.currentUser.file}`
+                  `/uploads/image-${state.currentUser.file}`
                 }
               />
             </div>
