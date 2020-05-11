@@ -52,7 +52,16 @@ export default function ContactCard() {
                           Apt: {user.aptNumber}
                         </Card.Subtitle>
                       )}
-
+                      {console.log(user)}
+                      {user.file !== "no image" ? (
+                        <img
+                          className="contactcard--profile-image"
+                          alt="profile image"
+                          src={process.env.PUBLIC_URL + `/uploads/${user.file}`}
+                        />
+                      ) : (
+                        ""
+                      )}
                       <Card.Link href="/messages">Messages</Card.Link>
                       {state.currentUser.role === "Admin" ? (
                         <button

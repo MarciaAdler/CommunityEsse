@@ -257,7 +257,7 @@ export default function ProfileForm() {
               </div>
             </Fragment>
           </Form.Group>
-          {state.currentUser.file !== "Choose file" ? (
+          {state.currentUser.file !== "" ? (
             <div as={Col} className="col-5 mt-2 ">
               <img
                 className="profile-image"

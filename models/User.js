@@ -53,6 +53,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       file: {
         type: DataTypes.STRING,
+        defaultValue: "no image",
       },
     },
     {}
