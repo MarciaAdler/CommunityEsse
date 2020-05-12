@@ -42,9 +42,9 @@ function getFormattedDate() {
   var dd = today.getUTCDate();
   var mm = today.getUTCMonth() + 1;
   var yyyy = today.getUTCFullYear();
-  // var hh = today.getUTCHours();
-  // var min = today.getUTCMinutes();
-  return mm + "-" + dd + "-" + yyyy;
+  var hh = today.getUTCHours();
+  var min = today.getUTCMinutes();
+  return mm + "-" + dd + "-" + yyyy + "-" + hh + "-" + min;
 }
 // multer instance
 var storage = multer.diskStorage({
