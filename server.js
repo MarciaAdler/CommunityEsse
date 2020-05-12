@@ -39,11 +39,11 @@ app.use(users);
 
 function getFormattedDate() {
   var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth() + 1;
-  var yyyy = today.getFullYear();
-  var hh = today.getHours();
-  var min = today.getMinutes();
+  var dd = today.getUTCDate();
+  var mm = today.getUTCMonth() + 1;
+  var yyyy = today.getUTCFullYear();
+  var hh = today.getUTCHours();
+  var min = today.getUTCMinutes();
   return mm + "-" + dd + "-" + yyyy + "-" + hh;
 }
 // multer instance
