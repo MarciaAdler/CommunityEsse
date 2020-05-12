@@ -42,9 +42,9 @@ function getFormattedDate() {
   var dd = today.getUTCDate();
   var mm = today.getUTCMonth() + 1;
   var yyyy = today.getUTCFullYear();
-  var hh = today.getUTCHours();
-  var min = today.getUTCMinutes();
-  return mm + "-" + dd + "-" + yyyy + "-" + hh + "-" + min;
+  // var hh = today.getUTCHours();
+  // var min = today.getUTCMinutes();
+  return mm + "-" + dd + "-" + yyyy;
 }
 // multer instance
 var storage = multer.diskStorage({
@@ -53,10 +53,10 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     console.log("server", getFormattedDate() + "-" + file.originalname);
-    cb(null, getFormattedDate() + "-" + file.originalname);
+    cb(null, file.originalname);
   },
 });
-
+// getFormattedDate() + "-" +
 // upload instance
 const upload = multer({ storage: storage }).single("file");
 
