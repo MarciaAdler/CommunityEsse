@@ -263,9 +263,7 @@ export default function ProfileForm() {
               <img
                 className="profile-image"
                 alt="profile image"
-                src={
-                  process.env.PUBLIC_URL + `/uploads/${state.currentUser.file}`
-                }
+                src={require(`./uploads/${state.currentUser.file}`)}
               />
             </div>
           ) : (
