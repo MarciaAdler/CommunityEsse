@@ -231,7 +231,7 @@ export default function ProfileForm() {
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Form.Group controlId="instructionsForm" className="col-7 pl-0">
+          <Form.Group controlId="instructionsForm" className="col-12 pl-0">
             <Form.Label>Front Desk Instructions</Form.Label>
             <Form.Control
               as="textarea"
@@ -239,6 +239,11 @@ export default function ProfileForm() {
               ref={instructionsRef}
               defaultValue={state.currentUser.instructions}
             />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row>
+          <Col className="col-md-10 col-sm-12">
             <label className="mt-2">Upload Image</label>
             <Fragment>
               <div className="custom-file mb-4">
@@ -252,14 +257,17 @@ export default function ProfileForm() {
                 <label className="custom-file-label" htmlFor="customFile">
                   {filename}
                 </label>
-                <Button className="button" onClick={uploadImageFile}>
+                <Button className="button ml-3" onClick={uploadImageFile}>
                   Upload
                 </Button>
               </div>
             </Fragment>
-          </Form.Group>
+          </Col>
           {state.currentUser.file !== "no image" ? (
-            <div as={Col} className="col-5 mt-2 ">
+            <div
+              as={Col}
+              className="col-md-2 col-sm-12 mt-2 d-flex justify-content-center "
+            >
               <img
                 className="profile-image"
                 alt="profile image"

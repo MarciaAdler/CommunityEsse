@@ -52,7 +52,15 @@ export default function ContactCard() {
                           Apt: {user.aptNumber}
                         </Card.Subtitle>
                       )}
-                      {console.log(user)}
+                      {state.currentUser.role !== "User" &&
+                      user.instructions !== null ? (
+                        <Card.Subtitle className="mb-3 text-muted">
+                          <strong>Front Desk Instructions:</strong>{" "}
+                          {user.instructions}
+                        </Card.Subtitle>
+                      ) : (
+                        ""
+                      )}
                       {user.file !== "no image" ? (
                         <img
                           className="contactcard--profile-image"
@@ -62,7 +70,12 @@ export default function ContactCard() {
                       ) : (
                         ""
                       )}
-                      <Card.Link href="/messages">Messages</Card.Link>
+                      <Card.Link
+                        className="contactcard--messages-link"
+                        href="/messages"
+                      >
+                        Messages
+                      </Card.Link>
                       {state.currentUser.role === "Admin" ? (
                         <button
                           className="contactcard--delete-btn"
