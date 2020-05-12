@@ -44,7 +44,7 @@ function getFormattedDate() {
   var yyyy = today.getFullYear();
   var hh = today.getHours();
   var min = today.getMinutes();
-  return mm + "-" + dd + "-" + yyyy + "-" + hh + "-" + min;
+  return mm + "-" + dd + "-" + yyyy + "-" + hh;
 }
 // multer instance
 var storage = multer.diskStorage({

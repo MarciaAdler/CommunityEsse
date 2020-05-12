@@ -92,7 +92,7 @@ export default function ProfileForm() {
     var yyyy = today.getFullYear();
     var hh = today.getHours();
     var min = today.getMinutes();
-    date = mm + "-" + dd + "-" + yyyy + "-" + hh + "-" + min;
+    date = mm + "-" + dd + "-" + yyyy + "-" + hh;
   }
   const onChange = (e) => {
     getFormattedDate();
