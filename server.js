@@ -50,7 +50,7 @@ function getFormattedDate() {
 // multer instance
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "client/src/components/uploads");
+    cb(null, "client/public/uploads");
   },
   filename: function (req, file, cb) {
     console.log("server", getFormattedDate() + "-" + file.originalname);
