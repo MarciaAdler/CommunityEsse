@@ -42,10 +42,11 @@ function getFormattedDate() {
   var dd = today.getUTCDate();
   var mm = today.getUTCMonth() + 1;
   var yyyy = today.getUTCFullYear();
-  var hh = today.getUTCHours();
-  var min = today.getUTCMinutes();
-  return mm + "-" + dd + "-" + yyyy + "-" + hh;
+  // var hh = today.getUTCHours();
+  // var min = today.getUTCMinutes();
+  return mm + "-" + dd + "-" + yyyy;
 }
+// + "-" + hh
 // multer instance
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {

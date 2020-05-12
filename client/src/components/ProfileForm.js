@@ -90,9 +90,9 @@ export default function ProfileForm() {
     var dd = today.getUTCDate();
     var mm = today.getUTCMonth() + 1;
     var yyyy = today.getUTCFullYear();
-    var hh = today.getUTCHours();
-    var min = today.getUTCMinutes();
-    date = mm + "-" + dd + "-" + yyyy + "-" + hh;
+    // var hh = today.getUTCHours();
+    // var min = today.getUTCMinutes();
+    date = mm + "-" + dd + "-" + yyyy;
   }
   const onChange = (e) => {
     getFormattedDate();
