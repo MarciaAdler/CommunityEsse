@@ -53,10 +53,10 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     console.log("server", getFormattedDate() + "-" + file.originalname);
-    cb(null, file.originalname);
+    cb(null, getFormattedDate() + "-" + file.originalname);
   },
 });
-// getFormattedDate() + "-" +
+
 // upload instance
 const upload = multer({ storage: storage }).single("file");
 
