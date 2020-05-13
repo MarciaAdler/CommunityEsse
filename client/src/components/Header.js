@@ -60,6 +60,7 @@ export default function Header() {
             <Nav className="mr-auto">
               <Nav.Link href="/home">Building Home</Nav.Link>
               <Nav.Link href="/contacts">Building Contacts</Nav.Link>
+              <Nav.Link href="/files">Building Files</Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="/profile">Profile</Nav.Link>

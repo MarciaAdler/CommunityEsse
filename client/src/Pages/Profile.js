@@ -11,7 +11,9 @@ export default function Profile() {
     <div>
       {state.loggedIn === true ? (
         <Container className="profile--container">
-          <h2>Profile</h2>
+          <h2>
+            <i class="fas fa-id-badge"></i> Profile
+          </h2>
           <ProfileForm />
         </Container>
       ) : (

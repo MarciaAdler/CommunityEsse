@@ -11,6 +11,7 @@ import Profile from "./Pages/Profile";
 import Messages from "./Pages/Messages";
 import Contacts from "./Pages/Contacts";
 import Reset from "./Pages/Reset";
+import Files from "./Pages/Files";
 import Footer from "../src/components/Footer";
 import { StoreProvider } from "../src/utils/GlobalState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/profile" component={Profile} />
             <Route path="/contacts" component={Contacts} />
             <Route path="/reset" component={Reset} />
+            <Route path="/files" component={Files} />
           </Switch>
         </Router>
       </StoreProvider>
