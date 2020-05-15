@@ -17,16 +17,18 @@ export default function ViewFiles() {
   }
   return (
     <div>
-      {files.length > 0
-        ? files.map((file, index) => {
-            return (
-              <a href={file.name} target="_blank" key={file.id}>
-                <i class="fas fa-file-pdf"></i>&nbsp;
-                {file.name}
-              </a>
-            );
-          })
-        : ""}
+      <div className="view-files">
+        {files.length > 0
+          ? files.map((file, index) => {
+              return (
+                <a href={file.name} target="_blank" key={file.id}>
+                  <i className="fas fa-file-pdf"></i>&nbsp;
+                  {file.name}
+                </a>
+              );
+            })
+          : ""}
+      </div>
     </div>
   );
 }
