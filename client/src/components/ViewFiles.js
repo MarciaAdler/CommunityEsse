@@ -21,6 +21,7 @@ export default function ViewFiles() {
         ? files.map((file, index) => {
             return (
               <a href={file.name} target="_blank" key={file.id}>
+                <i class="fas fa-file-pdf"></i>&nbsp;
                 {file.name}
               </a>
             );
