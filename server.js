@@ -7,6 +7,7 @@ const Sequelize = require("sequelize");
 var db = require("./models");
 const multer = require("multer");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 const passport = require("passport");
 
 const users = require("./routes/users");
@@ -16,7 +17,9 @@ var compression = require("compression");
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public")); //to access the files in public folder
 app.use(cors());
+app.use(fileUpload());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -76,6 +79,24 @@ app.post("/api/upload", function (req, res) {
     return res.status(200).send(req.file);
   });
 });
+// file upload api
+app.post("/api/pdfupload", (req, res) => {
+  if (!req.files) {
+    return res.status(500).send({ msg: "file is not found" });
+  }
+  // accessing the file
+  const myFile = req.files.file;
+  //  mv() method places the file inside public directory
+  myFile.mv(`${__dirname}/client/public/files/${myFile.name}`, function (err) {
+    if (err) {
+      console.log(err);
+      return res.status(500).send({ msg: "Error occured" });
+    }
+    // returing the response with file path and name
+    return res.send({ name: myFile.name, path: `/${myFile.name}` });
+  });
+});
+app;
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });

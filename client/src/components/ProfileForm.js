@@ -257,7 +257,11 @@ export default function ProfileForm() {
                 <label className="custom-file-label" htmlFor="customFile">
                   {filename}
                 </label>
-                <Button className="button ml-3" onClick={uploadImageFile}>
+                <Button
+                  type="button"
+                  className="button ml-3"
+                  onClick={uploadImageFile}
+                >
                   Upload
                 </Button>
               </div>

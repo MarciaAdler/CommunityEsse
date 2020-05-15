@@ -98,4 +98,13 @@ export default {
   // addFileName: function (file) {
   //   return axios.put("/api/upload", file);
   // },
+  uploadPdfFile: function (data) {
+    return axios.post("/api/pdfupload", data);
+  },
+  fileUpload: function (file) {
+    return axios.post("/api/fileupload", file);
+  },
+  getFiles: function (files) {
+    return axios.get("/api/fileupload", files);
+  },
 };

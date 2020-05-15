@@ -12,7 +12,7 @@ export default function Profile() {
       {state.loggedIn === true ? (
         <Container className="profile--container">
           <h2>
-            <i class="fas fa-id-badge"></i> Profile
+            <i className="fas fa-id-badge"></i> Profile
           </h2>
           <ProfileForm />
         </Container>

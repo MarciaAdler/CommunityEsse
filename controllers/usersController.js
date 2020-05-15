@@ -415,6 +415,24 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  fileUpload: function (req, res) {
+    db.File.create({
+      name: req.body.name,
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getFiles: function (req, res) {
+    db.File.findAll({
+      where: { show: "show" },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
   // addFileName: function (req, res) {
   //   db.User.update(
   //     {

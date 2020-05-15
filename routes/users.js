@@ -77,6 +77,7 @@ router.route("/api/reset").put(usersController.resetPassword);
 
 // router.route("/api/instructions").put(usersController.updateInstructions);
 
-// router.route("/api/upload").put(usersController.addFileName);
+router.route("/api/fileupload").post(usersController.fileUpload);
 
+router.route("/api/fileupload").get(usersController.getFiles);
 module.exports = router;
