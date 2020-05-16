@@ -9,3 +9,4 @@ export const SET_USERS = "SET_USERS";
 export const SET_ALL_USERS = "SET_ALL_USERS";
 export const SET_SENT_MESSAGES = "SET_MESSAGES";
 export const SET_RECEIVED_MESSAGES = "SET_RECEIVED_MESSAGES";
+export const SET_FILES = "SET_FILES";

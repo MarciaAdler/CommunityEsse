@@ -12,6 +12,7 @@ import {
   SET_ALL_USERS,
   SET_SENT_MESSAGES,
   SET_RECEIVED_MESSAGES,
+  SET_FILES,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -74,6 +75,11 @@ const reducer = (state, action) => {
         ...state,
         allUsers: action.allUsers,
       };
+    case SET_FILES:
+      return {
+        ...state,
+        uploadedfiles: action.uploadedfiles,
+      };
     case CLEAR_ALL:
       return {
         currentUser: {
@@ -95,6 +101,7 @@ const reducer = (state, action) => {
         allUsers: [],
         sentmessages: [],
         receivedmessages: [],
+        uploadedfiles: [],
       };
 
     case LOADING:
@@ -129,6 +136,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     allUsers: [],
     sentmessages: [],
     receivedmessages: [],
+    uploadedfiles: [],
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
