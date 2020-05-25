@@ -9,7 +9,7 @@ var multer = require("multer");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const passport = require("passport");
-
+const fs = require("fs");
 const users = require("./routes/users");
 var session = require("express-session");
 var compression = require("compression");
@@ -107,6 +107,18 @@ app.post("/api/upload", (req, res) => {
     }
   );
 });
+
+// delete image file
+// app.delete("/api/upload", (req, res) => {
+//   console.log(req);
+//   fs.unlink(`${__dirname}/client/public/uploads/${req.body.name}`, (err) => {
+//     if (err) {
+//       console.log("failed to delete local image:" + err);
+//     } else {
+//       console.log("successfully deleted local image");
+//     }
+//   });
+// });
 // file upload api
 app.post("/api/pdfupload", (req, res) => {
   if (!req.files) {

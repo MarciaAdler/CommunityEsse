@@ -113,4 +113,8 @@ export default {
   getFiles: function (files) {
     return axios.get("/api/fileupload", files);
   },
+  deleteImage: function (image) {
+    console.log(image);
+    return axios.delete("api/upload", image);
+  },
 };

@@ -1,9 +1,10 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Row } from "react-bootstrap";
 import API from "../utils/API";
 import { SET_CURRENT_USER } from "../utils/actions";
-
+import { Next } from "react-bootstrap/PageItem";
+const fs = require("fs");
 export default function ProfileForm() {
   const [state, dispatch] = useStoreContext();
   const [file, setFile] = useState("");
@@ -172,6 +173,18 @@ export default function ProfileForm() {
         console.log(err);
       });
   }
+  // function to delete uploaded images
+  // function deleteImage(e) {
+  //   if (state.currentUser.file !== "no image") {
+  //     API.deleteImage(state.currentUser.file)
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }
   return (
     <div className="profileform--container">
       <Form className="profile--form">
@@ -295,11 +308,9 @@ export default function ProfileForm() {
               </div>
             </Fragment>
           </Col>
+
           {state.currentUser.file !== "no image" ? (
-            <div
-              as={Col}
-              className="col-md-2 col-sm-12 mt-2 d-flex justify-content-center "
-            >
+            <Col className="col-md-2 col-sm-12 mt-2 d-flex justify-content-center ">
               <img
                 className="profile-image"
                 alt="profile image"
@@ -307,7 +318,17 @@ export default function ProfileForm() {
                   process.env.PUBLIC_URL + `/uploads/${state.currentUser.file}`
                 }
               />
-            </div>
+
+              {/* <button
+                type="button"
+                className="profileform--delete-img"
+                onClick={() => {
+                  deleteImage(state.currentUser.file);
+                }}
+              >
+                X
+              </button> */}
+            </Col>
           ) : (
             ""
           )}
