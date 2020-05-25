@@ -1,5 +1,5 @@
 const db = require("../models");
-
+var fs = require("fs");
 module.exports = {
   createUser: function (req, res) {
     db.User.create({
@@ -442,6 +442,29 @@ module.exports = {
   //       where: { id: req.params.id },
   //     }
   //   )
+  //     .then((dbModel) => res.json(dbModel))
+  //     .catch(function (err) {
+  //       res.status(401).json(err);
+  //     });
+  // },
+  // uploadImage: function (req, res) {
+  //   db.Image.create({
+  //     name: req.files.file.name,
+  //     image: req.files.file.data,
+  //     type: req.files.file.mimetype,
+  //     UserId: req.body.id,
+  //   })
+  //     .then((dbModel) => res.json(dbModel))
+
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       return res.send(`Error when trying upload images: ${error}`);
+  //     });
+  // },
+  // getImage: function (req, res) {
+  //   db.Image.findAll({
+  //     where: { UserId: req.params.id },
+  //   })
   //     .then((dbModel) => res.json(dbModel))
   //     .catch(function (err) {
   //       res.status(401).json(err);

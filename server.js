@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const Sequelize = require("sequelize");
 var db = require("./models");
-const multer = require("multer");
+var multer = require("multer");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const passport = require("passport");
@@ -39,28 +39,36 @@ app.use(compression());
 // app.use(transit);
 
 app.use(users);
-
+// get current date
 function getFormattedDate() {
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth() + 1;
   var yyyy = today.getFullYear();
-  // var hh = today.getUTCHours();
-  // var min = today.getUTCMinutes();
+  var hh = today.getUTCHours();
+  var min = today.getUTCMinutes();
   return mm + "-" + dd + "-" + yyyy;
 }
-// + "-" + hh
+
 // multer instance
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "client/public/uploads");
+    cb(null, "client/public/uploads/");
   },
   filename: function (req, file, cb) {
-    console.log("server", getFormattedDate() + "-" + file.originalname);
-    cb(null, getFormattedDate() + "-" + file.originalname);
+    console.log("server", getFormattedDate() + "-" + file.name);
+    cb(null, req.body.id + "-" + file.name);
   },
 });
 
+// file filter
+// const fileFilter = (req, file, cd) => {
+//   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+//     cb(null, true);
+//   } else {
+//     cb(null, false);
+//   }
+// };
 // upload instance
 const upload = multer({ storage: storage }).single("file");
 
@@ -68,16 +76,36 @@ const upload = multer({ storage: storage }).single("file");
 // Define any API routes before this runs
 
 // post route to upload image
-app.post("/api/upload", function (req, res) {
-  upload(req, res, function (err) {
-    if (err instanceof multer.MulterError) {
-      return res.status(500).json(err);
-    } else if (err) {
-      return res.status(500).json(err);
+// app.post("/api/upload", function (req, res) {
+//   upload(req, res, function (err) {
+//     if (err instanceof multer.MulterError) {
+//       return res.status(500).json(err);
+//     } else if (err) {
+//       return res.status(500).json(err);
+//     }
+//     console.log(req.files.file);
+//     return res.status(200).send(req.files.file);
+//   });
+// });
+
+app.post("/api/upload", (req, res) => {
+  if (!req.files) {
+    return res.status(500).send({ msg: "file is not found" });
+  }
+  // accessing the file
+  const myFile = req.files.file;
+  //  mv() method places the file inside public directory
+  myFile.mv(
+    `${__dirname}/client/public/uploads/${req.body.id}-${myFile.name}`,
+    function (err) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send({ msg: "Error occured" });
+      }
+      // returning the response with file path and name
+      return res.send(req.files.file);
     }
-    console.log(req.file);
-    return res.status(200).send(req.file);
-  });
+  );
 });
 // file upload api
 app.post("/api/pdfupload", (req, res) => {
@@ -92,11 +120,11 @@ app.post("/api/pdfupload", (req, res) => {
       console.log(err);
       return res.status(500).send({ msg: "Error occured" });
     }
-    // returing the response with file path and name
+    // returning the response with file path and name
     return res.send({ name: myFile.name, path: `/${myFile.name}` });
   });
 });
-app;
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });

@@ -8,7 +8,7 @@ export default function ProfileForm() {
   const [state, dispatch] = useStoreContext();
   const [file, setFile] = useState("");
   const [filename, setFileName] = useState(state.currentUser.file);
-
+  const [currentId, setCurrentId] = useState(state.currentUser.id);
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const usernameRef = useRef();
@@ -64,7 +64,7 @@ export default function ProfileForm() {
             aptNumber: results.data.aptNumber,
             email: results.data.email,
             instructions: results.data.instructions,
-            file: filename,
+            file: results.data.file,
           },
         });
         let localStorageUser = {
@@ -76,7 +76,7 @@ export default function ProfileForm() {
           aptNumber: results.data.aptNumber,
           email: results.data.email,
           instructions: results.data.instructions,
-          file: filename,
+          file: results.data.file,
         };
         window.localStorage.setItem(
           "currentUser",
@@ -90,28 +90,17 @@ export default function ProfileForm() {
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();
-    // var hh = today.getUTCHours();
-    // var min = today.getUTCMinutes();
+    var hh = today.getUTCHours();
+    var min = today.getUTCMinutes();
     date = mm + "-" + dd + "-" + yyyy;
   }
   const onChange = (e) => {
     getFormattedDate();
-    console.log(date);
+
     setFile(e.target.files[0]);
-    setFileName(date + "-" + e.target.files[0].name);
+    setFileName(state.currentUser.id + "-" + e.target.files[0].name);
   };
 
-  //   function addFileName() {
-  //     API.addFileName({
-  //       id: state.currentUser.id,
-  //       file: filename,
-  //     })
-
-  //       .then((res) => {
-  //         console.log(res.statusText);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
   //   const uploadImage = (event) => {
   //     event.preventDefault();
   //     const formData = new FormData();
@@ -126,10 +115,49 @@ export default function ProfileForm() {
   //       })
   //       .catch((err) => console.log(err));
   //   };
+
+  // code to download image from database
+  // function downloadImage(image) {
+  //   API.getImage(image)
+  //     .then((response) => {
+  //       console.log(response);
+  //       setImage(response.data[0].image.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+  // function uploadImageFile(e) {
+  //   e.preventDefault();
+
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   // formData.append("id", currentId);
+  //   console.log(file);
+  //   // to store image in database
+  //   // API.uploadImage(formData)
+  //   //   .then((res) => {
+  //   //     console.log(res.data);
+  //   //     downloadImage(res.data);
+  //   //   })
+
+  //   //   .catch((err) => console.log(err))
+  //   API.uploadFile(formData, {
+  //     headers: {
+  //       "Content Type": "multipart/form-data",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       console.log(res.statusText);
+  //     })
+
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
   function uploadImageFile(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("id", currentId);
     API.uploadFile(formData, {
       headers: {
         "Content Type": "multipart/form-data",

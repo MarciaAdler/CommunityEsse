@@ -95,9 +95,15 @@ export default {
   uploadFile: function (data) {
     return axios.post("/api/upload", data);
   },
-  // addFileName: function (file) {
-  //   return axios.put("/api/upload", file);
+  // uploadImage: function (data) {
+  //   return axios.post("/api/uploadimage", data);
   // },
+
+  // getImage: function (image) {
+  //   console.log(image);
+  //   return axios.get("/api/uploadimage/" + image.UserId);
+  // },
+
   uploadPdfFile: function (data) {
     return axios.post("/api/pdfupload", data);
   },
