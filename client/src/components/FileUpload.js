@@ -11,8 +11,11 @@ export default function FileUpload() {
   const el = useRef(); // accesing input element
   const [state, dispatch] = useStoreContext();
 
-  function findFiles() {
-    API.getFiles()
+  useEffect(() => {
+    findFiles(state.uploadedfiles);
+  }, []);
+  function findFiles(files) {
+    API.getFiles(files)
       .then((res) => {
         console.log(res);
         dispatch({
@@ -48,26 +51,47 @@ export default function FileUpload() {
         });
         API.fileUpload({
           name: res.data.name,
+        }).then((response) => {
+          findFiles(state.uploadedfiles);
         });
-        findFiles();
       })
       .catch((err) => console.log(err));
   };
   return (
     <div>
-      <div>
-        <div className="file-upload">
-          <input type="file" ref={el} onChange={handleChange} />{" "}
-          <div className="progessBar" style={{ width: progress }}>
-            {progress}
+      {state.currentUser.role === "Admin" ? (
+        <div>
+          <div className="file-upload">
+            <input type="file" ref={el} onChange={handleChange} />{" "}
+            <div className="progessBar" style={{ width: progress }}>
+              {progress}
+            </div>
+            <button type="submit" onClick={uploadFile} className="upbutton">
+              {" "}
+              Upload
+            </button>
+            {/* displaying received image*/}
+            {data.path && <img src={data.path} alt={data.name} />}
           </div>
-          <button onClick={uploadFile} className="upbutton">
-            {" "}
-            Upload
-          </button>
-          {/* displaying received image*/}
-          {data.path && <img src={data.path} alt={data.name} />}
+
+          <hr />
         </div>
+      ) : (
+        ""
+      )}
+      <div className="view-files">
+        {state.uploadedfiles.length > 0
+          ? state.uploadedfiles.map((file, index) => {
+              return (
+                <h6 key={file.id}>
+                  <a href={file.name} target="_blank" key={file.id}>
+                    <i className="fas fa-file-pdf"></i>&nbsp;
+                    {file.name}
+                  </a>
+                </h6>
+              );
+            })
+          : ""}
       </div>
     </div>
   );

@@ -5,10 +5,10 @@ import { useStoreContext } from "../utils/GlobalState";
 export default function ViewFiles() {
   const [state, dispatch] = useStoreContext();
   useEffect(() => {
-    getFiles();
+    getFiles(state.uploadedfiles);
   }, []);
-  function getFiles() {
-    API.getFiles()
+  function getFiles(files) {
+    API.getFiles(files)
       .then((res) => {
         console.log(res);
         dispatch({

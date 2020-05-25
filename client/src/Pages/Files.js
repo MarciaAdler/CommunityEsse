@@ -12,9 +12,7 @@ export default function Files() {
         <h2>
           <i className="fas fa-folder-open"></i> Building Files
         </h2>
-        {state.currentUser.role === "Admin" ? <FileUpload /> : ""}
-        <hr />
-        <ViewFiles />
+        <FileUpload />
       </Container>
     </div>
   );
