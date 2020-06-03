@@ -53,7 +53,7 @@ export default function ContactCard() {
                         </Card.Subtitle>
                       )}
                       {state.currentUser.role !== "User" &&
-                      user.instructions !== null ? (
+                      user.instructions !== "" ? (
                         <Card.Subtitle className="mb-3 text-muted">
                           <strong>Front Desk Instructions:</strong>{" "}
                           {user.instructions}

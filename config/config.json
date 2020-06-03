@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "appsbyma_marcia",
-    "password": "CodingDatabasepassword",
-    "database": "appsbyma_community_db",
+    "username": "root",
+    "password": "Databasepassword",
+    "database": "Communitylife_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
