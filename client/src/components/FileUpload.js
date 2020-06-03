@@ -84,7 +84,11 @@ export default function FileUpload() {
           ? state.uploadedfiles.map((file, index) => {
               return (
                 <h6 key={file.id}>
-                  <a href={file.name} target="_blank" key={file.id}>
+                  <a
+                    href={process.env.PUBLIC_URL + `/files/${file.name}`}
+                    target="_blank"
+                    key={file.id}
+                  >
                     <i className="fas fa-file-pdf"></i>&nbsp;
                     {file.name}
                   </a>
