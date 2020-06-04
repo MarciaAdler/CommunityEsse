@@ -57,6 +57,18 @@ export default function FileUpload() {
       })
       .catch((err) => console.log(err));
   };
+  function deletefile(file) {
+    API.deleteFile(file)
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: SET_FILES,
+          uploadedfiles: res.data,
+        });
+        findFiles(state.uploadedfiles);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div>
       {state.currentUser.role === "Admin" ? (
@@ -92,6 +104,18 @@ export default function FileUpload() {
                     <i className="fas fa-file-pdf"></i>&nbsp;
                     {file.name}
                   </a>
+                  {state.currentUser.role === "Admin" ? (
+                    <button
+                      className="files--delete-btn"
+                      onClick={() => {
+                        deletefile(file.id);
+                      }}
+                    >
+                      X
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </h6>
               );
             })

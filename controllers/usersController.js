@@ -470,4 +470,16 @@ module.exports = {
   //       res.status(401).json(err);
   //     });
   // },
+  deleteFile: function (req, res) {
+    console.log(req.params);
+    db.File.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

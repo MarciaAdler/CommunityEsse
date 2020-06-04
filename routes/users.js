@@ -84,4 +84,7 @@ router.route("/api/fileupload").get(usersController.getFiles);
 // router.route("/api/uploadimage").post(usersController.uploadImage);
 
 // router.route("/api/uploadimage/:id").get(usersController.getImage);
+
+router.route("/api/fileupload/:id").delete(usersController.deleteFile);
+
 module.exports = router;

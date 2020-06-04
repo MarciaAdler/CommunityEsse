@@ -114,7 +114,10 @@ export default {
     return axios.get("/api/fileupload", files);
   },
   deleteImage: function (image) {
-    console.log(image);
     return axios.delete("api/upload", image);
+  },
+  deleteFile: function (file) {
+    console.log("API", file);
+    return axios.delete("/api/fileupload/" + file);
   },
 };
