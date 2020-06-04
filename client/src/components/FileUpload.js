@@ -106,7 +106,7 @@ export default function FileUpload() {
                   </a>
                   {state.currentUser.role === "Admin" ? (
                     <button
-                      className="files--delete-btn"
+                      className="file--delete-btn"
                       onClick={() => {
                         deletefile(file.id);
                       }}

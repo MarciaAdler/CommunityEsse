@@ -387,12 +387,22 @@ a
     color: $red
     // border: 1px solid $red;
     border: none
+    background-color: $lightgrey
+    font-weight: bold
+    position: absolute
+    top: 45px
+    right: 20px
+    @include media-breakpoint-only(xs)
+      top: 45px
+.file
+  &--delete-btn
+    color: $red
+    // border: 1px solid $red;
+    border: none
     background-color: $white
     font-weight: bold
     position: absolute
     margin-left: 5px
-    @include media-breakpoint-only(xs)
-
 .reset
   &--container
     margin-top: 20px
