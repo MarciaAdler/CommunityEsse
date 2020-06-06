@@ -70,12 +70,7 @@ export default function ContactCard() {
                       ) : (
                         ""
                       )}
-                      <Card.Link
-                        className="contactcard--messages-link"
-                        href="/messages"
-                      >
-                        Messages
-                      </Card.Link>
+                      <br />
                       {state.currentUser.role === "Admin" ? (
                         <button
                           className="contactcard--delete-btn"

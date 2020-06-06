@@ -78,7 +78,11 @@ export default function FileUpload() {
             <div className="progessBar" style={{ width: progress }}>
               {progress}
             </div>
-            <button type="submit" onClick={uploadFile} className="upbutton">
+            <button
+              type="submit"
+              onClick={uploadFile}
+              className="upbutton mb-3"
+            >
               {" "}
               Upload
             </button>
