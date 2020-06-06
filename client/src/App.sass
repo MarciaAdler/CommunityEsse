@@ -40,6 +40,7 @@ a
     background-color: $jet
     color: $grey
     border-color: $jet
+
 .header
   &--navbar
     @include media-breakpoint-only(xs)
@@ -335,6 +336,18 @@ a
   &--upload-btn
     display: inline-block
     margin-left: 10px
+  &--upload-button
+    background-color: $grey
+    color: $jet
+    border-color: $grey
+    &:hover
+      background-color: $jet
+      color: $grey
+      border-color: $jet
+    @include media-breakpoint-only(xs)
+      margin-top: 20px
+      display: block
+
   &--imageupload
     width: 50%
   &--delete-img
@@ -351,6 +364,8 @@ a
   margin-top: 20px
 .custom-file-label
   width: 70%
+  @include media-breakpoint-only(xs)
+    width: 80%
 .custom-file-input
   width: 70%
 .contacts

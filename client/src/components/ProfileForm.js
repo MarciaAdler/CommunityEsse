@@ -300,7 +300,7 @@ export default function ProfileForm() {
                 </label>
                 <Button
                   type="button"
-                  className="button ml-3"
+                  className="profileform--upload-button ml-3"
                   onClick={uploadImageFile}
                 >
                   Upload
@@ -310,7 +310,7 @@ export default function ProfileForm() {
           </Col>
 
           {state.currentUser.file !== "no image" ? (
-            <Col className="col-md-2 col-sm-12 mt-2 d-flex justify-content-center ">
+            <Col className="col-12 col-md-2 col-sm-12 mt-2 d-flex justify-content-center ">
               <img
                 className="profile-image"
                 alt="profile image"
