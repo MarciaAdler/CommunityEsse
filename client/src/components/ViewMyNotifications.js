@@ -51,19 +51,7 @@ export default function ViewNotification() {
               return (
                 <ListGroup.Item key={notification.id}>
                   {notification.message}
-                  {state.currentUser.role === "User" &&
-                  notification.read === false ? (
-                    <button
-                      className="view-notification--read-btn"
-                      onClick={() => {
-                        markAsRead(notification.id);
-                      }}
-                    >
-                      Mark as Read
-                    </button>
-                  ) : (
-                    ""
-                  )}
+
                   <br />
                   <span className="view-notification--author-title">
                     <small>
@@ -91,6 +79,20 @@ export default function ViewNotification() {
                       {"EST"}
                     </small>
                   </span>
+                  <br />
+                  {state.currentUser.role === "User" &&
+                  notification.read === false ? (
+                    <button
+                      className="view-notification--read-btn"
+                      onClick={() => {
+                        markAsRead(notification.id);
+                      }}
+                    >
+                      Mark as Read
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </ListGroup.Item>
               );
             })
