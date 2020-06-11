@@ -43,19 +43,6 @@ export default function ViewNotification() {
               return (
                 <ListGroup.Item key={notification.id}>
                   {notification.message}
-                  {state.currentUser.role === "Front Desk" &&
-                  notification.closed === false ? (
-                    <button
-                      className="view-notification--read-btn"
-                      onClick={() => {
-                        markAsClosed(notification.id);
-                      }}
-                    >
-                      Close
-                    </button>
-                  ) : (
-                    ""
-                  )}
                   <br />
                   <span>For: {notification.Receiver.aptNumber}</span>
                   <br />
@@ -84,6 +71,19 @@ export default function ViewNotification() {
                       {"EST"}
                     </small>
                   </span>
+                  {state.currentUser.role === "Front Desk" &&
+                  notification.closed === false ? (
+                    <button
+                      className="view-notification--read-btn"
+                      onClick={() => {
+                        markAsClosed(notification.id);
+                      }}
+                    >
+                      Close
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </ListGroup.Item>
               );
             })

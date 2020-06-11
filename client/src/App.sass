@@ -247,9 +247,18 @@ a
     border: none
     background-color: #FFFFFF
     border-radius: 2em
+    position: absolute
+    right: 5px
+    bottom: 10px
+    @include media-breakpoint-only(xs)
+      position: relative
+      right: 0px
+      bottom: 0px
+
     &:hover
       background-color: $grey
       color: $white
+
   &--hide-btn
     color: $darkblue
     // border: 1px solid $red;
