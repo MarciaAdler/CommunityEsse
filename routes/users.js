@@ -42,7 +42,7 @@ router
 
 router.route("/api/users").get(usersController.getAllUsers);
 
-router.route("/api/allusers").get(usersController.getAll);
+router.route("/api/allusers/:id").get(usersController.getAll);
 router.route("/api/receiver/:aptNum").get(usersController.findIdByApt);
 
 router.route("/api/profile").put(usersController.updateProfile);

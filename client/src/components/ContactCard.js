@@ -8,11 +8,11 @@ export default function ContactCard() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getUsers(state.users);
+    getUsers(state.currentproperty);
   }, []);
 
-  function getUsers() {
-    API.getAll()
+  function getUsers(currentproperty) {
+    API.getAll(currentproperty)
       .then((response) => {
         dispatch({ type: SET_USERS, users: response.data });
       })

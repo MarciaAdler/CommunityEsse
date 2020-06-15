@@ -40,8 +40,9 @@ export default {
   markAsRead: function (req) {
     return axios.put("/api/notification/" + req);
   },
-  getAll: function () {
-    return axios.get("/api/allusers");
+  getAll: function (req) {
+    console.log(req);
+    return axios.get("/api/allusers/" + req);
   },
   findIdByApt: function (user) {
     return axios.get("/api/receiver/" + user);

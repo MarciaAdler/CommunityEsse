@@ -198,8 +198,10 @@ module.exports = {
       });
   },
   getAll: function (req, res) {
+    console.log("getall", req.params);
     db.User.findAll({
       where: {
+        PropertyId: req.params.id,
         active: "active",
       },
     })
