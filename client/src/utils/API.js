@@ -17,8 +17,8 @@ export default {
   createBulletin: function (req) {
     return axios.post("/api/bulletin", req);
   },
-  getBulletins: function () {
-    return axios.get("/api/bulletin");
+  getBulletins: function (req) {
+    return axios.get("/api/bulletin/" + req);
   },
   deleteBulletin: function (bulletin) {
     return axios.delete("/api/bulletin/" + bulletin);

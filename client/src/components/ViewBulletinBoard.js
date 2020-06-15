@@ -8,17 +8,17 @@ export default function ViewBulletinBoard() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getBulletins(state.bulletins);
+    getBulletins(state.currentproperty);
   }, []);
-  function getBulletins(message) {
-    API.getBulletins(message).then((response) => {
+  function getBulletins(currentproperty) {
+    API.getBulletins(currentproperty).then((response) => {
       dispatch({ type: SET_BULLETINS, bulletins: response.data });
     });
   }
   function deleteBulletin(bulletin) {
     API.deleteBulletin(bulletin)
       .then((res) => {
-        getBulletins(state.bulletins);
+        getBulletins(state.currentproperty);
       })
       .catch((err) => console.log(err));
   }

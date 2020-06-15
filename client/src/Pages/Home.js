@@ -23,9 +23,10 @@ export default function Home() {
   useEffect(() => {
     if (state.currentproperty !== 0) {
       getAnnouncements(state.currentproperty);
-      getBulletins(state.bulletins);
+      getBulletins(state.currentproperty);
     } else if (JSON.parse(localStorage.getItem("currentProperty"))) {
       getAnnouncements(JSON.parse(localStorage.getItem("currentProperty")));
+      getBulletins(JSON.parse(localStorage.getItem("currentProperty")));
     }
 
     if (state.currentUser.id !== 0) {
@@ -44,8 +45,8 @@ export default function Home() {
       dispatch({ type: SET_ANNOUNCEMENTS, announcements: response.data });
     });
   }
-  function getBulletins(message) {
-    API.getBulletins(message).then((response) => {
+  function getBulletins(currentproperty) {
+    API.getBulletins(currentproperty).then((response) => {
       dispatch({ type: SET_BULLETINS, bulletins: response.data });
     });
   }

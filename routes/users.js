@@ -21,7 +21,7 @@ router
 
 router.route("/api/bulletin").post(usersController.createBulletin);
 
-router.route("/api/bulletin").get(usersController.getBulletins);
+router.route("/api/bulletin/:id").get(usersController.getBulletins);
 
 router.route("/api/bulletin/:id").delete(usersController.deleteBulletin);
 

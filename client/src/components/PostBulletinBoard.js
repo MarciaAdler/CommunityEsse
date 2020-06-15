@@ -13,6 +13,7 @@ export default function PostAnnouncement() {
       message: postRef.current.value,
       subject: subjectRef.current.value,
       UserId: state.currentUser.id,
+      PropertyId: state.currentproperty,
     })
       .then((results) => {
         console.log(results.data);

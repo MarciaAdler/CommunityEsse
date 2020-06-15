@@ -25,6 +25,10 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
     });
+    Bulletin.belongsTo(models.User, {
+      foreignKey: "PropertyId",
+      as: "Property",
+    });
   };
 
   return Bulletin;

@@ -66,6 +66,7 @@ module.exports = {
       message: req.body.message,
       subject: req.body.subject,
       UserId: req.body.UserId,
+      PropertyId: req.body.PropertyId,
     })
       .then(function () {
         res.json(req.body);
@@ -79,11 +80,12 @@ module.exports = {
     db.Bulletin.findAll({
       where: {
         show: "show",
+        PropertyId: req.params.id,
       },
       include: [
         {
           model: db.User,
-          attributes: ["id", "firstName", "lastName", "PropertyId"],
+          attributes: ["id", "firstName", "lastName"],
         },
       ],
       order: [["createdAt", "DESC"]],
