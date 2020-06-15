@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { SET_CURRENT_USER, LOGGEDIN, CLEAR_ALL } from "../utils/actions";
+import {
+  SET_CURRENT_USER,
+  LOGGEDIN,
+  CLEAR_ALL,
+  SET_PROPERTY,
+} from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import { Link, Redirect } from "react-router-dom";
 
@@ -16,6 +21,18 @@ export default function Header() {
         type: SET_CURRENT_USER,
         currentUser: currentUserLs,
       });
+      if (
+        state.currentproperty === 0 &&
+        localStorage.getItem("currentProperty")
+      ) {
+        const currentPropertyLs = JSON.parse(
+          localStorage.getItem("currentProperty")
+        );
+        dispatch({
+          type: SET_PROPERTY,
+          currentproperty: currentPropertyLs.currentproperty,
+        });
+      }
 
       dispatch({
         type: LOGGEDIN,

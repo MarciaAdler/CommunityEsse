@@ -79,7 +79,7 @@ router.route("/api/reset").put(usersController.resetPassword);
 
 router.route("/api/fileupload").post(usersController.fileUpload);
 
-router.route("/api/fileupload").get(usersController.getFiles);
+router.route("/api/fileupload/:id").get(usersController.getFiles);
 
 // router.route("/api/uploadimage").post(usersController.uploadImage);
 

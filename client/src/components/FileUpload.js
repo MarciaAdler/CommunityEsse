@@ -12,10 +12,14 @@ export default function FileUpload() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    findFiles(state.uploadedfiles);
+    if (state.currentproperty !== 0) {
+      findFiles(state.currentproperty);
+    } else {
+      findFiles(JSON.parse(localStorage.getItem("currentProperty")));
+    }
   }, []);
-  function findFiles(files) {
-    API.getFiles(files)
+  function findFiles(currentproperty) {
+    API.getFiles(currentproperty)
       .then((res) => {
         console.log(res);
         dispatch({
@@ -35,6 +39,7 @@ export default function FileUpload() {
   const uploadFile = () => {
     const formData = new FormData();
     formData.append("file", file); // appending file
+    formData.append("property", state.currentproperty);
     API.uploadPdfFile(formData, {
       onUploadProgress: (ProgressEvent) => {
         let progress =
@@ -46,11 +51,13 @@ export default function FileUpload() {
         console.log(res);
 
         getFile({
-          name: res.data.name,
+          name: state.currentproperty + "-" + res.data.name,
+          property: state.currentproperty,
           path: process.env.PUBLIC_URL + "/files" + res.data.path,
         });
         API.fileUpload({
-          name: res.data.name,
+          name: state.currentproperty + "-" + res.data.name,
+          property: state.currentUser.property,
         }).then((response) => {
           findFiles(state.uploadedfiles);
         });

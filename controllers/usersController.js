@@ -417,8 +417,10 @@ module.exports = {
       });
   },
   fileUpload: function (req, res) {
+    console.log("fileUpload", req.body);
     db.File.create({
       name: req.body.name,
+      PropertyId: req.body.property,
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
@@ -427,7 +429,7 @@ module.exports = {
   },
   getFiles: function (req, res) {
     db.File.findAll({
-      where: { show: "show" },
+      where: { PropertyId: req.params.id, show: "show" },
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {

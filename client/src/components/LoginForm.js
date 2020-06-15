@@ -3,7 +3,7 @@ import { useStoreContext } from "../utils/GlobalState";
 import { Form, Button, Col } from "react-bootstrap";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
-import { LOGGEDIN, SET_CURRENT_USER } from "../utils/actions";
+import { LOGGEDIN, SET_CURRENT_USER, SET_PROPERTY } from "../utils/actions";
 
 export default function LoginForm() {
   const [state, dispatch] = useStoreContext();
@@ -37,6 +37,10 @@ export default function LoginForm() {
             property: results.data.PropertyId,
           },
         });
+        dispatch({
+          type: SET_PROPERTY,
+          currentproperty: results.data.PropertyId,
+        });
         let localStorageUser = {
           id: results.data.id,
           username: results.data.username,
@@ -53,6 +57,13 @@ export default function LoginForm() {
         window.localStorage.setItem(
           "currentUser",
           JSON.stringify(localStorageUser)
+        );
+        let localStorageProperty = {
+          currentproperty: results.data.PropertyId,
+        };
+        window.localStorage.setItem(
+          "currentProperty",
+          JSON.stringify(localStorageProperty)
         );
         dispatch({
           type: LOGGEDIN,
