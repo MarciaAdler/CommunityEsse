@@ -2,8 +2,10 @@ import React, { useRef, useState } from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
+import { useStoreContext } from "../utils/GlobalState";
 
 export default function SignupForm() {
+  const [state, dispatch] = useStoreContext();
   const [sendLogin, setSendLogin] = useState(false);
   const firstRef = useRef();
   const lastRef = useRef();
@@ -21,7 +23,7 @@ export default function SignupForm() {
     }
   };
   function signUp(event) {
-    console.log(roleRef.current.value);
+    console.log(state.currentUser.property);
     event.preventDefault();
     if (passwordRef.current.value !== confirmRef.current.value) {
       return alert("Passwords must match");
@@ -35,6 +37,7 @@ export default function SignupForm() {
         password: passwordRef.current.value,
         role: roleRef.current.value,
         instructions: instructionsRef.current.value,
+        property: state.currentUser.property,
       })
         .then((res) => {
           setSendLogin(true);

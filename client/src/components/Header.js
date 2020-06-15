@@ -61,6 +61,11 @@ export default function Header() {
               <Nav.Link href="/home">Building Home</Nav.Link>
               <Nav.Link href="/contacts">Building Contacts</Nav.Link>
               <Nav.Link href="/files">Building Files</Nav.Link>
+              {state.currentUser.role === "Admin" ? (
+                <Nav.Link href="/signup">Register New User</Nav.Link>
+              ) : (
+                ""
+              )}
             </Nav>
             <Nav>
               <Nav.Link href="/profile">Profile</Nav.Link>

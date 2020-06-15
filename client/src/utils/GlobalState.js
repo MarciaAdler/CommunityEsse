@@ -33,6 +33,7 @@ const reducer = (state, action) => {
           email: action.currentUser.email,
           instructions: action.currentUser.instructions,
           file: action.currentUser.file,
+          property: action.currentUser.property,
         },
       };
     case LOGGEDIN:
@@ -92,6 +93,7 @@ const reducer = (state, action) => {
           email: "",
           instructions: "",
           file: "",
+          property: "",
         },
         loggedIn: false,
         loading: false,
@@ -126,6 +128,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       email: "",
       instructions: "",
       file: "",
+      property: "",
     },
     loading: false,
     loggedIn: false,

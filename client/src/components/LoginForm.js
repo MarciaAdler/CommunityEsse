@@ -21,6 +21,7 @@ export default function LoginForm() {
       password: passwordRef.current.value,
     })
       .then((results) => {
+        console.log(results);
         dispatch({
           type: SET_CURRENT_USER,
           currentUser: {
@@ -33,6 +34,7 @@ export default function LoginForm() {
             email: results.data.email,
             instructions: results.data.instructions,
             file: results.data.file,
+            property: results.data.PropertyId,
           },
         });
         let localStorageUser = {
@@ -45,6 +47,7 @@ export default function LoginForm() {
           email: results.data.email,
           instructions: results.data.instructions,
           file: results.data.file,
+          property: results.data.PropertyId,
         };
 
         window.localStorage.setItem(

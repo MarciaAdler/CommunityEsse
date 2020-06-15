@@ -11,6 +11,7 @@ module.exports = {
       password: req.body.password,
       role: req.body.role,
       instructions: req.body.instructions,
+      PropertyId: req.body.property,
     })
       .then(function () {
         res.json(req.body);
