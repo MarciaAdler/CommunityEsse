@@ -10,10 +10,10 @@ export default function ViewAnnouncements() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getAnnouncements(state.announcements);
+    getAnnouncements(state.currentproperty);
   }, []);
-  function getAnnouncements(message) {
-    API.getAnnouncements(message).then((response) => {
+  function getAnnouncements(currentproperty) {
+    API.getAnnouncements(currentproperty).then((response) => {
       dispatch({ type: SET_ANNOUNCEMENTS, announcements: response.data });
     });
   }

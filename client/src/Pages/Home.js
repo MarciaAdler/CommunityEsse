@@ -15,13 +15,19 @@ import { useStoreContext } from "../utils/GlobalState";
 import dateFormat from "dateformat";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
+import { stat } from "fs";
 
 export default function Home() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getAnnouncements(state.announcements);
-    getBulletins(state.bulletins);
+    if (state.currentproperty !== 0) {
+      getAnnouncements(state.currentproperty);
+      getBulletins(state.bulletins);
+    } else if (JSON.parse(localStorage.getItem("currentProperty"))) {
+      getAnnouncements(JSON.parse(localStorage.getItem("currentProperty")));
+    }
+
     if (state.currentUser.id !== 0) {
       getMyNotifications(state.currentUser);
       getReceivedMessages(state.currentUser);
@@ -33,8 +39,8 @@ export default function Home() {
       getReceivedMessages(state.receivedmessages);
     }
   }, []);
-  function getAnnouncements(message) {
-    API.getAnnouncements(message).then((response) => {
+  function getAnnouncements(currentproperty) {
+    API.getAnnouncements(currentproperty).then((response) => {
       dispatch({ type: SET_ANNOUNCEMENTS, announcements: response.data });
     });
   }

@@ -10,6 +10,7 @@ export default function PostAnnouncement() {
     API.createAnnouncement({
       message: postRef.current.value,
       UserId: state.currentUser.id,
+      PropertyId: state.currentproperty,
     })
       .then((results) => {
         console.log(results.data);

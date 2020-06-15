@@ -30,7 +30,7 @@ export default function Header() {
         );
         dispatch({
           type: SET_PROPERTY,
-          currentproperty: currentPropertyLs.currentproperty,
+          currentproperty: currentPropertyLs,
         });
       }
 

@@ -34,9 +34,11 @@ module.exports = {
       });
   },
   createAnnouncement: function (req, res) {
+    console.log("createannouncement", req.body);
     db.Announcement.create({
       message: req.body.message,
       UserId: req.body.UserId,
+      PropertyId: req.body.PropertyId,
     })
       .then(function () {
         res.json(req.body);
@@ -46,9 +48,11 @@ module.exports = {
       });
   },
   getAnnouncements: function (req, res) {
+    console.log(req.params);
     db.Announcement.findAll({
       where: {
         show: "show",
+        PropertyId: req.params.id,
       },
       order: [["createdAt", "DESC"]],
     })
@@ -71,6 +75,7 @@ module.exports = {
       });
   },
   getBulletins: function (req, res) {
+    console.log(req.params);
     db.Bulletin.findAll({
       where: {
         show: "show",
@@ -78,7 +83,7 @@ module.exports = {
       include: [
         {
           model: db.User,
-          attributes: ["id", "firstName", "lastName"],
+          attributes: ["id", "firstName", "lastName", "PropertyId"],
         },
       ],
       order: [["createdAt", "DESC"]],

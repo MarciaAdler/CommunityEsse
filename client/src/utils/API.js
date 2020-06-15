@@ -7,10 +7,12 @@ export default {
     return axios.post("/api/login", req);
   },
   createAnnouncement: function (req) {
+    console.log(req);
     return axios.post("/api/announcement", req);
   },
-  getAnnouncements: function () {
-    return axios.get("/api/announcement");
+  getAnnouncements: function (req) {
+    console.log(req);
+    return axios.get("/api/announcement/" + req);
   },
   createBulletin: function (req) {
     return axios.post("/api/bulletin", req);

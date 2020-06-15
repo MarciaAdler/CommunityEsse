@@ -13,7 +13,7 @@ router.post(
 
 router.route("/api/announcement").post(usersController.createAnnouncement);
 
-router.route("/api/announcement").get(usersController.getAnnouncements);
+router.route("/api/announcement/:id").get(usersController.getAnnouncements);
 
 router
   .route("/api/announcement/:id")

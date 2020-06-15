@@ -21,6 +21,10 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
     });
+    Announcement.belongsTo(models.User, {
+      foreignKey: "PropertyId",
+      as: "Property",
+    });
   };
 
   return Announcement;

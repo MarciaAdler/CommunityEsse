@@ -58,9 +58,7 @@ export default function LoginForm() {
           "currentUser",
           JSON.stringify(localStorageUser)
         );
-        let localStorageProperty = {
-          currentproperty: results.data.PropertyId,
-        };
+        let localStorageProperty = results.data.PropertyId;
         window.localStorage.setItem(
           "currentProperty",
           JSON.stringify(localStorageProperty)
