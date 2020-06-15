@@ -9,10 +9,11 @@ export default function ViewNotification() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    getNotifications(state.notifications);
+    getNotifications(state.currentproperty);
   }, []);
-  function getNotifications(message) {
-    API.getNotifications(message).then((response) => {
+  function getNotifications(currentproperty) {
+    API.getNotifications(currentproperty).then((response) => {
+      console.log(response);
       dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
     });
   }
@@ -20,14 +21,14 @@ export default function ViewNotification() {
     console.log(notification);
     API.markAsClosed(notification)
       .then((response) => {
-        getNotifications(state.notifications);
+        getNotifications(state.currentpropety);
       })
       .catch((err) => console.log(err));
   }
   function deleteNotification(notification) {
     API.deleteNotification(notification)
       .then((res) => {
-        getNotifications(state.notifications);
+        getNotifications(state.currentproperty);
       })
       .catch((err) => console.log(err));
   }

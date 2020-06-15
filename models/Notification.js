@@ -32,6 +32,10 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: "ReceiverId",
       as: "Receiver",
     });
+    Notification.belongsTo(models.User, {
+      foreignKey: "PropertyId",
+      as: "Property",
+    });
   };
 
   return Notification;

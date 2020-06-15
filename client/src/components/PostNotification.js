@@ -12,12 +12,13 @@ export default function PostNotification() {
   const [formObject, setFormObject] = useState({});
   let receiveId = "";
   useEffect(() => {
-    getAllUsers();
-    getNotifications();
+    getAllUsers(state.currentproperty);
+    getNotifications(state.currentproperty);
   }, []);
 
-  function getNotifications(message) {
-    API.getNotifications(message).then((response) => {
+  function getNotifications(currentproperty) {
+    API.getNotifications(currentproperty).then((response) => {
+      console.log(response);
       dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
     });
   }
@@ -26,6 +27,7 @@ export default function PostNotification() {
       message: postRef.current.value,
       SenderId: state.currentUser.id,
       ReceiverId: receiveId,
+      PropertyId: state.currentproperty,
     })
       .then((res) => {
         console.log(res.data);
@@ -35,9 +37,10 @@ export default function PostNotification() {
       .catch((err) => console.log(err));
   }
 
-  function getAllUsers() {
-    API.getAllUsers()
+  function getAllUsers(currentproperty) {
+    API.getAllUsers(currentproperty)
       .then((response) => {
+        console.log(response);
         dispatch({ type: SET_USERS, users: response.data });
       })
 

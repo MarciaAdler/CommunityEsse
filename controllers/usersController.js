@@ -116,6 +116,7 @@ module.exports = {
       message: req.body.message,
       SenderId: req.body.SenderId,
       ReceiverId: req.body.ReceiverId,
+      PropertyId: req.body.PropertyId,
     })
       .then(function () {
         res.json(req.body);
@@ -125,8 +126,14 @@ module.exports = {
       });
   },
   getNotifications: function (req, res) {
+    console.log("notifications", req.params);
     db.Notification.findAll({
       include: [
+        {
+          model: db.User,
+          as: "Property",
+          where: { id: req.params.id },
+        },
         {
           model: db.User,
           as: "Sender",
@@ -178,10 +185,13 @@ module.exports = {
       });
   },
   getAllUsers: function (req, res) {
+    console.log("getall", req.params);
+    console.log("getallbody", req.body);
     db.User.findAll({
       where: {
         role: "User",
         active: "active",
+        PropertyId: req.params.id,
       },
     })
       .then((dbModel) => res.json(dbModel))

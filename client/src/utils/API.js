@@ -25,14 +25,15 @@ export default {
     return axios.delete("/api/announcement/" + announcement);
   },
 
-  getNotifications: function () {
-    return axios.get("/api/notification");
+  getNotifications: function (req) {
+    console.log("notifications", req);
+    return axios.get("/api/notification/" + req);
   },
   deleteNotification: function (notification) {
     return axios.delete("/api/notification/" + notification);
   },
-  getAllUsers: function () {
-    return axios.get("/api/users");
+  getAllUsers: function (req) {
+    return axios.get("/api/users/" + req);
   },
   getMyNotifications: function (req) {
     return axios.get("/api/notification/" + req);
@@ -49,6 +50,7 @@ export default {
   },
 
   createNotification: function (req) {
+    console.log(req);
     return axios.post("/api/notification", req);
   },
   updateProfile: function (req) {

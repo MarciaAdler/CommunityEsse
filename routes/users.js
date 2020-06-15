@@ -27,7 +27,7 @@ router.route("/api/bulletin/:id").delete(usersController.deleteBulletin);
 
 router.route("/api/notification").post(usersController.createNotification);
 
-router.route("/api/notification").get(usersController.getNotifications);
+router.route("/api/notification/:id").get(usersController.getNotifications);
 
 router
   .route("/api/notification/:userId")
@@ -40,7 +40,7 @@ router
   .route("/api/notification/:id")
   .delete(usersController.deleteNotification);
 
-router.route("/api/users").get(usersController.getAllUsers);
+router.route("/api/users/:id").get(usersController.getAllUsers);
 
 router.route("/api/allusers/:id").get(usersController.getAll);
 router.route("/api/receiver/:aptNum").get(usersController.findIdByApt);
