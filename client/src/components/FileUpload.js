@@ -20,12 +20,15 @@ export default function FileUpload() {
       getPropertyName(JSON.parse(localStorage.getItem("currentProperty")));
     }
   }, []);
+
+  // get property name
   function getPropertyName(currentproperty) {
     API.getPropertyName(currentproperty).then((response) => {
       console.log(response.data.name);
       setPropertyName(response.data.name);
     });
   }
+  // get all files for specific property
   function findFiles(currentproperty) {
     API.getFiles(currentproperty)
       .then((res) => {
@@ -72,6 +75,8 @@ export default function FileUpload() {
       })
       .catch((err) => console.log(err));
   };
+
+  // deleting files from database (not from server)
   function deletefile(file) {
     API.deleteFile(file)
       .then((res) => {
