@@ -30,7 +30,7 @@ router.route("/api/notification").post(usersController.createNotification);
 router.route("/api/notification/:id").get(usersController.getNotifications);
 
 router
-  .route("/api/notification/:userId")
+  .route("/api/getmynotification/:userId")
   .get(usersController.getMyNotifications);
 
 router

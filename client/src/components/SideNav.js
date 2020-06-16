@@ -31,6 +31,7 @@ export default function SideNav() {
   function getReceivedMessages(currentUser) {
     API.getReceivedMessages(currentUser.id)
       .then((response) => {
+        console.log(response);
         dispatch({
           type: SET_RECEIVED_MESSAGES,
           receivedmessages: response.data,
@@ -56,7 +57,7 @@ export default function SideNav() {
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/messages">
             <i className="fas fa-envelope-square"></i> Messages{" "}
-            {state.receivedmessages.length > 0 ? (
+            {unreadMessages.length > 0 ? (
               <span className="side-nav--notification-unread">
                 {" "}
                 ({unreadMessages})

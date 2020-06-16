@@ -35,7 +35,8 @@ export default {
     return axios.get("/api/users/" + req);
   },
   getMyNotifications: function (req) {
-    return axios.get("/api/notification/" + req);
+    console.log(req);
+    return axios.get("/api/getmynotification/" + req);
   },
   markAsRead: function (req) {
     return axios.put("/api/notification/" + req);

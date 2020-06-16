@@ -19,6 +19,7 @@ export default function ViewNotification() {
   function getMyNotifications(currentUser) {
     API.getMyNotifications(currentUser.id)
       .then((response) => {
+        console.log(response);
         dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
       })
       .catch((err) => console.log(err));

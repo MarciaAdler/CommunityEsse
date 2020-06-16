@@ -158,6 +158,7 @@ module.exports = {
       });
   },
   getMyNotifications: function (req, res) {
+    console.log("notice", req.params);
     db.Notification.findAll({
       where: {
         ReceiverId: req.params.userId,
