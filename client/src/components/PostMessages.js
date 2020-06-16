@@ -43,8 +43,10 @@ export default function PostMessages() {
 
   function getId() {
     if (receiverRef.current.value !== "Choose Apt...") {
+      const receiverInfo = receiverRef.current.value.split(" ");
+      const apt = receiverInfo[0];
       API.findIdByApt({
-        id: receiverRef.current.value,
+        id: apt,
         PropertyId: state.currentproperty,
       }).then((response) => {
         console.log(response);
@@ -84,7 +86,9 @@ export default function PostMessages() {
             <option>Choose Apt...</option>
             {state.allUsers.length
               ? state.allUsers.map((user) => (
-                  <option key={user.id}>{user.aptNumber}</option>
+                  <option key={user.id}>
+                    {user.aptNumber} - {user.firstName} {user.lastName}
+                  </option>
                 ))
               : ""}
           </Form.Control>
