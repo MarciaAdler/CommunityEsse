@@ -18,8 +18,12 @@ export default function SignupForm() {
   const instructionsRef = useRef();
 
   const renderRedirect = () => {
-    if (sendLogin) {
+    if (sendLogin && state.currentUser.id === 0) {
       return <Redirect to="/" />;
+      // } else {
+      //   const form = document.getElementById("myForm");
+      //   form.reset();
+      // }
     }
   };
   function signUp(event) {
@@ -41,13 +45,15 @@ export default function SignupForm() {
       })
         .then((res) => {
           setSendLogin(true);
+          const form = document.getElementById("myForm");
+          form.reset();
         })
         .catch((err) => alert("Username already exists"));
     }
   }
   return (
     <div className="signupform--wrapper">
-      <Form className="signupform--container div-to-align">
+      <Form className="signupform--container div-to-align" id="myForm">
         <Form.Row className="mb-3 justify-content-center">
           <Col className="col-8 col-md-4">
             <Form.Label>First Name</Form.Label>
