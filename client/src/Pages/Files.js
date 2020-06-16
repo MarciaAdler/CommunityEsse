@@ -20,7 +20,6 @@ export default function Files() {
   // get property name
   function getPropertyName(currentproperty) {
     API.getPropertyName(currentproperty).then((response) => {
-      console.log(response.data.name);
       setPropertyName(response.data.name);
     });
   }

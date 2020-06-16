@@ -24,7 +24,6 @@ export default function FileUpload() {
   // get property name
   function getPropertyName(currentproperty) {
     API.getPropertyName(currentproperty).then((response) => {
-      console.log(response.data.name);
       setPropertyName(response.data.name);
     });
   }
@@ -32,7 +31,6 @@ export default function FileUpload() {
   function findFiles(currentproperty) {
     API.getFiles(currentproperty)
       .then((res) => {
-        console.log(res);
         dispatch({
           type: SET_FILES,
           uploadedfiles: res.data,
@@ -43,7 +41,7 @@ export default function FileUpload() {
   const handleChange = (e) => {
     setProgess(0);
     const file = e.target.files[0]; // accesing file
-    console.log(file);
+
     setFile(file); // storing file
   };
 
@@ -59,8 +57,6 @@ export default function FileUpload() {
       },
     })
       .then((res) => {
-        console.log(res);
-
         getFile({
           name: propertyName + "-" + res.data.name,
           property: state.currentproperty,
