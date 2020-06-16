@@ -95,6 +95,7 @@ export default function FileUpload() {
             </button>
             {/* displaying received image*/}
             {/* {data.path && <img src={data.path} alt={data.name} />} */}
+            {data.name}
           </div>
 
           <hr />
