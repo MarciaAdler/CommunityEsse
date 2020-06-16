@@ -10,14 +10,22 @@ export default function FileUpload() {
   const [progress, setProgess] = useState(0); // progess bar
   const el = useRef(); // accesing input element
   const [state, dispatch] = useStoreContext();
-
+  const [propertyName, setPropertyName] = useState(""); // storing the property name
   useEffect(() => {
     if (state.currentproperty !== 0) {
       findFiles(state.currentproperty);
+      getPropertyName(state.currentproperty);
     } else {
       findFiles(JSON.parse(localStorage.getItem("currentProperty")));
+      getPropertyName(JSON.parse(localStorage.getItem("currentProperty")));
     }
   }, []);
+  function getPropertyName(currentproperty) {
+    API.getPropertyName(currentproperty).then((response) => {
+      console.log(response.data.name);
+      setPropertyName(response.data.name);
+    });
+  }
   function findFiles(currentproperty) {
     API.getFiles(currentproperty)
       .then((res) => {
@@ -39,7 +47,7 @@ export default function FileUpload() {
   const uploadFile = () => {
     const formData = new FormData();
     formData.append("file", file); // appending file
-    formData.append("property", state.currentproperty);
+    formData.append("property", propertyName);
     API.uploadPdfFile(formData, {
       onUploadProgress: (ProgressEvent) => {
         let progress =
@@ -51,15 +59,15 @@ export default function FileUpload() {
         console.log(res);
 
         getFile({
-          name: state.currentproperty + "-" + res.data.name,
+          name: propertyName + "-" + res.data.name,
           property: state.currentproperty,
           path: process.env.PUBLIC_URL + "/files" + res.data.path,
         });
         API.fileUpload({
-          name: state.currentproperty + "-" + res.data.name,
-          property: state.currentUser.property,
+          name: propertyName + "-" + res.data.name,
+          property: state.currentproperty,
         }).then((response) => {
-          findFiles(state.uploadedfiles);
+          findFiles(state.currentproperty);
         });
       })
       .catch((err) => console.log(err));
@@ -67,12 +75,7 @@ export default function FileUpload() {
   function deletefile(file) {
     API.deleteFile(file)
       .then((res) => {
-        console.log(res);
-        dispatch({
-          type: SET_FILES,
-          uploadedfiles: res.data,
-        });
-        findFiles(state.uploadedfiles);
+        findFiles(state.currentproperty);
       })
       .catch((err) => console.log(err));
   }

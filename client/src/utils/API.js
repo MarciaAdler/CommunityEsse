@@ -117,8 +117,8 @@ export default {
     return axios.post("/api/fileupload", file);
   },
   getFiles: function (req) {
-    console.log(req.currentproperty);
-    return axios.get("/api/fileupload/" + req.currentproperty);
+    console.log(req);
+    return axios.get("/api/fileupload/" + req);
   },
   deleteImage: function (image) {
     return axios.delete("api/upload", image);
