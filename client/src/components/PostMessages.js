@@ -43,13 +43,13 @@ export default function PostMessages() {
 
   function getId() {
     if (receiverRef.current.value !== "Choose Apt...") {
-      const receiverInfo = receiverRef.current.value.split(" ");
+      const receiverInfo = receiverRef.current.value.split(" -");
       const apt = receiverInfo[0];
       API.findIdByApt({
         id: apt,
         PropertyId: state.currentproperty,
       }).then((response) => {
-        console.log(response);
+        console.log("getid", response);
         receiveId = response.data.id;
         console.log(response.data.id);
       });
