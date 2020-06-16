@@ -119,6 +119,14 @@ a
     &--wrapper
       display: flex
       justify-content: center
+  &--row
+    margin-right: 100px
+    @include media-breakpoint-only(md)
+      margin-right: 65px
+    @include media-breakpoint-only(sm)
+      margin-right: auto
+    @include media-breakpoint-only(xs)
+      margin-right: auto
 .signin
   &--title
     text-align: center

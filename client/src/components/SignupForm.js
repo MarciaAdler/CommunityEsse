@@ -52,7 +52,7 @@ export default function SignupForm() {
     }
   }
   return (
-    <div className="signupform--wrapper">
+    <Container className="signupform--wrapper">
       <Form className="signupform--container div-to-align" id="myForm">
         <Form.Row className="mb-3 justify-content-center">
           <Col className="col-8 col-md-4">
@@ -97,7 +97,7 @@ export default function SignupForm() {
           </Col>
         </Form.Row>
         <Form.Row className="justify-content-center">
-          <Col className="col-8 col-md-2">
+          <Col className="col-8 col-md-8 col-lg-3">
             <Form.Group controlId="formGroupRole">
               <Form.Label>Role</Form.Label>
               <Form.Control
@@ -113,7 +113,7 @@ export default function SignupForm() {
             </Form.Group>
           </Col>
 
-          <Col className="col-8 col-md-6">
+          <Col className="col-8 col-md-8 col-lg-5">
             <Form.Group controlId="formGroupEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -125,7 +125,7 @@ export default function SignupForm() {
             </Form.Group>
           </Col>
         </Form.Row>
-        <Form.Row className="justify-content-center">
+        <Form.Row className="justify-content-center signupform--row">
           <Col className="col-8">
             <Form.Group controlId="formGroupPassword">
               <Form.Label>Password</Form.Label>
@@ -138,7 +138,7 @@ export default function SignupForm() {
             </Form.Group>
           </Col>
         </Form.Row>
-        <Form.Row className="justify-content-center">
+        <Form.Row className="justify-content-center signupform--row">
           <Col className="col-8">
             <Form.Group controlId="formGroupConfirmPassword">
               <Form.Label>Confirm Password</Form.Label>
@@ -151,7 +151,7 @@ export default function SignupForm() {
             </Form.Group>
           </Col>
         </Form.Row>
-        <Form.Row className="justify-content-center">
+        <Form.Row className="justify-content-center signupform--row">
           <Col className="col-8">
             <Form.Group controlId="frontDeskInstructions">
               <Form.Label>Front Desk Instructions</Form.Label>
@@ -164,7 +164,7 @@ export default function SignupForm() {
             </Form.Group>
           </Col>
         </Form.Row>
-        <Form.Row className="justify-content-center">
+        <Form.Row className="justify-content-center signupform--row">
           <Col className="col-8">
             <Button className="button" type="submit" onClick={signUp}>
               Submit
@@ -181,6 +181,6 @@ export default function SignupForm() {
           </Col>
         </Form.Row>
       </Form>
-    </div>
+    </Container>
   );
 }
