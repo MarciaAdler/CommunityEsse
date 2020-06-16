@@ -250,6 +250,7 @@ module.exports = {
         email: req.body.email,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        phoneNumber: req.body.phoneNumber,
         role: req.body.role,
         instructions: req.body.instructions,
         file: req.body.file,

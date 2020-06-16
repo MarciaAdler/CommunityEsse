@@ -32,6 +32,9 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      phoneNumber: {
+        type: DataTypes.STRING,
+      },
       // The password cannot be null
       password: {
         type: DataTypes.STRING,

@@ -18,6 +18,7 @@ export default function ProfileForm() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const instructionsRef = useRef();
+  const phoneRef = useRef();
   let date = "";
 
   function updatePassword() {
@@ -42,6 +43,7 @@ export default function ProfileForm() {
       username: usernameRef.current.value,
       firstName: firstNameRef.current.value,
       lastName: lastNameRef.current.value,
+      phoneNumber: phoneRef.current.value,
       email: emailRef.current.value,
       role: roleRef.current.value,
       instructions: instructionsRef.current.value,
@@ -62,6 +64,7 @@ export default function ProfileForm() {
             role: results.data.role,
             firstName: results.data.firstName,
             lastName: results.data.lastName,
+            phoneNumber: results.data.phoneNumber,
             aptNumber: results.data.aptNumber,
             email: results.data.email,
             instructions: results.data.instructions,
@@ -74,6 +77,7 @@ export default function ProfileForm() {
           role: results.data.role,
           firstName: results.data.firstName,
           lastName: results.data.lastName,
+          phoneNumber: results.data.phoneNumber,
           aptNumber: results.data.aptNumber,
           email: results.data.email,
           instructions: results.data.instructions,
@@ -227,6 +231,17 @@ export default function ProfileForm() {
               name="email"
               ref={emailRef}
               defaultValue={state.currentUser.email}
+            />
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
+          <Form.Group className="col-6" controlId="formGridPhone">
+            <Form.Label>Phone Number (xxx-xxx-xxxx)</Form.Label>
+            <Form.Control
+              type="text"
+              name="phone"
+              ref={phoneRef}
+              defaultValue={state.currentUser.phoneNumber}
             />
           </Form.Group>
         </Form.Row>

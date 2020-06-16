@@ -36,7 +36,7 @@ export default function ContactCard() {
         {state.users.length
           ? state.users.map((user) => {
               return (
-                <Col className="col-6 mb-3 pl-0" key={user.id}>
+                <Col className="col-12 col-md-6 mb-3" key={user.id}>
                   <Card className="contactcard--card">
                     <Card.Body>
                       <Card.Title>
@@ -51,6 +51,13 @@ export default function ContactCard() {
                         <Card.Subtitle className="mb-3 text-muted">
                           Apt: {user.aptNumber}
                         </Card.Subtitle>
+                      )}
+                      {user.phoneNumber !== null ? (
+                        <Card.Subtitle className="mb-3 text-muted">
+                          Phone Number: {user.phoneNumber}
+                        </Card.Subtitle>
+                      ) : (
+                        ""
                       )}
                       {state.currentUser.role !== "User" &&
                       user.instructions !== "" ? (
