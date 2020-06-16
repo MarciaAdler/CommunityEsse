@@ -93,11 +93,12 @@ export default function Header() {
             </Nav>
           </Navbar.Collapse>
         ) : (
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="/signup">Signup</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
+          // <Navbar.Collapse id="responsive-navbar-nav">
+          //   <Nav className="mr-auto">
+          //     <Nav.Link href="/signup">Signup</Nav.Link>
+          //   </Nav>
+          // </Navbar.Collapse>
+          ""
         )}
       </Navbar>
       {renderRedirect()}
