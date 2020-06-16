@@ -7,11 +7,9 @@ export default {
     return axios.post("/api/login", req);
   },
   createAnnouncement: function (req) {
-    console.log(req);
     return axios.post("/api/announcement", req);
   },
   getAnnouncements: function (req) {
-    console.log(req);
     return axios.get("/api/announcement/" + req);
   },
   createBulletin: function (req) {
@@ -28,7 +26,6 @@ export default {
   },
 
   getNotifications: function (req) {
-    console.log("notifications", req);
     return axios.get("/api/notification/" + req);
   },
   deleteNotification: function (notification) {
@@ -44,16 +41,13 @@ export default {
     return axios.put("/api/notification/" + req);
   },
   getAll: function (req) {
-    console.log("getallmessages", req);
     return axios.get("/api/allusers/" + req);
   },
   findIdByApt: function (user) {
-    console.log(user);
     return axios.get("/api/receiver/" + user.id + "/" + user.PropertyId);
   },
 
   createNotification: function (req) {
-    console.log(req);
     return axios.post("/api/notification", req);
   },
   updateProfile: function (req) {
@@ -117,18 +111,15 @@ export default {
     return axios.post("/api/fileupload", file);
   },
   getFiles: function (req) {
-    console.log(req);
     return axios.get("/api/fileupload/" + req);
   },
   deleteImage: function (image) {
     return axios.delete("api/upload", image);
   },
   deleteFile: function (file) {
-    console.log("API", file);
     return axios.delete("/api/fileupload/" + file);
   },
   getPropertyName: function (req) {
-    console.log("property", req);
     return axios.get("/api/propertyname/" + req);
   },
 };
