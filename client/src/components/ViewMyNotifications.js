@@ -61,14 +61,25 @@ export default function ViewNotification() {
                     </small>
                   </span>
 
-                  <button
-                    className="view-notification--delete-btn"
-                    onClick={() => {
-                      hideNotification(notification.id);
-                    }}
-                  >
-                    X
-                  </button>
+                  {notification.read === true ? (
+                    <button
+                      className="view-notification--delete-btn"
+                      onClick={() => {
+                        hideNotification(notification.id);
+                      }}
+                    >
+                      X
+                    </button>
+                  ) : (
+                    <button
+                      className="view-notification--read-btn"
+                      onClick={() => {
+                        markAsRead(notification.id);
+                      }}
+                    >
+                      Mark as Read
+                    </button>
+                  )}
 
                   <br></br>
                   <span className="view-notification--date">
@@ -81,7 +92,7 @@ export default function ViewNotification() {
                     </small>
                   </span>
                   <br />
-                  {state.currentUser.role === "User" &&
+                  {/* {state.currentUser.role === "User" &&
                   notification.read === false ? (
                     <button
                       className="view-notification--read-btn"
@@ -93,7 +104,7 @@ export default function ViewNotification() {
                     </button>
                   ) : (
                     ""
-                  )}
+                  )} */}
                 </ListGroup.Item>
               );
             })

@@ -49,7 +49,10 @@ export default function PostNotification() {
 
   function getId() {
     if (receiverRef.current.value !== "Choose Apt...") {
-      API.findIdByAptNot(receiverRef.current.value).then((response) => {
+      API.findIdByApt({
+        id: receiverRef.current.value,
+        PropertyId: state.currentproperty,
+      }).then((response) => {
         console.log(response.data);
         receiveId = response.data.id;
         console.log(response.data.id);
