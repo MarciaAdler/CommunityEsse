@@ -127,4 +127,8 @@ export default {
     console.log("API", file);
     return axios.delete("/api/fileupload/" + file);
   },
+  getPropertyName: function (req) {
+    console.log("property", req);
+    return axios.get("/api/propertyname/" + req);
+  },
 };

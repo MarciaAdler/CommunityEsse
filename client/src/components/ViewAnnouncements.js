@@ -8,9 +8,11 @@ import { useStoreContext } from "../utils/GlobalState";
 
 export default function ViewAnnouncements() {
   const [state, dispatch] = useStoreContext();
+  const [propertyName, setPropertyName] = useState("");
 
   useEffect(() => {
     getAnnouncements(state.currentproperty);
+    getPropertyName(state.currentproperty);
   }, []);
   function getAnnouncements(currentproperty) {
     API.getAnnouncements(currentproperty).then((response) => {
@@ -24,11 +26,17 @@ export default function ViewAnnouncements() {
       })
       .catch((err) => console.log(err));
   }
-
+  function getPropertyName(currentproperty) {
+    API.getPropertyName(currentproperty).then((response) => {
+      console.log(response.data.name);
+      setPropertyName(response.data.name);
+    });
+  }
   return (
     <div>
       <h2>
-        <i className="fas fa-building"></i> Building Announcements
+        <i className="fas fa-building"></i> {propertyName} Building
+        Announcements
       </h2>
       <ListGroup>
         {state.announcements.length

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import SideNav from "../components/SideNav";
 import ViewAnnouncements from "../components/ViewAnnouncements";
@@ -19,14 +19,16 @@ import { stat } from "fs";
 
 export default function Home() {
   const [state, dispatch] = useStoreContext();
-
+  const [propertyName, setPropertyName] = useState("");
   useEffect(() => {
     if (state.currentproperty !== 0) {
       getAnnouncements(state.currentproperty);
       getBulletins(state.currentproperty);
+      getPropertyName(state.currentproperty);
     } else if (JSON.parse(localStorage.getItem("currentProperty"))) {
       getAnnouncements(JSON.parse(localStorage.getItem("currentProperty")));
       getBulletins(JSON.parse(localStorage.getItem("currentProperty")));
+      getPropertyName(JSON.parse(localStorage.getItem("currentProperty")));
     }
 
     if (state.currentUser.id !== 0) {
@@ -72,14 +74,25 @@ export default function Home() {
       })
       .catch((err) => console.log(err));
   }
+  function getPropertyName(currentproperty) {
+    API.getPropertyName(currentproperty).then((response) => {
+      console.log(response.data.name);
+      setPropertyName(response.data.name);
+    });
+  }
   return (
     <div>
       {state.loggedIn === true ? (
         <Container className="homepage--container">
+          <br />
+          <div>
+            <h1>Welcome {state.currentUser.firstName}! </h1>
+          </div>
           <div>
             <div className="homepage--col">
               <h2 className="homepage--announcements-title">
-                <i className="fas fa-building"></i> Building Announcements
+                <i className="fas fa-building"></i> {propertyName} Building
+                Announcements
                 <small>
                   &nbsp;
                   <Link to="/announcements">

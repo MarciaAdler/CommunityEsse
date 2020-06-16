@@ -506,4 +506,14 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  getPropertyName: function (req, res) {
+    console.log("apt", req.params);
+    db.Property.findOne({
+      where: { id: req.params.id },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };
