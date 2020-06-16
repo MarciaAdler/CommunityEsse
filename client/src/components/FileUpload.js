@@ -85,19 +85,16 @@ export default function FileUpload() {
         <div>
           <div className="file-upload">
             <input type="file" ref={el} onChange={handleChange} />{" "}
-            <div className="progessBar" style={{ width: progress }}>
-              {progress}
-            </div>
             <button
               type="submit"
               onClick={uploadFile}
-              className="upbutton mb-3"
+              className="upbutton mb-3 mt-3"
             >
               {" "}
               Upload
             </button>
             {/* displaying received image*/}
-            {data.path && <img src={data.path} alt={data.name} />}
+            {/* {data.path && <img src={data.path} alt={data.name} />} */}
           </div>
 
           <hr />
