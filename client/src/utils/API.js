@@ -47,10 +47,6 @@ export default {
   findIdByApt: function (user) {
     return axios.get("/api/receiver/" + user.id + "/" + user.PropertyId);
   },
-  findIdByAptNot: function (user) {
-    console.log("notification", user);
-    return axios.get("/api/notificationreceiver/" + user);
-  },
   createNotification: function (req) {
     return axios.post("/api/notification", req);
   },

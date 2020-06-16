@@ -242,19 +242,7 @@ module.exports = {
         res.status(401).json(err);
       });
   },
-  findIdByAptNot: function (req, res) {
-    console.log("apt", req.params);
-    db.User.findOne({
-      where: {
-        aptNumber: req.params.id,
-        active: "active",
-      },
-    })
-      .then((dbModel) => res.json(dbModel))
-      .catch(function (err) {
-        res.status(401).json(err);
-      });
-  },
+
   updateProfile: function (req, res) {
     db.User.update(
       {
