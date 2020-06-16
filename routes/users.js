@@ -45,6 +45,10 @@ router.route("/api/users/:id").get(usersController.getAllUsers);
 router.route("/api/allusers/:id").get(usersController.getAll);
 router.route("/api/receiver/:id/:PropertyId").get(usersController.findIdByApt);
 
+router
+  .route("/api/notificationreceiver/:id")
+  .get(usersController.findIdByAptNot);
+
 router.route("/api/profile").put(usersController.updateProfile);
 
 router.route("/api/user/:id").get(usersController.refreshCurrentUser);

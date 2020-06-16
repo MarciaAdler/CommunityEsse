@@ -57,7 +57,8 @@ export default function SideNav() {
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/messages">
             <i className="fas fa-envelope-square"></i> Messages{" "}
-            {unreadMessages.length > 0 ? (
+            {state.receivedmessages.filter((message) => message.read === false)
+              .length > 0 ? (
               <span className="side-nav--notification-unread">
                 {" "}
                 ({unreadMessages})
@@ -68,8 +69,9 @@ export default function SideNav() {
           </Nav.Link>
           <Nav.Link className="side-nav--link" href="/notifications">
             <i className="fas fa-scroll"></i> Front Desk Notifications{" "}
-            {state.notifications.length > 0 &&
-            state.currentUser.role === "User" ? (
+            {state.notifications.filter(
+              (notification) => notification.read === false
+            ).length > 0 && state.currentUser.role === "User" ? (
               <span className="side-nav--notification-unread">
                 {" "}
                 ({unreadNotifications})
