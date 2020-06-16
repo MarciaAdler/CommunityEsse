@@ -228,10 +228,12 @@ module.exports = {
       });
   },
   findIdByApt: function (req, res) {
+    console.log("apt", req.params);
     db.User.findOne({
       where: {
-        aptNumber: req.params.aptNum,
+        aptNumber: req.params.id,
         active: "active",
+        PropertyId: req.params.PropertyId,
       },
     })
       .then((dbModel) => res.json(dbModel))

@@ -44,11 +44,12 @@ export default {
     return axios.put("/api/notification/" + req);
   },
   getAll: function (req) {
-    console.log(req);
+    console.log("getallmessages", req);
     return axios.get("/api/allusers/" + req);
   },
   findIdByApt: function (user) {
-    return axios.get("/api/receiver/" + user);
+    console.log(user);
+    return axios.get("/api/receiver/" + user.id + "/" + user.PropertyId);
   },
 
   createNotification: function (req) {

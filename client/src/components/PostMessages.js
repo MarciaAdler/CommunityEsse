@@ -13,7 +13,7 @@ export default function PostMessages() {
   const sentMessage = "Message Sent";
   const [successMessage, setSuccessMessage] = useState("");
   useEffect(() => {
-    getAll();
+    getAll(state.currentproperty);
   }, []);
 
   function createMessage(event) {
@@ -35,16 +35,19 @@ export default function PostMessages() {
       .catch((err) => console.log(err));
   }
 
-  function getAll(event) {
-    API.getAll().then((response) => {
+  function getAll(currentproperty) {
+    API.getAll(currentproperty).then((response) => {
       dispatch({ type: SET_ALL_USERS, allUsers: response.data });
     });
   }
 
   function getId() {
     if (receiverRef.current.value !== "Choose Apt...") {
-      API.findIdByApt(receiverRef.current.value).then((response) => {
-        console.log(response.data.id);
+      API.findIdByApt({
+        id: receiverRef.current.value,
+        PropertyId: state.currentproperty,
+      }).then((response) => {
+        console.log(response);
         receiveId = response.data.id;
         console.log(response.data.id);
       });
