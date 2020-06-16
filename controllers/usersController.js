@@ -193,7 +193,7 @@ module.exports = {
       });
   },
   getAllUsers: function (req, res) {
-    console.log("getall", req.params);
+    console.log("getallusers", req.params);
     console.log("getallbody", req.body);
     db.User.findAll({
       where: {
@@ -510,11 +510,24 @@ module.exports = {
       });
   },
   getPropertyName: function (req, res) {
-    console.log("apt", req.params);
     db.Property.findOne({
       where: { id: req.params.id },
     })
       .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  createRequest: function (req, res) {
+    db.Maintenance.create({
+      request: req.body.request,
+      SenderId: req.body.SenderId,
+      ReceiverId: req.body.ReceiverId,
+      PropertyId: req.body.PropertyId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
       .catch(function (err) {
         res.status(401).json(err);
       });

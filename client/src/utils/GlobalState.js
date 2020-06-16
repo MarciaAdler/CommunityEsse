@@ -14,6 +14,7 @@ import {
   SET_RECEIVED_MESSAGES,
   SET_FILES,
   SET_PROPERTY,
+  SET_REQUESTS,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -87,6 +88,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentproperty: action.currentproperty,
+      };
+    case SET_REQUESTS:
+      return {
+        ...state,
+        requests: action.requests,
       };
     case CLEAR_ALL:
       return {

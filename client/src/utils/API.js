@@ -122,4 +122,10 @@ export default {
   getPropertyName: function (req) {
     return axios.get("/api/propertyname/" + req);
   },
+  getMyRequests: function (req) {
+    return axios.get("/api/myrequests/" + req);
+  },
+  createRequest: function (request) {
+    return axios.post("/api/maintenancerequest", request);
+  },
 };

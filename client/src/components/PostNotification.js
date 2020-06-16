@@ -13,15 +13,9 @@ export default function PostNotification() {
   let receiveId = "";
   useEffect(() => {
     getAllUsers(state.currentproperty);
-    getNotifications(state.currentproperty);
+    getMyNotifications(state.currentUser);
   }, []);
 
-  function getNotifications(currentproperty) {
-    API.getNotifications(currentproperty).then((response) => {
-      console.log(response);
-      dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
-    });
-  }
   function createPost(event) {
     API.createNotification({
       message: postRef.current.value,
@@ -36,7 +30,14 @@ export default function PostNotification() {
       })
       .catch((err) => console.log(err));
   }
-
+  function getMyNotifications(currentUser) {
+    API.getMyNotifications(currentUser.id)
+      .then((response) => {
+        console.log(response);
+        dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
+      })
+      .catch((err) => console.log(err));
+  }
   function getAllUsers(currentproperty) {
     API.getAllUsers(currentproperty)
       .then((response) => {

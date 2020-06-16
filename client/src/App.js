@@ -7,6 +7,7 @@ import SideNav from "../src/components/SideNav";
 import Announcements from "./Pages/Announcements";
 import BulletinBoard from "./Pages/BulletinBoard";
 import Notifications from "./Pages/Notifications";
+import MaintenanceRequests from "./Pages/MaintenanceRequests";
 import Profile from "./Pages/Profile";
 import Messages from "./Pages/Messages";
 import Contacts from "./Pages/Contacts";
@@ -38,6 +39,7 @@ function App() {
             <Route path="/contacts" component={Contacts} />
             <Route path="/reset" component={Reset} />
             <Route path="/files" component={Files} />
+            <Route path="/maintenance" component={MaintenanceRequests} />
           </Switch>
         </Router>
       </StoreProvider>

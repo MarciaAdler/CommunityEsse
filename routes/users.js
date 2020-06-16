@@ -89,4 +89,5 @@ router.route("/api/fileupload/:id").delete(usersController.deleteFile);
 
 router.route("/api/propertyname/:id").get(usersController.getPropertyName);
 
+router.route("/api/maintenancerequest").post(usersController.createRequest);
 module.exports = router;

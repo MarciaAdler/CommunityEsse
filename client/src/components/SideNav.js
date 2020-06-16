@@ -80,6 +80,9 @@ export default function SideNav() {
               ""
             )}
           </Nav.Link>
+          <Nav.Link className="side-nav--link" href="/maintenance">
+            <i className="fas fa-toolbox"></i> Maintenance Requests
+          </Nav.Link>
         </Nav>
       ) : (
         ""
