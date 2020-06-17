@@ -54,8 +54,9 @@ export default function ViewMyClosedRequests() {
                   <br></br>
                   <span className="view-notification--date">
                     <small>
+                      Last Updated At:&nbsp;
                       {dateFormat(
-                        `${request.createdAt}`,
+                        `${request.updatedAt}`,
                         "dddd, mmmm, dS, yyyy, h:MM TT"
                       )}{" "}
                       {"EST"}

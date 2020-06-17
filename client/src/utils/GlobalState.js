@@ -125,6 +125,7 @@ const reducer = (state, action) => {
           senderLastName: action.selectedrequest.senderLastName,
           senderPhone: action.selectedrequest.senderPhone,
           senderAptNum: action.selectedrequest.senderAptNum,
+          status: action.selectedrequest.status,
         },
       };
     case CLEAR_ALL:
@@ -165,6 +166,7 @@ const reducer = (state, action) => {
           senderLastName: "",
           senderPhone: "",
           senderAptNum: 0,
+          status: false,
         },
       };
 
@@ -217,6 +219,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       senderLastName: "",
       senderPhone: "",
       senderAptNum: 0,
+      status: false,
     },
   });
 

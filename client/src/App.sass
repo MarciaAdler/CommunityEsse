@@ -448,17 +448,23 @@ a
   justify-content: space-between
   font-size: 1rem
 .view-files
-.request
-  &--notes
-    width: 80%
-  &--label
 
-  &--maintenanceid
 .request
   &--note-form
     width: 66%
     @include media-breakpoint-only(xs)
       width: 100%
+  &--read-btn
+    color: $darkblue
+    // border: 1px solid $red;
+    border: none
+    background-color: $lightgrey
+    border-radius: 2em
+
+    &:hover
+      background-color: $grey
+      color: $white
+
 .upbutton
   background-color: $grey
   color: $jet

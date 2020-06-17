@@ -33,35 +33,6 @@ export default function ViewPropertyOpenRequests() {
       .catch((err) => console.log(err));
   }
 
-  function markRequestAsClosed(request) {
-    console.log(request);
-    API.markRequestAsClosed(request)
-      .then((response) => {
-        getPropertyOpenRequests(state.currentproperty);
-      })
-      .catch((err) => console.log(err));
-  }
-  // function createRequestNote(request) {
-  //   console.log(noteRef.current.value);
-  //   console.log(request);
-  //   API.addNote({
-  //     id: request,
-  //     notes: noteRef.current.value,
-  //   });
-  // }
-  // function createRequestNote(request) {
-  //   console.log(noteRef.current.value);
-  //   API.addNote({
-  //     id: request,
-  //     notes: noteRef.current.value,
-  //   })
-  //     .then((req) => {
-  //       console.log(req);
-  //       getPropertyOpenRequests(state.currenproperty);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
   // capturing selected song title and artist in url
   const renderRedirect = () => {
     if (state.selectedrequest && redirect) {
@@ -88,6 +59,7 @@ export default function ViewPropertyOpenRequests() {
       senderLastName: request.Sender.lastName,
       senderPhone: request.Sender.phoneNumber,
       senderAptNum: request.Sender.aptNumber,
+      status: request.closed,
     };
     dispatch({
       type: SET_REQUEST,
@@ -102,6 +74,7 @@ export default function ViewPropertyOpenRequests() {
       senderLastName: request.Sender.lastName,
       senderPhone: request.Sender.phoneNumber,
       senderAptNum: request.Sender.aptNumber,
+      status: request.closed,
     };
     window.localStorage.setItem(
       "currentRequest",
@@ -119,87 +92,49 @@ export default function ViewPropertyOpenRequests() {
   // }
   return (
     <div className="list-group">
-      <Accordion>
+      <ListGroup>
         {state.propertyopenrequests.length > 0
           ? state.propertyopenrequests.map((request, index) => {
               return (
-                <Card
-                  key={request.id}
-                  onClick={() => {
-                    selectRequest(request);
-                  }}
-                >
-                  <Card.Header>
-                    <Accordion.Toggle
-                      as={Button}
-                      variant="link"
-                      eventKey={request.id}
-                      className="accordion"
+                <div>
+                  <ListGroup.Item>
+                    {request.request}
+                    <br />
+                    <span>Requester Apt: {request.Sender.aptNumber}</span>
+                    <br />
+                    <span className="view-notification--author-title">
+                      <small>
+                        Requester Name: {request.Sender.firstName}{" "}
+                        {request.Sender.lastName}{" "}
+                      </small>
+                    </span>
+
+                    <br></br>
+                    <span className="view-notification--date">
+                      <small>
+                        Submitted On:&nbsp;
+                        {dateFormat(
+                          `${request.createdAt}`,
+                          "dddd, mmmm, dS, yyyy, h:MM TT"
+                        )}{" "}
+                        {"EST"}
+                      </small>
+                    </span>
+                    <br />
+                    <Button
+                      className="button"
+                      onClick={() => {
+                        selectRequest(request);
+                      }}
                     >
-                      {request.request}
-                      <br />
-                      <span>Requester Apt: {request.Sender.aptNumber}</span>
-                      <br />
-                      <span className="view-notification--author-title">
-                        <small>
-                          Requester Name: {request.Sender.firstName}{" "}
-                          {request.Sender.lastName}{" "}
-                        </small>
-                      </span>
-
-                      <br></br>
-                      <span className="view-notification--date">
-                        <small>
-                          {dateFormat(
-                            `${request.createdAt}`,
-                            "dddd, mmmm, dS, yyyy, h:MM TT"
-                          )}{" "}
-                          {"EST"}
-                        </small>
-                      </span>
-                    </Accordion.Toggle>
-                    {request.closed === false ? (
-                      <button
-                        className="view-notification--read-btn"
-                        onClick={() => {
-                          markRequestAsClosed(request.id);
-                        }}
-                      >
-                        Close
-                      </button>
-                    ) : (
-                      ""
-                    )}
-                  </Card.Header>
-                  {/* <Accordion.Collapse eventKey={request.id}>
-                    <Card.Body>
-                      <Form className="request--note-form">
-                        <Form.Group controlId="noteForm">
-                          <Form.Label>Add Note</Form.Label>
-                          <Form.Control
-                            as="textarea"
-                            rows="5"
-                            ref={noteRef}
-                            defaultValue={request.notes}
-                          />
-                        </Form.Group>
-
-                        <Button
-                          className="button"
-                          onClick={() => {
-                            createRequestNote(request.id);
-                          }}
-                        >
-                          Add
-                        </Button>
-                      </Form>
-                    </Card.Body>
-                  </Accordion.Collapse> */}
-                </Card>
+                      View Request
+                    </Button>
+                  </ListGroup.Item>
+                </div>
               );
             })
           : ""}
-      </Accordion>
+      </ListGroup>
       {renderRedirect()}
     </div>
   );

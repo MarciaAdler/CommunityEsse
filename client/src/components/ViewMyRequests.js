@@ -25,21 +25,13 @@ export default function ViewMyRequests() {
       .catch((err) => console.log(err));
   }
 
-  //   function markAsRead(notification) {
-  //     console.log(notification);
-  //     API.markAsRead(notification)
-  //       .then((response) => {
-  //         getMyRequests(state.currentUser);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  function hideRequest(request) {
-    API.hideNotification(request)
-      .then((res) => {
-        getMyOpenRequests(state.currentUser);
-      })
-      .catch((err) => console.log(err));
-  }
+  // function hideRequest(request) {
+  //   API.hideNotification(request)
+  //     .then((res) => {
+  //       getMyOpenRequests(state.currentUser);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
   return (
     <div>
       <ListGroup>
@@ -47,15 +39,30 @@ export default function ViewMyRequests() {
           ? state.openrequests.map((request, index) => {
               return (
                 <ListGroup.Item key={request.id}>
-                  {request.request}
-                  <br />
-                  {request.notes !== null ? <p>{request.notes}</p> : ""}
-
-                  <br></br>
+                  <h3>Request Id: {request.id}</h3>
+                  <strong>Request:</strong> {request.request}
                   <span className="view-notification--date">
+                    <br />
                     <small>
+                      Submitted on:&nbsp;
                       {dateFormat(
                         `${request.createdAt}`,
+                        "dddd, mmmm, dS, yyyy, h:MM TT"
+                      )}{" "}
+                      {"EST"}
+                    </small>
+                  </span>
+                  <hr />
+                  <p>
+                    <strong>Notes from Maintenance:</strong>
+                    <br />
+                    {request.notes}
+                  </p>
+                  <span className="view-notification--date">
+                    <small>
+                      Last Updated At:&nbsp;
+                      {dateFormat(
+                        `${request.updatedAt}`,
                         "dddd, mmmm, dS, yyyy, h:MM TT"
                       )}{" "}
                       {"EST"}
