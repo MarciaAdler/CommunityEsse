@@ -14,7 +14,11 @@ import {
   SET_RECEIVED_MESSAGES,
   SET_FILES,
   SET_PROPERTY,
-  SET_REQUESTS,
+  SET_OPENREQUESTS,
+  SET_CLOSEDREQUESTS,
+  SET_PROPERTYOPENREQUESTS,
+  SET_PROPERTYCLOSEDREQUESTS,
+  SET_REQUEST,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -89,10 +93,39 @@ const reducer = (state, action) => {
         ...state,
         currentproperty: action.currentproperty,
       };
-    case SET_REQUESTS:
+    case SET_OPENREQUESTS:
       return {
         ...state,
-        requests: action.requests,
+        openrequests: action.openrequests,
+      };
+    case SET_CLOSEDREQUESTS:
+      return {
+        ...state,
+        closedrequests: action.closedrequests,
+      };
+    case SET_PROPERTYOPENREQUESTS:
+      return {
+        ...state,
+        propertyopenrequests: action.propertyopenrequests,
+      };
+    case SET_PROPERTYCLOSEDREQUESTS:
+      return {
+        ...state,
+        propertyclosedrequests: action.propertyclosedrequests,
+      };
+    case SET_REQUEST:
+      return {
+        ...state,
+        selectedrequest: {
+          id: action.selectedrequest.id,
+          request: action.selectedrequest.request,
+          notes: action.selectedrequest.notes,
+          SenderId: action.selectedrequest.SenderId,
+          senderFirstName: action.selectedrequest.senderFirstName,
+          senderLastName: action.selectedrequest.senderLastName,
+          senderPhone: action.selectedrequest.senderPhone,
+          senderAptNum: action.selectedrequest.senderAptNum,
+        },
       };
     case CLEAR_ALL:
       return {
@@ -119,6 +152,20 @@ const reducer = (state, action) => {
         receivedmessages: [],
         uploadedfiles: [],
         currentproperty: 0,
+        openrequests: [],
+        closedrequests: [],
+        propertyopenrequests: [],
+        propertyclosedrequests: [],
+        selectedrequest: {
+          id: 0,
+          request: "",
+          notes: "",
+          SenderId: 0,
+          senderFirstName: "",
+          senderLastName: "",
+          senderPhone: "",
+          senderAptNum: 0,
+        },
       };
 
     case LOADING:
@@ -157,6 +204,20 @@ const StoreProvider = ({ value = [], ...props }) => {
     receivedmessages: [],
     uploadedfiles: [],
     currentproperty: 0,
+    openrequests: [],
+    closedrequests: [],
+    propertyopenrequests: [],
+    propertyclosedrequests: [],
+    selectedrequest: {
+      id: 0,
+      request: "",
+      notes: "",
+      SenderId: 0,
+      senderFirstName: "",
+      senderLastName: "",
+      senderPhone: "",
+      senderAptNum: 0,
+    },
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

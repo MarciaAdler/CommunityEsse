@@ -449,12 +449,16 @@ a
   font-size: 1rem
 .view-files
 .request
-  &--form
-
+  &--notes
+    width: 80%
   &--label
 
   &--maintenanceid
-
+.request
+  &--note-form
+    width: 66%
+    @include media-breakpoint-only(xs)
+      width: 100%
 .upbutton
   background-color: $grey
   color: $jet

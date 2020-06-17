@@ -13,6 +13,7 @@ import Messages from "./Pages/Messages";
 import Contacts from "./Pages/Contacts";
 import Reset from "./Pages/Reset";
 import Files from "./Pages/Files";
+import Request from "./Pages/Request";
 import Footer from "../src/components/Footer";
 import { StoreProvider } from "../src/utils/GlobalState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -40,6 +41,7 @@ function App() {
             <Route path="/reset" component={Reset} />
             <Route path="/files" component={Files} />
             <Route path="/maintenance" component={MaintenanceRequests} />
+            <Route path="/request" component={Request} />
           </Switch>
         </Router>
       </StoreProvider>

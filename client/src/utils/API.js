@@ -128,4 +128,27 @@ export default {
   createRequest: function (request) {
     return axios.post("/api/maintenancerequest", request);
   },
+  getMyOpenRequests: function (user) {
+    return axios.get("/api/getmyopenrequests/" + user);
+  },
+  getMyClosedRequests: function (user) {
+    return axios.get("/api/getmyclosedrequests/" + user);
+  },
+  getPropertyOpenRequests: function (property) {
+    return axios.get("/api/getpropertyopenrequests/" + property);
+  },
+  markRequestAsClosed: function (request) {
+    return axios.put("/api/closerequest/" + request);
+  },
+  getPropertyClosedRequests: function (property) {
+    return axios.get("/api/getpropertyclosedrequests/" + property);
+  },
+  addNote: function (request) {
+    console.log(request);
+    return axios.put("/api/addnote/" + request.id + "/" + request.notes);
+  },
+  getRequestFromURL: function (req, res) {
+    console.log(req);
+    return axios.get("/api/request/" + req);
+  },
 };

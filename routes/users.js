@@ -90,4 +90,26 @@ router.route("/api/fileupload/:id").delete(usersController.deleteFile);
 router.route("/api/propertyname/:id").get(usersController.getPropertyName);
 
 router.route("/api/maintenancerequest").post(usersController.createRequest);
+
+router
+  .route("/api/getmyopenrequests/:id")
+  .get(usersController.getMyOpenRequests);
+
+router
+  .route("/api/getmyclosedrequests/:id")
+  .get(usersController.getMyClosedRequests);
+
+router
+  .route("/api/getpropertyopenrequests/:id")
+  .get(usersController.getPropertyOpenRequests);
+
+router.route("/api/closerequest/:id").put(usersController.markRequestClosed);
+
+router
+  .route("/api/getpropertyclosedrequests/:id")
+  .get(usersController.getPropertyClosedRequests);
+
+router.route("/api/request/:id").get(usersController.findRequest);
+
+router.route("/api/addnote/:id/:note").put(usersController.addNote);
 module.exports = router;

@@ -532,4 +532,92 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  getMyOpenRequests: function (req, res) {
+    db.Maintenance.findAll({
+      where: { SenderId: req.params.id, closed: false },
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getMyClosedRequests: function (req, res) {
+    db.Maintenance.findAll({
+      where: { SenderId: req.params.id, closed: true },
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getPropertyOpenRequests: function (req, res) {
+    db.Maintenance.findAll({
+      where: { PropertyId: req.params.id, closed: false },
+      include: [
+        {
+          model: db.User,
+          as: "Sender",
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  markRequestClosed: function (req, res) {
+    db.Maintenance.update({ closed: true }, { where: { id: req.params.id } })
+
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getPropertyClosedRequests: function (req, res) {
+    db.Maintenance.findAll({
+      where: { PropertyId: req.params.id, closed: true },
+      include: [
+        {
+          model: db.User,
+          as: "Sender",
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  findRequest: function (req, res) {
+    db.Maintenance.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: db.User,
+          as: "Sender",
+        },
+      ],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  addNote: function (req, res) {
+    console.log("addnote", req.params);
+    db.Maintenance.update(
+      { notes: req.params.note },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
 };

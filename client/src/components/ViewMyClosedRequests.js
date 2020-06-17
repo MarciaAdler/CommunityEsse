@@ -1,50 +1,50 @@
 import React, { useEffect } from "react";
 import { Row, ListGroup } from "react-bootstrap";
 import dateFormat from "dateformat";
-import { SET_OPENREQUESTS } from "../utils/actions";
+import { SET_CLOSEDREQUESTS } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 
-export default function ViewMyRequests() {
+export default function ViewMyClosedRequests() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
     if (state.currentUser.id !== 0) {
-      getMyOpenRequests(state.currentUser);
+      getMyClosedRequests(state.currentUser);
     } else {
-      getMyOpenRequests(JSON.parse(localStorage.getItem("currentUser")));
+      getMyClosedRequests(JSON.parse(localStorage.getItem("currentUser")));
     }
   }, []);
 
-  function getMyOpenRequests(currentUser) {
-    API.getMyOpenRequests(currentUser.id)
+  function getMyClosedRequests(currentUser) {
+    API.getMyClosedRequests(currentUser.id)
       .then((response) => {
         console.log(response);
-        dispatch({ type: SET_OPENREQUESTS, openrequests: response.data });
+        dispatch({ type: SET_CLOSEDREQUESTS, closedrequests: response.data });
       })
       .catch((err) => console.log(err));
   }
 
-  //   function markAsRead(notification) {
-  //     console.log(notification);
-  //     API.markAsRead(notification)
+  //   function markAsClosed(request) {
+  //     console.log(request);
+  //     API.markAsClosed(request)
   //       .then((response) => {
-  //         getMyRequests(state.currentUser);
+  //         getMyClosedRequests(state.currentUser);
   //       })
   //       .catch((err) => console.log(err));
   //   }
-  function hideRequest(request) {
-    API.hideNotification(request)
-      .then((res) => {
-        getMyOpenRequests(state.currentUser);
-      })
-      .catch((err) => console.log(err));
-  }
+  //   function hideRequest(request) {
+  //     API.hideNotification(request)
+  //       .then((res) => {
+  //         getMyOpenRequests(state.currentUser);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
   return (
     <div>
       <ListGroup>
-        {state.openrequests
-          ? state.openrequests.map((request, index) => {
+        {state.closedrequests
+          ? state.closedrequests.map((request, index) => {
               return (
                 <ListGroup.Item key={request.id}>
                   {request.request}
