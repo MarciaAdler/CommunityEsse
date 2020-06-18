@@ -121,14 +121,18 @@ export default function ViewPropertyOpenRequests() {
                       </small>
                     </span>
                     <br />
-                    <Button
-                      className="button"
-                      onClick={() => {
-                        selectRequest(request);
-                      }}
-                    >
-                      View Request
-                    </Button>
+                    {state.currentUser.role === "Maintenance" ? (
+                      <Button
+                        className="button"
+                        onClick={() => {
+                          selectRequest(request);
+                        }}
+                      >
+                        View Request
+                      </Button>
+                    ) : (
+                      ""
+                    )}
                   </ListGroup.Item>
                 </div>
               );
