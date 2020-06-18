@@ -94,6 +94,8 @@ export default function ViewPropertyOpenRequests() {
         {state.propertyclosedrequests.map((request, index) => {
           return (
             <ListGroup.Item key={request.id}>
+              <h3>Request Id: {request.id}</h3>
+              <strong>Request: </strong>
               {request.request}
               <br />
               <span>Requester Apt: {request.Sender.aptNumber}</span>
