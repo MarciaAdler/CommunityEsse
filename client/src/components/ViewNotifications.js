@@ -50,7 +50,8 @@ export default function ViewNotification() {
                   <span className="view-notification--author-title">
                     <small>Posted By: {notification.Sender.firstName} </small>
                   </span>
-                  {state.currentUser.role === "Front Desk" ? (
+                  {state.currentUser.role === "Front Desk" &&
+                  notification.closed === true ? (
                     <button
                       className="view-notification--delete-btn"
                       onClick={() => {
