@@ -119,7 +119,8 @@ export default function ViewPropertyOpenRequests() {
                 </small>
               </span>
               <br />
-              {state.currentUser.role === "Maintenance" ? (
+              {state.currentUser.role === "Maintenance" ||
+              state.currentUser.role === "Admin" ? (
                 <Button
                   className="button"
                   onClick={() => {
