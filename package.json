@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/MarciaAdler/CommunityLife2/issues"
   },
-  "homepage": "https://community.appsbymarcia.com",
+  "homepage": "https://boiling-depths-09639.herokuapp.com/",
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
