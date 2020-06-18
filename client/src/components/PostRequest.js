@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { Container, Form, Button } from "react-bootstrap";
 import API from "../utils/API";
-import { SET_USERS, SET_REQUESTS } from "../utils/actions";
+import { SET_USERS, SET_REQUESTS, SET_OPENREQUESTS } from "../utils/actions";
 export default function PostRequest() {
   const [state, dispatch] = useStoreContext();
   const requestRef = useRef();
@@ -32,7 +32,7 @@ export default function PostRequest() {
     })
       .then((results) => {
         console.log(results.data);
-
+        updateSubmittedRequests(state.currentUser);
         document.getElementById("notification-apt-form").value = "";
       })
       .catch((err) => console.log(err));
@@ -69,6 +69,14 @@ export default function PostRequest() {
       .then((res) => {
         createRequest();
       });
+  }
+  function updateSubmittedRequests(currentUser) {
+    API.getMyOpenRequests(currentUser.id)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({ type: SET_OPENREQUESTS, openrequests: response.data });
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <div className="post-bulletin--container">

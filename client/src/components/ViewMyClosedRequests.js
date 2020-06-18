@@ -47,10 +47,18 @@ export default function ViewMyClosedRequests() {
           ? state.closedrequests.map((request, index) => {
               return (
                 <ListGroup.Item key={request.id}>
-                  {request.request}
+                  <h3>Request Id: {request.id}</h3>
+                  <strong>Request:</strong> {request.request}
                   <br />
-                  {request.notes !== null ? <p>{request.notes}</p> : ""}
-
+                  {request.notes !== null ? (
+                    <p>
+                      <strong>Notes from Maintenance:</strong>
+                      <br />
+                      {request.notes}
+                    </p>
+                  ) : (
+                    ""
+                  )}
                   <br></br>
                   <span className="view-notification--date">
                     <small>
