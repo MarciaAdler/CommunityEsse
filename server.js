@@ -18,7 +18,8 @@ var compression = require("compression");
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public")); //to access the files in public folder
+// app.use(express.static("public")); //to access the files in public folder
+app.use(express.static(path.join(__dirname, "/client/build/")));
 app.use(cors());
 app.use(fileUpload());
 // Serve up static assets (usually on heroku)
@@ -54,7 +55,7 @@ function getFormattedDate() {
 // multer instance
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "client/public/uploads/");
+    cb(null, "client/build/uploads/");
   },
   filename: function (req, file, cb) {
     console.log("server", getFormattedDate() + "-" + file.name);
@@ -97,7 +98,7 @@ app.post("/api/upload", (req, res) => {
   const myFile = req.files.file;
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/uploads/${req.body.id}-${myFile.name}`,
+    `${__dirname}/client/build/uploads/${req.body.id}-${myFile.name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -130,7 +131,7 @@ app.post("/api/pdfupload", (req, res) => {
   const myFile = req.files.file;
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/files/${req.body.property}-${myFile.name}`,
+    `${__dirname}/client/build/files/${req.body.property}-${myFile.name}`,
     function (err) {
       if (err) {
         console.log(err);
