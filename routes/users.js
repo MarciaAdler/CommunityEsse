@@ -112,4 +112,6 @@ router
 router.route("/api/request/:id").get(usersController.findRequest);
 
 router.route("/api/addnote/:id/:note").put(usersController.addNote);
+
+router.route("/api/getrequest/:id").get(usersController.getRequest);
 module.exports = router;

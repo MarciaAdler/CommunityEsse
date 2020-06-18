@@ -151,4 +151,8 @@ export default {
     console.log(req);
     return axios.get("/api/request/" + req);
   },
+  getRequest: function (req, res) {
+    console.log(req);
+    return axios.get("/api/getrequest/" + req);
+  },
 };

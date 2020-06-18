@@ -59,16 +59,37 @@ export default function ViewRequest() {
   function markRequestAsClosed(request) {
     console.log(request);
     API.markRequestAsClosed(request)
-      .then((response) => {})
+      .then((response) => {
+        updateRequest(state.selectedrequest.id);
+      })
       .catch((err) => console.log(err));
   }
-  return (
-    <div>
-      <h2>
-        <i className="fas fa-toolbox"></i> Request #{state.selectedrequest.id}{" "}
-        from Apt: {state.selectedrequest.senderAptNum}
-      </h2>
-      {state.selectedrequest.status === false ? (
+
+  function updateRequest(request) {
+    API.getRequest(request)
+      .then((res) => {
+        console.log(res);
+        const request = {
+          id: res.data.id,
+          request: res.data.request,
+          notes: res.data.notes,
+          SenderId: res.data.SenderId,
+          senderFirstName: res.data.Sender.firstName,
+          senderLastName: res.data.Sender.lastName,
+          senderPhone: res.data.Sender.phoneNumber,
+          senderAptNum: res.data.Sender.aptNumber,
+          status: res.data.closed,
+        };
+        dispatch({
+          type: SET_REQUEST,
+          selectedrequest: request,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+  function checkIfClosed(request) {
+    if (state.selectedrequest.status === false) {
+      return (
         <Button
           className="request--read-btn mb-2"
           onClick={() => {
@@ -77,11 +98,22 @@ export default function ViewRequest() {
         >
           Close Request
         </Button>
-      ) : (
+      );
+    } else {
+      return (
         <div className="mb-2">
           <strong>Status: </strong>"Closed"
         </div>
-      )}
+      );
+    }
+  }
+  return (
+    <div>
+      <h2>
+        <i className="fas fa-toolbox"></i> Request #{state.selectedrequest.id}{" "}
+        from Apt: {state.selectedrequest.senderAptNum}
+      </h2>
+      {checkIfClosed(state.selectedrequest)}
       <div className="viewrequest--body">
         <h4>
           Requester Name: {state.selectedrequest.senderFirstName}{" "}

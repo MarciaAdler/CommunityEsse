@@ -620,4 +620,17 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  getRequest: function (req, res) {
+    db.Maintenance.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          model: db.User,
+          as: "Sender",
+        },
+      ],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
 };
