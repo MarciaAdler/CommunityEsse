@@ -52,7 +52,7 @@ function getFormattedDate() {
   return mm + "-" + dd + "-" + yyyy;
 }
 
-// multer instance
+// multer instance not using
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "client/build/uploads/");
