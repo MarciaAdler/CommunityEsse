@@ -21,7 +21,7 @@ export default function ViewNotification() {
     console.log(notification);
     API.markAsClosed(notification)
       .then((response) => {
-        getNotifications(state.currentpropety);
+        getNotifications(state.currentproperty);
       })
       .catch((err) => console.log(err));
   }

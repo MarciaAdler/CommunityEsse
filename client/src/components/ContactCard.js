@@ -43,7 +43,9 @@ export default function ContactCard() {
                         {user.firstName} {user.lastName}
                       </Card.Title>
 
-                      {user.role === "Admin" || user.role === "Front Desk" ? (
+                      {user.role === "Admin" ||
+                      user.role === "Front Desk" ||
+                      user.role === "Maintenance" ? (
                         <Card.Subtitle className="mb-3 text-muted">
                           Role: {user.role}
                         </Card.Subtitle>

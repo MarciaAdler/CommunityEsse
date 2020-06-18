@@ -13,7 +13,7 @@ export default function PostNotification() {
   let receiveId = "";
   useEffect(() => {
     getAllUsers(state.currentproperty);
-    getMyNotifications(state.currentUser);
+    getNotifications(state.currentproperty);
   }, []);
 
   function createPost(event) {
@@ -30,8 +30,8 @@ export default function PostNotification() {
       })
       .catch((err) => console.log(err));
   }
-  function getMyNotifications(currentUser) {
-    API.getMyNotifications(currentUser.id)
+  function getNotifications(currentproperty) {
+    API.getNotifications(currentproperty)
       .then((response) => {
         console.log(response);
         dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
