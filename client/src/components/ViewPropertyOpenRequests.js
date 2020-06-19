@@ -98,6 +98,8 @@ export default function ViewPropertyOpenRequests() {
               return (
                 <div>
                   <ListGroup.Item>
+                    <h3>Request Id: {request.id}</h3>
+                    <strong>Request: </strong>
                     {request.request}
                     <br />
                     <span>Requester Apt: {request.Sender.aptNumber}</span>
