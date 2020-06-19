@@ -96,48 +96,46 @@ export default function ViewPropertyOpenRequests() {
         {state.propertyopenrequests.length > 0
           ? state.propertyopenrequests.map((request, index) => {
               return (
-                <div>
-                  <ListGroup.Item>
-                    <h3>Request Id: {request.id}</h3>
-                    <strong>Request: </strong>
-                    {request.request}
-                    <br />
-                    <span>Requester Apt: {request.Sender.aptNumber}</span>
-                    <br />
-                    <span className="view-notification--author-title">
-                      <small>
-                        Requester Name: {request.Sender.firstName}{" "}
-                        {request.Sender.lastName}{" "}
-                      </small>
-                    </span>
+                <ListGroup.Item key={request.id}>
+                  <h3>Request Id: {request.id}</h3>
+                  <strong>Request: </strong>
+                  {request.request}
+                  <br />
+                  <span>Requester Apt: {request.Sender.aptNumber}</span>
+                  <br />
+                  <span className="view-notification--author-title">
+                    <small>
+                      Requester Name: {request.Sender.firstName}{" "}
+                      {request.Sender.lastName}{" "}
+                    </small>
+                  </span>
 
-                    <br></br>
-                    <span className="view-notification--date">
-                      <small>
-                        Submitted On:&nbsp;
-                        {dateFormat(
-                          `${request.createdAt}`,
-                          "dddd, mmmm, dS, yyyy, h:MM TT"
-                        )}{" "}
-                        {"EST"}
-                      </small>
-                    </span>
-                    <br />
-                    {state.currentUser.role === "Maintenance" ||
-                    state.currentUser.role === "Admin" ? (
-                      <Button
-                        className="button"
-                        onClick={() => {
-                          selectRequest(request);
-                        }}
-                      >
-                        View Request
-                      </Button>
-                    ) : (
-                      ""
-                    )}
-                  </ListGroup.Item>
-                </div>
+                  <br></br>
+                  <span className="view-notification--date">
+                    <small>
+                      Submitted On:&nbsp;
+                      {dateFormat(
+                        `${request.createdAt}`,
+                        "dddd, mmmm, dS, yyyy, h:MM TT"
+                      )}{" "}
+                      {"EST"}
+                    </small>
+                  </span>
+                  <br />
+                  {state.currentUser.role === "Maintenance" ||
+                  state.currentUser.role === "Admin" ? (
+                    <Button
+                      className="button"
+                      onClick={() => {
+                        selectRequest(request);
+                      }}
+                    >
+                      View Request
+                    </Button>
+                  ) : (
+                    ""
+                  )}
+                </ListGroup.Item>
               );
             })
           : ""}
