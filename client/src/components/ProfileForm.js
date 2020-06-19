@@ -220,7 +220,8 @@ export default function ProfileForm() {
               type="text"
               name="username"
               ref={usernameRef}
-              defaultValue={`${state.currentUser.username}`}
+              disabled
+              value={`${state.currentUser.username}`}
             />
           </Form.Group>
 
