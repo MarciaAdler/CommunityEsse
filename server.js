@@ -6,11 +6,11 @@ const app = express();
 const path = require("path");
 const Sequelize = require("sequelize");
 var db = require("./models");
-var multer = require("multer");
-const cors = require("cors");
+// var multer = require("multer");
+// const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const passport = require("passport");
-const fs = require("fs");
+// const fs = require("fs");
 const users = require("./routes/users");
 var session = require("express-session");
 var compression = require("compression");
@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // app.use(express.static("public")); //to access the files in public folder
 app.use(express.static(path.join(__dirname, "/client/build/")));
-app.use(cors());
-app.use(fileUpload());
+// app.use(cors());
+// app.use(fileUpload());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -53,15 +53,15 @@ function getFormattedDate() {
 }
 
 // multer instance not using
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "client/build/uploads/");
-  },
-  filename: function (req, file, cb) {
-    console.log("server", getFormattedDate() + "-" + file.name);
-    cb(null, req.body.id + "-" + file.name);
-  },
-});
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "client/build/uploads/");
+//   },
+//   filename: function (req, file, cb) {
+//     console.log("server", getFormattedDate() + "-" + file.name);
+//     cb(null, req.body.id + "-" + file.name);
+//   },
+// });
 
 // file filter
 // const fileFilter = (req, file, cd) => {
@@ -72,7 +72,7 @@ var storage = multer.diskStorage({
 //   }
 // };
 // upload instance
-const upload = multer({ storage: storage }).single("file");
+// const upload = multer({ storage: storage }).single("file");
 
 // Send every other request to the React app
 // Define any API routes before this runs

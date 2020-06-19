@@ -8,7 +8,8 @@ export default function BulletinBoard() {
 
   return (
     <Container className="bulletin--container">
-      {state.loggedIn === true && state.currentUser.role === "Maintenance" ? (
+      {(state.loggedIn === true && state.currentUser.role === "Maintenance") ||
+      (state.loggedIn === true && state.currentUser.role === "Admin") ? (
         <ViewRequest />
       ) : (
         <LoggedOut />
