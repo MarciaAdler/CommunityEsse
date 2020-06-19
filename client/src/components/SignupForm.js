@@ -107,7 +107,7 @@ export default function SignupForm() {
                 ref={roleRef}
               >
                 <option>User</option>
-                <option>Admin</option>
+                {/* <option>Admin</option> */}
                 <option>Front Desk</option>
                 <option>Maintenance</option>
               </Form.Control>
