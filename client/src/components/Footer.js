@@ -13,7 +13,11 @@ export default function Footer() {
           />
           Community Esse
         </Col>
-        <Col className="footer--about">About</Col>
+        <Col className="footer--about">
+          <a href="/about" className="footer--aboutlink">
+            About
+          </a>
+        </Col>
       </Row>
     </Container>
   );
