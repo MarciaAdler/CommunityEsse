@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 import { SET_REQUEST } from "../utils/actions";
@@ -8,6 +8,7 @@ import dateFormat from "dateformat";
 export default function ViewRequest() {
   const [state, dispatch] = useStoreContext();
   const noteRef = useRef();
+  const [successMessage, setSuccessMessage] = useState("");
   useEffect(() => {
     loadRequest(window.location.search);
   }, []);
@@ -53,6 +54,7 @@ export default function ViewRequest() {
     })
       .then((req) => {
         console.log(req);
+        confirmSent();
       })
       .catch((err) => console.log(err));
   }
@@ -107,6 +109,12 @@ export default function ViewRequest() {
       );
     }
   }
+  function confirmSent() {
+    setSuccessMessage("Note posted");
+    setTimeout(() => {
+      document.getElementById("success-message").style.display = "none";
+    }, 1000);
+  }
   return (
     <div>
       <h2>
@@ -151,6 +159,9 @@ export default function ViewRequest() {
           >
             Add Note
           </Button>
+          <span className="post-messages--success" id="success-message">
+            {successMessage}
+          </span>
         </Form>
       ) : (
         <div>
