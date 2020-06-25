@@ -20,10 +20,6 @@ export default function SignupForm() {
   const renderRedirect = () => {
     if (sendLogin && state.currentUser.id === 0) {
       return <Redirect to="/" />;
-      // } else {
-      //   const form = document.getElementById("myForm");
-      //   form.reset();
-      // }
     }
   };
   function signUp(event) {

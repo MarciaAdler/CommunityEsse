@@ -60,11 +60,6 @@ export default function PostNotification() {
       });
     }
   }
-  // function getNotifications(message) {
-  //   API.getNotifications(message).then((response) => {
-  //     dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
-  //   });
-  // }
 
   return (
     <div className="post-bulletin--container">

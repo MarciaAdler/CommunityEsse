@@ -71,19 +71,6 @@ export default function ViewMyClosedRequests() {
                     </small>
                   </span>
                   <br />
-                  {/* {state.currentUser.role === "User" &&
-                  notification.read === false ? (
-                    <button
-                      className="view-notification--read-btn"
-                      onClick={() => {
-                        markAsRead(notification.id);
-                      }}
-                    >
-                      Mark as Read
-                    </button>
-                  ) : (
-                    ""
-                  )} */}
                 </ListGroup.Item>
               );
             })

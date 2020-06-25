@@ -41,7 +41,7 @@ export default function ViewPropertyOpenRequests() {
   //     .catch((err) => console.log(err));
   // }
 
-  // capturing selected song title and artist in url
+  // capturing request id in url
   const renderRedirect = () => {
     if (state.selectedrequest && redirect) {
       return (

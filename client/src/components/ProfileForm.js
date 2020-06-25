@@ -106,58 +106,6 @@ export default function ProfileForm() {
     setFileName(state.currentUser.id + "-" + e.target.files[0].name);
   };
 
-  //   const uploadImage = (event) => {
-  //     event.preventDefault();
-  //     const formData = new FormData();
-  //     formData.append("file", file);
-  //     API.uploadFile(formData, {
-  //       headers: {
-  //         "Content Type": "multipart/form-data",
-  //       },
-  //     })
-  //       .then((res) => {
-  //         console.log(res.statusText);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   };
-
-  // code to download image from database
-  // function downloadImage(image) {
-  //   API.getImage(image)
-  //     .then((response) => {
-  //       console.log(response);
-  //       setImage(response.data[0].image.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-  // function uploadImageFile(e) {
-  //   e.preventDefault();
-
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   // formData.append("id", currentId);
-  //   console.log(file);
-  //   // to store image in database
-  //   // API.uploadImage(formData)
-  //   //   .then((res) => {
-  //   //     console.log(res.data);
-  //   //     downloadImage(res.data);
-  //   //   })
-
-  //   //   .catch((err) => console.log(err))
-  //   API.uploadFile(formData, {
-  //     headers: {
-  //       "Content Type": "multipart/form-data",
-  //     },
-  //   })
-  //     .then((res) => {
-  //       console.log(res.statusText);
-  //     })
-
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
   function uploadImageFile(e) {
     e.preventDefault();
     const formData = new FormData();

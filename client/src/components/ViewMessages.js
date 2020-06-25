@@ -10,37 +10,6 @@ import PostMessages from "../components/PostMessages";
 export default function ViewNotification() {
   const [state, dispatch] = useStoreContext();
 
-  // useEffect(() => {
-  //   if (state.currentUser.id !== 0) {
-  //     getSentMessages(state.currentUser);
-  //   } else {
-  //     getSentMessages(JSON.parse(localStorage.getItem("currentUser")));
-  //   }
-  // }, []);
-
-  // function getMyNotifications(currentUser) {
-  //   API.getMyNotifications(currentUser.id)
-  //     .then((response) => {
-  //       dispatch({ type: SET_NOTIFICATIONS, notifications: response.data });
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
-  // function markAsRead(notification) {
-  //   API.markAsRead(notification)
-  //     .then((response) => {
-  //       getMyNotifications(state.currentUser);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-  // function deleteNotification(notification) {
-  //   API.deleteNotification(notification)
-  //     .then((res) => {
-  //       getMyNotifications(state.currentUser);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
   return (
     <div>
       <h2>
