@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { Container, Form, Button } from "react-bootstrap";
 import API from "../utils/API";
@@ -8,6 +8,8 @@ export default function PostRequest() {
   const requestRef = useRef();
   const receiverRef = useRef();
   let receiveId = "";
+  const sentMessage = "Message Sent";
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (state.currentproperty !== 0) {
@@ -75,8 +77,15 @@ export default function PostRequest() {
       .then((response) => {
         console.log(response.data);
         dispatch({ type: SET_OPENREQUESTS, openrequests: response.data });
+        confirmSent();
       })
       .catch((err) => console.log(err));
+  }
+  function confirmSent() {
+    setSuccessMessage(sentMessage);
+    setTimeout(() => {
+      document.getElementById("success-message").style.display = "none";
+    }, 1000);
   }
   return (
     <div className="post-bulletin--container">
@@ -105,6 +114,9 @@ export default function PostRequest() {
         <button className="button" type="submit" onClick={getId}>
           Send
         </button>
+        <span className="post-messages--success" id="success-message">
+          {successMessage}
+        </span>
       </Form>
     </div>
   );
