@@ -37,10 +37,11 @@ export default function Home() {
     } else if (JSON.parse(localStorage.getItem("currentUser"))) {
       getMyNotifications(JSON.parse(localStorage.getItem("currentUser")));
       getReceivedMessages(JSON.parse(localStorage.getItem("currentUser")));
-    } else {
-      getNotifications(state.notifications);
-      getReceivedMessages(state.receivedmessages);
     }
+    // } else{
+    //   getNotifications(state.notifications);
+    //   getReceivedMessages(state.receivedmessages);
+    // }
   }, []);
   function getAnnouncements(currentproperty) {
     API.getAnnouncements(currentproperty).then((response) => {

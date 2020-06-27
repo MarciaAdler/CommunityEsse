@@ -13,45 +13,44 @@ export default function MaintenanceRequests() {
   const [state, dispatch] = useStoreContext();
   return (
     <Container className="messages--container">
-      {/* {state.loggedIn === true ? <ViewRequests /> : <LoggedOut />} */}
-
-      {/* {state.currentUser.role === "User" && state.loggedIn === true ? (
-        <PostRequest />
-      ) : (
-        ""
-      )} */}
-      {state.currentUser.role === "User" ? (
+      {state.loggedIn === true ? (
         <div>
-          <h2>
-            <i className="fas fa-toolbox"></i> Maintenance Requests
-          </h2>
+          {state.currentUser.role === "User" ? (
+            <div>
+              <h2>
+                <i className="fas fa-toolbox"></i> Maintenance Requests
+              </h2>
 
-          <Tabs defaultActiveKey="Submit" id="uncontrolled-tab-example">
-            <Tab eventKey="Submit" title="Submit Requests">
-              <PostRequest />
-            </Tab>
-            <Tab eventKey="Open" title="Open Requests">
-              <ViewMyRequests />
-            </Tab>
-            <Tab eventKey="Closed" title="Closed Requests">
-              <ViewMyClosedRequests />
-            </Tab>
-          </Tabs>
+              <Tabs defaultActiveKey="Submit" id="uncontrolled-tab-example">
+                <Tab eventKey="Submit" title="Submit Requests">
+                  <PostRequest />
+                </Tab>
+                <Tab eventKey="Open" title="Open Requests">
+                  <ViewMyRequests />
+                </Tab>
+                <Tab eventKey="Closed" title="Closed Requests">
+                  <ViewMyClosedRequests />
+                </Tab>
+              </Tabs>
+            </div>
+          ) : (
+            <div>
+              <h2>
+                <i className="fas fa-toolbox"></i> Maintenance Requests
+              </h2>
+              <Tabs>
+                <Tab eventKey="Open" title="Open Requests">
+                  <ViewPropertyOpenRequests />
+                </Tab>
+                <Tab eventKey="Closed" title="Closed Requests">
+                  <ViewPropertyClosedRequests />
+                </Tab>
+              </Tabs>
+            </div>
+          )}
         </div>
       ) : (
-        <div>
-          <h2>
-            <i className="fas fa-toolbox"></i> Maintenance Requests
-          </h2>
-          <Tabs>
-            <Tab eventKey="Open" title="Open Requests">
-              <ViewPropertyOpenRequests />
-            </Tab>
-            <Tab eventKey="Closed" title="Closed Requests">
-              <ViewPropertyClosedRequests />
-            </Tab>
-          </Tabs>
-        </div>
+        <LoggedOut />
       )}
     </Container>
   );

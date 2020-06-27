@@ -4,6 +4,7 @@ import FileUpload from "../components/FileUpload";
 import ViewFiles from "../components/ViewFiles";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
+import LoggedOut from "../components/LoggedOut";
 
 export default function Files() {
   const [state, dispatch] = useStoreContext();
@@ -12,7 +13,7 @@ export default function Files() {
   useEffect(() => {
     if (state.currentproperty !== 0) {
       getPropertyName(state.currentproperty);
-    } else {
+    } else if (state.loggedIn === true) {
       getPropertyName(JSON.parse(localStorage.getItem("currentProperty")));
     }
   }, []);
@@ -25,12 +26,16 @@ export default function Files() {
   }
   return (
     <div>
-      <Container className="files--container">
-        <h2>
-          <i className="fas fa-folder-open"></i> {propertyName} Building Files
-        </h2>
-        <FileUpload />
-      </Container>
+      {state.loggedIn === true ? (
+        <Container className="files--container">
+          <h2>
+            <i className="fas fa-folder-open"></i> {propertyName} Building Files
+          </h2>
+          <FileUpload />
+        </Container>
+      ) : (
+        <LoggedOut />
+      )}
     </div>
   );
 }

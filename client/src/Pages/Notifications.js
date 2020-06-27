@@ -10,37 +10,36 @@ export default function Notifications() {
   const [state, dispatch] = useStoreContext();
   return (
     <div>
-      <Container className="notifications--container">
-        <h2>
-          <i className="fas fa-scroll"></i> Front Desk Notifications
-        </h2>
+      {state.loggedIn === true ? (
+        <Container className="notifications--container">
+          <h2>
+            <i className="fas fa-scroll"></i> Front Desk Notifications
+          </h2>
 
-        <Tabs defaultActiveKey="Notifications" id="uncontrolled-tab-example">
-          {state.currentUser.role !== "User" ? (
-            <Tab eventKey="Notifications" title="Notifications">
-              <ViewNotifications />
-            </Tab>
-          ) : (
-            <Tab eventKey="Notifications" title="Notifications">
-              <ViewMyNotifications />
-            </Tab>
-          )}
-          {state.currentUser.role === "Front Desk" &&
-          state.loggedIn === true ? (
-            <Tab eventKey="Sent" title="Send Notification">
-              <PostNotification />
-            </Tab>
-          ) : (
-            ""
-          )}
-        </Tabs>
-      </Container>
-      {state.loggedIn === false ? (
+          <Tabs defaultActiveKey="Notifications" id="uncontrolled-tab-example">
+            {state.currentUser.role !== "User" ? (
+              <Tab eventKey="Notifications" title="Notifications">
+                <ViewNotifications />
+              </Tab>
+            ) : (
+              <Tab eventKey="Notifications" title="Notifications">
+                <ViewMyNotifications />
+              </Tab>
+            )}
+            {state.currentUser.role === "Front Desk" &&
+            state.loggedIn === true ? (
+              <Tab eventKey="Sent" title="Send Notification">
+                <PostNotification />
+              </Tab>
+            ) : (
+              ""
+            )}
+          </Tabs>
+        </Container>
+      ) : (
         <Container>
           <LoggedOut />
         </Container>
-      ) : (
-        ""
       )}
     </div>
   );

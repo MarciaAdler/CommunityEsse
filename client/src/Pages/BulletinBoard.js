@@ -9,25 +9,31 @@ export default function BulletinBoard() {
 
   return (
     <Container className="bulletin--container">
-      <h2>
-        <i className="fas fa-clipboard-list"></i> Bulletin Board
-      </h2>
-      <Tabs defaultActiveKey="Bulletins" id="uncontrolled-tab-example">
-        {state.loggedIn === true ? (
-          <Tab eventKey="Bulletins" title="Bulletins">
-            <ViewBulletinBoard />
-          </Tab>
-        ) : (
-          <LoggedOut />
-        )}
-        {state.currentUser.role === "User" && state.loggedIn === true ? (
-          <Tab eventKey="Post" title="Post Bulletin">
-            <PostBulletinBoard />
-          </Tab>
-        ) : (
-          ""
-        )}
-      </Tabs>
+      {state.loggedIn === true ? (
+        <div>
+          <h2>
+            <i className="fas fa-clipboard-list"></i> Bulletin Board
+          </h2>
+          <Tabs defaultActiveKey="Bulletins" id="uncontrolled-tab-example">
+            {state.loggedIn === true ? (
+              <Tab eventKey="Bulletins" title="Bulletins">
+                <ViewBulletinBoard />
+              </Tab>
+            ) : (
+              <LoggedOut />
+            )}
+            {state.currentUser.role === "User" && state.loggedIn === true ? (
+              <Tab eventKey="Post" title="Post Bulletin">
+                <PostBulletinBoard />
+              </Tab>
+            ) : (
+              ""
+            )}
+          </Tabs>
+        </div>
+      ) : (
+        <LoggedOut />
+      )}
     </Container>
   );
 }

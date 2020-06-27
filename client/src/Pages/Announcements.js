@@ -13,7 +13,7 @@ export default function Announcements() {
   useEffect(() => {
     if (state.currentproperty !== 0) {
       getPropertyName(state.currentproperty);
-    } else {
+    } else if (state.loggedIn === true) {
       getPropertyName(localStorage.getItem("currentProperty"));
     }
   }, []);
@@ -26,27 +26,29 @@ export default function Announcements() {
   }
   return (
     <Container className="announcements--container">
-      <h2>
-        <i className="fas fa-building"></i> {propertyName} Building
-        Announcements
-      </h2>
-      <Tabs defaultActiveKey="Announcements" id="uncontrolled-tab-example">
-        {state.loggedIn === true ? (
-          <Tab eventKey="Announcements" title="Announcements">
-            <ViewAnnouncements />
-          </Tab>
-        ) : (
-          <LoggedOut />
-        )}
+      {state.loggedIn === true ? (
+        <div>
+          <h2>
+            <i className="fas fa-building"></i> {propertyName} Building
+            Announcements
+          </h2>
+          <Tabs defaultActiveKey="Announcements" id="uncontrolled-tab-example">
+            <Tab eventKey="Announcements" title="Announcements">
+              <ViewAnnouncements />
+            </Tab>
 
-        {state.currentUser.role === "Admin" && state.loggedIn === true ? (
-          <Tab eventKey="Post" title="Post Announcement">
-            <PostAnnouncement />
-          </Tab>
-        ) : (
-          ""
-        )}
-      </Tabs>
+            {state.currentUser.role === "Admin" && state.loggedIn === true ? (
+              <Tab eventKey="Post" title="Post Announcement">
+                <PostAnnouncement />
+              </Tab>
+            ) : (
+              ""
+            )}
+          </Tabs>
+        </div>
+      ) : (
+        <LoggedOut />
+      )}
     </Container>
   );
 }
