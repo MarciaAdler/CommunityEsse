@@ -34,10 +34,6 @@ export default function ViewAnnouncements() {
   }
   return (
     <div>
-      <h2>
-        <i className="fas fa-building"></i> {propertyName} Building
-        Announcements
-      </h2>
       <ListGroup>
         {state.announcements.length
           ? state.announcements.map((announcement, index) => {
