@@ -3,7 +3,7 @@ import ViewNotifications from "../components/ViewNotifications";
 import PostNotification from "../components/PostNotification";
 import ViewMyNotifications from "../components/ViewMyNotifications";
 import LoggedOut from "../components/LoggedOut";
-import { Container } from "react-bootstrap";
+import { Container, Tabs, Tab } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 
 export default function Notifications() {
@@ -11,22 +11,29 @@ export default function Notifications() {
   return (
     <div>
       <Container className="notifications--container">
-        {state.currentUser.role !== "User" && state.loggedIn === true ? (
-          <ViewNotifications />
-        ) : (
-          " "
-        )}
-        {state.currentUser.role === "User" && state.loggedIn === true ? (
-          <ViewMyNotifications />
-        ) : (
-          ""
-        )}
+        <h2>
+          <i className="fas fa-scroll"></i> Front Desk Notifications
+        </h2>
 
-        {state.currentUser.role === "Front Desk" && state.loggedIn === true ? (
-          <PostNotification />
-        ) : (
-          ""
-        )}
+        <Tabs defaultActiveKey="Notifications" id="uncontrolled-tab-example">
+          {state.currentUser.role !== "User" && state.loggedIn === true ? (
+            <Tab eventKey="Notifications" title="Notifications">
+              <ViewNotifications />
+            </Tab>
+          ) : (
+            <Tab eventKey="Notifications" title="Notifications">
+              <ViewMyNotifications />
+            </Tab>
+          )}
+          {state.currentUser.role === "Front Desk" &&
+          state.loggedIn === true ? (
+            <Tab eventKey="Sent" title="Send Notification">
+              <PostNotification />
+            </Tab>
+          ) : (
+            ""
+          )}
+        </Tabs>
       </Container>
       {state.loggedIn === false ? (
         <Container>

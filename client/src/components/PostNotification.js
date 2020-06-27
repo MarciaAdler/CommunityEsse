@@ -10,6 +10,8 @@ export default function PostNotification() {
   const receiverRef = useRef();
   const [receiverId, setReceiverId] = useState({});
   const [formObject, setFormObject] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+
   let receiveId = "";
   useEffect(() => {
     getAllUsers(state.currentproperty);
@@ -17,6 +19,7 @@ export default function PostNotification() {
   }, []);
 
   function createPost(event) {
+    event.preventDefault();
     API.createNotification({
       message: postRef.current.value,
       SenderId: state.currentUser.id,
@@ -25,8 +28,10 @@ export default function PostNotification() {
     })
       .then((res) => {
         console.log(res.data);
-        document.getElementById("notification-form").value = "";
-        document.getElementById("notification-apt-form").value = "";
+        getNotifications(state.currentproperty);
+        confirmSent();
+        const form = document.getElementById("myForm");
+        form.reset();
       })
       .catch((err) => console.log(err));
   }
@@ -60,11 +65,16 @@ export default function PostNotification() {
       });
     }
   }
-
+  function confirmSent() {
+    setSuccessMessage("Notification Sent");
+    setTimeout(() => {
+      document.getElementById("success-message").style.display = "none";
+    }, 1000);
+  }
   return (
-    <div className="post-bulletin--container">
+    <div className="post-messages--container">
       <h2>Post Notification Here</h2>
-      <Form className="post-bulletin--form">
+      <Form className="post-messages--form" id="myForm">
         <Form.Group controlId="notication-form">
           <Form.Label>To</Form.Label>
 
@@ -85,9 +95,12 @@ export default function PostNotification() {
         <Form.Group controlId="notification-apt-form">
           <Form.Control as="textarea" rows="5" ref={postRef} />
         </Form.Group>
-        <button className="button" type="submit" onClick={createPost}>
+        <Button className="button" type="submit" onClick={createPost}>
           Send
-        </button>
+        </Button>
+        <span className="post-messages--success" id="success-message">
+          {successMessage}
+        </span>
       </Form>
     </div>
   );

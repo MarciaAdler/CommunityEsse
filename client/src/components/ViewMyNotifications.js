@@ -42,10 +42,6 @@ export default function ViewNotification() {
   }
   return (
     <div>
-      <h2>
-        <i className="fas fa-scroll"></i> Front Desk Notifications
-      </h2>
-
       <ListGroup>
         {state.notifications.length
           ? state.notifications.map((notification, index) => {
