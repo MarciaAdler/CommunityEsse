@@ -22,7 +22,7 @@ export default function ViewAnnouncements() {
   function deleteAnnouncement(announcement) {
     API.deleteAnnouncement(announcement)
       .then((res) => {
-        getAnnouncements(state.announcements);
+        getAnnouncements(state.currentproperty);
       })
       .catch((err) => console.log(err));
   }
