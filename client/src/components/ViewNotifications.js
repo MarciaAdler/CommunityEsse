@@ -13,7 +13,7 @@ export default function ViewNotification() {
     if (state.currentproperty !== 0) {
       getNotifications(state.currentproperty);
     } else {
-      getNotifications(localStorage.getItem("currentProperty"));
+      getNotifications(JSON.parse(localStorage.getItem("currentProperty")));
     }
   }, []);
   function getNotifications(currentproperty) {
