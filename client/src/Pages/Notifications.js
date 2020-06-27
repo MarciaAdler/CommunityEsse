@@ -16,7 +16,7 @@ export default function Notifications() {
         </h2>
 
         <Tabs defaultActiveKey="Notifications" id="uncontrolled-tab-example">
-          {state.currentUser.role !== "User" && state.loggedIn === true ? (
+          {state.currentUser.role !== "User" ? (
             <Tab eventKey="Notifications" title="Notifications">
               <ViewNotifications />
             </Tab>
