@@ -1,14 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { Container, Form, Button } from "react-bootstrap";
+import { SET_BULLETINS } from "../utils/actions";
 import API from "../utils/API";
 
 export default function PostAnnouncement() {
   const [state, dispatch] = useStoreContext();
   const postRef = useRef();
   const subjectRef = useRef();
+  const [successMessage, setSuccessMessage] = useState("");
 
   function createPost(event) {
+    event.preventDefault();
     API.createBulletin({
       message: postRef.current.value,
       subject: subjectRef.current.value,
@@ -17,10 +20,22 @@ export default function PostAnnouncement() {
     })
       .then((results) => {
         console.log(results.data);
-
+        getBulletins(state.currentproperty);
+        confirmSent();
         document.getElementById("bulletin-form").value = "";
       })
       .catch((err) => console.log(err));
+  }
+  function getBulletins(currentproperty) {
+    API.getBulletins(currentproperty).then((response) => {
+      dispatch({ type: SET_BULLETINS, bulletins: response.data });
+    });
+  }
+  function confirmSent() {
+    setSuccessMessage("Bulletin Posted");
+    setTimeout(() => {
+      document.getElementById("success-message").style.display = "none";
+    }, 1000);
   }
   return (
     <div className="post-bulletin--container">
@@ -41,6 +56,9 @@ export default function PostAnnouncement() {
         <Button className="button" type="submit" onClick={createPost}>
           Post
         </Button>
+        <span className="post-messages--success" id="success-message">
+          {successMessage}
+        </span>
       </Form>
     </div>
   );
