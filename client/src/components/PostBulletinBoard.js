@@ -22,7 +22,8 @@ export default function PostAnnouncement() {
         console.log(results.data);
         getBulletins(state.currentproperty);
         confirmSent();
-        document.getElementById("bulletin-form").value = "";
+        const form = document.getElementById("myForm");
+        form.reset();
       })
       .catch((err) => console.log(err));
   }
@@ -40,7 +41,7 @@ export default function PostAnnouncement() {
   return (
     <div className="post-bulletin--container">
       <h2>Post Bulletin Here</h2>
-      <Form className="post-bulletin--form">
+      <Form className="post-bulletin--form" id="myForm">
         <Form.Group controlId="bulletin-subject">
           <Form.Label>Subject: </Form.Label>
           <Form.Control as="textarea" rows="1" ref={subjectRef} />
