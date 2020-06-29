@@ -40,7 +40,13 @@ a
     background-color: $jet
     color: $grey
     border-color: $jet
-
+.test-accounts
+  border: 1px solid $jet
+  margin-right: 20px
+  margin-left: 20px
+  @include media-breakpoint-only(xs)
+    margin-right: 0
+    margin-left: 0
 .header
   &--navbar
     @include media-breakpoint-only(xs)
