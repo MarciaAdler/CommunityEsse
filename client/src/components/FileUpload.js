@@ -6,7 +6,7 @@ import { useStoreContext } from "../utils/GlobalState";
 
 export default function FileUpload() {
   const [file, setFile] = useState(""); // storing the uploaded file    // storing the recived file from backend
-  const [data, getFile] = useState({ name: "", path: "" });
+  const [data, getFile] = useState({ name: "", property: "", path: "" });
   const [progress, setProgess] = useState(0); // progess bar
   const el = useRef(); // accesing input element
   const [state, dispatch] = useStoreContext();
@@ -48,7 +48,8 @@ export default function FileUpload() {
   const uploadFile = () => {
     const formData = new FormData();
     formData.append("file", file); // appending file
-    formData.append("property", propertyName);
+    formData.append("property", propertyName); // appending file name
+
     API.uploadPdfFile(formData, {
       onUploadProgress: (ProgressEvent) => {
         let progress =
@@ -57,6 +58,7 @@ export default function FileUpload() {
       },
     })
       .then((res) => {
+        console.log(res);
         getFile({
           name: propertyName + "-" + res.data.name,
           property: state.currentproperty,

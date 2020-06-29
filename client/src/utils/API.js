@@ -104,8 +104,9 @@ export default {
   //   return axios.get("/api/uploadimage/" + image.UserId);
   // },
 
-  uploadPdfFile: function (data) {
-    return axios.post("/api/pdfupload", data);
+  uploadPdfFile: function (file) {
+    console.log(file);
+    return axios.post("/api/pdfupload", file);
   },
   fileUpload: function (file) {
     return axios.post("/api/fileupload", file);

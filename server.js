@@ -7,7 +7,7 @@ const path = require("path");
 const Sequelize = require("sequelize");
 var db = require("./models");
 // var multer = require("multer");
-// const cors = require("cors");
+const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const passport = require("passport");
 // const fs = require("fs");
@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // app.use(express.static("public")); //to access the files in public folder
 app.use(express.static(path.join(__dirname, "/client/build/")));
-// app.use(cors());
-// app.use(fileUpload());
+app.use(cors());
+app.use(fileUpload());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -123,6 +123,7 @@ app.post("/api/upload", (req, res) => {
 // });
 // file upload api
 app.post("/api/pdfupload", (req, res) => {
+  console.log(req.files);
   if (!req.files) {
     return res.status(500).send({ msg: "file is not found" });
   }
