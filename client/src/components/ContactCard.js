@@ -3,6 +3,7 @@ import { Container, Card, Col, Row, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_NOTIFICATIONS, SET_USERS } from "../utils/actions";
 import API from "../utils/API";
+import { STATUS_CODES } from "http";
 
 export default function ContactCard() {
   const [state, dispatch] = useStoreContext();
@@ -42,7 +43,6 @@ export default function ContactCard() {
                       <Card.Title>
                         {user.firstName} {user.lastName}
                       </Card.Title>
-
                       {user.role === "Admin" ||
                       user.role === "Front Desk" ||
                       user.role === "Maintenance" ? (
@@ -54,7 +54,18 @@ export default function ContactCard() {
                           Apt: {user.aptNumber}
                         </Card.Subtitle>
                       )}
-                      {user.phoneNumber !== null ? (
+                      {user.phoneNumber !== null &&
+                      state.currentUser.role !== "User" ? (
+                        <Card.Subtitle className="mb-3 text-muted">
+                          Phone Number: {user.phoneNumber}
+                        </Card.Subtitle>
+                      ) : (
+                        ""
+                      )}
+
+                      {user.phoneNumer !== null &&
+                      (user.role !== "User") &
+                        (state.currentUser.role === "User") ? (
                         <Card.Subtitle className="mb-3 text-muted">
                           Phone Number: {user.phoneNumber}
                         </Card.Subtitle>
