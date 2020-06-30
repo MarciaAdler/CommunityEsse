@@ -64,8 +64,8 @@ export default function ContactCard() {
                       )}
 
                       {user.phoneNumer !== null &&
-                      (user.role !== "User") &
-                        (state.currentUser.role === "User") ? (
+                      user.role !== "User" &&
+                      state.currentUser.role === "User" ? (
                         <Card.Subtitle className="mb-3 text-muted">
                           Phone Number: {user.phoneNumber}
                         </Card.Subtitle>
