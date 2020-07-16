@@ -4,7 +4,7 @@
 
 ## Overview
 
-This project is a MERN (MySQL, Express, React, Node) application that allows property managers, workers, and tenants at real estate properties better communicate, manage and live in the communities. The app can handle multiple properties and users will only have access to activity for the property they are registered for.
+This project is a MERN (MySQL, Express, React, Node) application that allows property managers, workers, and tenants at real estate properties to better communicate, manage and live in the communities. The app can handle multiple properties and users will only have access to activity for the property they are registered for.
 
 The app has different user roles that allow users different access to features.
 
