@@ -149,11 +149,19 @@ app.get("*", (req, res) => {
 });
 
 db.sequelize.sync({ logging: false }).then(function () {
-  app.listen(PORT, function () {
+  const server = app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
       PORT
     );
+    console.log("Max HTTP header size:", require("http").maxHeaderSize);
+  });
+  server.on("clientError", (err, socket) => {
+    const cookieHeader = err.rawPacket
+      ? Buffer.from(err.rawPacket).toString().match(/cookie: .{0,200}/i)?.[0]
+      : "unavailable";
+    console.error("CLIENT ERROR:", err.code, "| cookie preview:", cookieHeader);
+    socket.end("HTTP/1.1 431 Request Header Fields Too Large\r\n\r\n");
   });
 });

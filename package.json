@@ -6,7 +6,7 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "NODE_OPTIONS=--max-http-header-size=16384 node server.js",
-    "start:dev": "NODE_OPTIONS=--max-http-header-size=16384 nodemon --ignore 'client' & npm run client",
+    "start:dev": "nodemon --ignore 'client' --exec 'node --max-http-header-size=65536' & npm run client",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
