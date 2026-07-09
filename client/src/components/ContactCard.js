@@ -3,7 +3,6 @@ import { Container, Card, Col, Row, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_NOTIFICATIONS, SET_USERS } from "../utils/actions";
 import API from "../utils/API";
-import { STATUS_CODES } from "http";
 
 export default function ContactCard() {
   const [state, dispatch] = useStoreContext();

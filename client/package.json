@@ -13,12 +13,12 @@
     "create-react-app": "^5.0.1",
     "dateformat": "^3.0.3",
     "fs": "0.0.1-security",
-    "sass": "^1.77.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "sass": "^1.77.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,6 +28,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "overrides": {
+    "webpack": "^5.88.0",
+    "glob-to-regexp": "^0.4.1"
   },
   "browserslist": {
     "production": [

@@ -15,7 +15,6 @@ import { useStoreContext } from "../utils/GlobalState";
 import dateFormat from "dateformat";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
-import { stat } from "fs";
 
 export default function Home() {
   const [state, dispatch] = useStoreContext();

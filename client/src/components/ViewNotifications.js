@@ -4,7 +4,6 @@ import dateFormat from "dateformat";
 import { SET_NOTIFICATIONS } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
-import { STATUS_CODES } from "http";
 
 export default function ViewNotification() {
   const [state, dispatch] = useStoreContext();

@@ -4,7 +4,6 @@ import { Form, Col, Button, Row } from "react-bootstrap";
 import API from "../utils/API";
 import { SET_CURRENT_USER } from "../utils/actions";
 import { Next } from "react-bootstrap/PageItem";
-const fs = require("fs");
 export default function ProfileForm() {
   const [state, dispatch] = useStoreContext();
   const [file, setFile] = useState("");
