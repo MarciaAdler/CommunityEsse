@@ -36,7 +36,7 @@
     "fs": "0.0.1-security",
     "gtfs-realtime-bindings": "0.0.5",
     "if-env": "^1.0.4",
-    "multer": "^2.2.0",
+    "multer": "^2.3.0",
     "mysql2": "^2.1.0",
     "node-fetch": "^3.1.1",
     "passport": "^0.4.1",
